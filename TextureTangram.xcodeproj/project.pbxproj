@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F852D7DA9FC97BCFD9E7B48 /* libPods-TextureTangram.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F7BE0EF20EC4EA75CCB5038 /* libPods-TextureTangram.a */; };
 		BCBA272A2118457D00E8C0AD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBA27292118457D00E8C0AD /* AppDelegate.m */; };
 		BCBA272D2118457D00E8C0AD /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBA272C2118457D00E8C0AD /* ViewController.m */; };
 		BCBA27302118457E00E8C0AD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BCBA272E2118457E00E8C0AD /* Main.storyboard */; };
@@ -14,6 +15,7 @@
 		BCBA27352118458000E8C0AD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BCBA27332118458000E8C0AD /* LaunchScreen.storyboard */; };
 		BCBA27382118458000E8C0AD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBA27372118458000E8C0AD /* main.m */; };
 		BCBA27422118458000E8C0AD /* TextureTangramTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBA27412118458000E8C0AD /* TextureTangramTests.m */; };
+		E77958A0D5E05468FC7F7104 /* libPods-TextureTangramTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ED60A47DBD7B5D406656A6FF /* libPods-TextureTangramTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +29,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3F7BE0EF20EC4EA75CCB5038 /* libPods-TextureTangram.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TextureTangram.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		88950BE613CEB6E77CBDBAD2 /* Pods-TextureTangram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TextureTangram.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TextureTangram/Pods-TextureTangram.debug.xcconfig"; sourceTree = "<group>"; };
+		B5624ABFABBA8BF96F11636A /* Pods-TextureTangramTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TextureTangramTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TextureTangramTests/Pods-TextureTangramTests.release.xcconfig"; sourceTree = "<group>"; };
 		BCBA27252118457D00E8C0AD /* TextureTangram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TextureTangram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCBA27282118457D00E8C0AD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		BCBA27292118457D00E8C0AD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -40,6 +45,9 @@
 		BCBA273D2118458000E8C0AD /* TextureTangramTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TextureTangramTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCBA27412118458000E8C0AD /* TextureTangramTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextureTangramTests.m; sourceTree = "<group>"; };
 		BCBA27432118458000E8C0AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ED60A47DBD7B5D406656A6FF /* libPods-TextureTangramTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TextureTangramTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F7DAAD2A7B0A10FCEFC3B62B /* Pods-TextureTangramTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TextureTangramTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TextureTangramTests/Pods-TextureTangramTests.debug.xcconfig"; sourceTree = "<group>"; };
+		FB84F3E7791079E708BF191E /* Pods-TextureTangram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TextureTangram.release.xcconfig"; path = "Pods/Target Support Files/Pods-TextureTangram/Pods-TextureTangram.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F852D7DA9FC97BCFD9E7B48 /* libPods-TextureTangram.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,18 +63,41 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E77958A0D5E05468FC7F7104 /* libPods-TextureTangramTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		708B9DC29F12974BD5EFB7A4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3F7BE0EF20EC4EA75CCB5038 /* libPods-TextureTangram.a */,
+				ED60A47DBD7B5D406656A6FF /* libPods-TextureTangramTests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A703CCA7AEAEBA564E71E7CD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				88950BE613CEB6E77CBDBAD2 /* Pods-TextureTangram.debug.xcconfig */,
+				FB84F3E7791079E708BF191E /* Pods-TextureTangram.release.xcconfig */,
+				F7DAAD2A7B0A10FCEFC3B62B /* Pods-TextureTangramTests.debug.xcconfig */,
+				B5624ABFABBA8BF96F11636A /* Pods-TextureTangramTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		BCBA271C2118457D00E8C0AD = {
 			isa = PBXGroup;
 			children = (
 				BCBA27272118457D00E8C0AD /* TextureTangram */,
 				BCBA27402118458000E8C0AD /* TextureTangramTests */,
 				BCBA27262118457D00E8C0AD /* Products */,
+				A703CCA7AEAEBA564E71E7CD /* Pods */,
+				708B9DC29F12974BD5EFB7A4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -110,6 +142,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BCBA27462118458000E8C0AD /* Build configuration list for PBXNativeTarget "TextureTangram" */;
 			buildPhases = (
+				F4C2D8E1EA19BF0826048178 /* [CP] Check Pods Manifest.lock */,
 				BCBA27212118457D00E8C0AD /* Sources */,
 				BCBA27222118457D00E8C0AD /* Frameworks */,
 				BCBA27232118457D00E8C0AD /* Resources */,
@@ -127,6 +160,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BCBA27492118458000E8C0AD /* Build configuration list for PBXNativeTarget "TextureTangramTests" */;
 			buildPhases = (
+				4237ED2FE0BD171DB28C4509 /* [CP] Check Pods Manifest.lock */,
 				BCBA27392118458000E8C0AD /* Sources */,
 				BCBA273A2118458000E8C0AD /* Frameworks */,
 				BCBA273B2118458000E8C0AD /* Resources */,
@@ -197,6 +231,45 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4237ED2FE0BD171DB28C4509 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TextureTangramTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F4C2D8E1EA19BF0826048178 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TextureTangram-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		BCBA27212118457D00E8C0AD /* Sources */ = {
@@ -359,6 +432,7 @@
 		};
 		BCBA27472118458000E8C0AD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 88950BE613CEB6E77CBDBAD2 /* Pods-TextureTangram.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -376,6 +450,7 @@
 		};
 		BCBA27482118458000E8C0AD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FB84F3E7791079E708BF191E /* Pods-TextureTangram.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -393,6 +468,7 @@
 		};
 		BCBA274A2118458000E8C0AD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F7DAAD2A7B0A10FCEFC3B62B /* Pods-TextureTangramTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -412,6 +488,7 @@
 		};
 		BCBA274B2118458000E8C0AD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B5624ABFABBA8BF96F11636A /* Pods-TextureTangramTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
