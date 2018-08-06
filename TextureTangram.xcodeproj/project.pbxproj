@@ -1,0 +1,465 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BCBA272A2118457D00E8C0AD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBA27292118457D00E8C0AD /* AppDelegate.m */; };
+		BCBA272D2118457D00E8C0AD /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBA272C2118457D00E8C0AD /* ViewController.m */; };
+		BCBA27302118457E00E8C0AD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BCBA272E2118457E00E8C0AD /* Main.storyboard */; };
+		BCBA27322118458000E8C0AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BCBA27312118458000E8C0AD /* Assets.xcassets */; };
+		BCBA27352118458000E8C0AD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BCBA27332118458000E8C0AD /* LaunchScreen.storyboard */; };
+		BCBA27382118458000E8C0AD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBA27372118458000E8C0AD /* main.m */; };
+		BCBA27422118458000E8C0AD /* TextureTangramTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBA27412118458000E8C0AD /* TextureTangramTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BCBA273E2118458000E8C0AD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BCBA271D2118457D00E8C0AD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BCBA27242118457D00E8C0AD;
+			remoteInfo = TextureTangram;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		BCBA27252118457D00E8C0AD /* TextureTangram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TextureTangram.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BCBA27282118457D00E8C0AD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		BCBA27292118457D00E8C0AD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		BCBA272B2118457D00E8C0AD /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		BCBA272C2118457D00E8C0AD /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		BCBA272F2118457E00E8C0AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		BCBA27312118458000E8C0AD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BCBA27342118458000E8C0AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		BCBA27362118458000E8C0AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BCBA27372118458000E8C0AD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		BCBA273D2118458000E8C0AD /* TextureTangramTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TextureTangramTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BCBA27412118458000E8C0AD /* TextureTangramTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextureTangramTests.m; sourceTree = "<group>"; };
+		BCBA27432118458000E8C0AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BCBA27222118457D00E8C0AD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BCBA273A2118458000E8C0AD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BCBA271C2118457D00E8C0AD = {
+			isa = PBXGroup;
+			children = (
+				BCBA27272118457D00E8C0AD /* TextureTangram */,
+				BCBA27402118458000E8C0AD /* TextureTangramTests */,
+				BCBA27262118457D00E8C0AD /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BCBA27262118457D00E8C0AD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BCBA27252118457D00E8C0AD /* TextureTangram.app */,
+				BCBA273D2118458000E8C0AD /* TextureTangramTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BCBA27272118457D00E8C0AD /* TextureTangram */ = {
+			isa = PBXGroup;
+			children = (
+				BCBA27282118457D00E8C0AD /* AppDelegate.h */,
+				BCBA27292118457D00E8C0AD /* AppDelegate.m */,
+				BCBA272B2118457D00E8C0AD /* ViewController.h */,
+				BCBA272C2118457D00E8C0AD /* ViewController.m */,
+				BCBA272E2118457E00E8C0AD /* Main.storyboard */,
+				BCBA27312118458000E8C0AD /* Assets.xcassets */,
+				BCBA27332118458000E8C0AD /* LaunchScreen.storyboard */,
+				BCBA27362118458000E8C0AD /* Info.plist */,
+				BCBA27372118458000E8C0AD /* main.m */,
+			);
+			path = TextureTangram;
+			sourceTree = "<group>";
+		};
+		BCBA27402118458000E8C0AD /* TextureTangramTests */ = {
+			isa = PBXGroup;
+			children = (
+				BCBA27412118458000E8C0AD /* TextureTangramTests.m */,
+				BCBA27432118458000E8C0AD /* Info.plist */,
+			);
+			path = TextureTangramTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BCBA27242118457D00E8C0AD /* TextureTangram */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BCBA27462118458000E8C0AD /* Build configuration list for PBXNativeTarget "TextureTangram" */;
+			buildPhases = (
+				BCBA27212118457D00E8C0AD /* Sources */,
+				BCBA27222118457D00E8C0AD /* Frameworks */,
+				BCBA27232118457D00E8C0AD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TextureTangram;
+			productName = TextureTangram;
+			productReference = BCBA27252118457D00E8C0AD /* TextureTangram.app */;
+			productType = "com.apple.product-type.application";
+		};
+		BCBA273C2118458000E8C0AD /* TextureTangramTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BCBA27492118458000E8C0AD /* Build configuration list for PBXNativeTarget "TextureTangramTests" */;
+			buildPhases = (
+				BCBA27392118458000E8C0AD /* Sources */,
+				BCBA273A2118458000E8C0AD /* Frameworks */,
+				BCBA273B2118458000E8C0AD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BCBA273F2118458000E8C0AD /* PBXTargetDependency */,
+			);
+			name = TextureTangramTests;
+			productName = TextureTangramTests;
+			productReference = BCBA273D2118458000E8C0AD /* TextureTangramTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BCBA271D2118457D00E8C0AD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0930;
+				ORGANIZATIONNAME = ZZinKin;
+				TargetAttributes = {
+					BCBA27242118457D00E8C0AD = {
+						CreatedOnToolsVersion = 9.3;
+					};
+					BCBA273C2118458000E8C0AD = {
+						CreatedOnToolsVersion = 9.3;
+						TestTargetID = BCBA27242118457D00E8C0AD;
+					};
+				};
+			};
+			buildConfigurationList = BCBA27202118457D00E8C0AD /* Build configuration list for PBXProject "TextureTangram" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = BCBA271C2118457D00E8C0AD;
+			productRefGroup = BCBA27262118457D00E8C0AD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BCBA27242118457D00E8C0AD /* TextureTangram */,
+				BCBA273C2118458000E8C0AD /* TextureTangramTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BCBA27232118457D00E8C0AD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BCBA27352118458000E8C0AD /* LaunchScreen.storyboard in Resources */,
+				BCBA27322118458000E8C0AD /* Assets.xcassets in Resources */,
+				BCBA27302118457E00E8C0AD /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BCBA273B2118458000E8C0AD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BCBA27212118457D00E8C0AD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BCBA272D2118457D00E8C0AD /* ViewController.m in Sources */,
+				BCBA27382118458000E8C0AD /* main.m in Sources */,
+				BCBA272A2118457D00E8C0AD /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BCBA27392118458000E8C0AD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BCBA27422118458000E8C0AD /* TextureTangramTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BCBA273F2118458000E8C0AD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BCBA27242118457D00E8C0AD /* TextureTangram */;
+			targetProxy = BCBA273E2118458000E8C0AD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		BCBA272E2118457E00E8C0AD /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BCBA272F2118457E00E8C0AD /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		BCBA27332118458000E8C0AD /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BCBA27342118458000E8C0AD /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		BCBA27442118458000E8C0AD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		BCBA27452118458000E8C0AD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BCBA27472118458000E8C0AD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 65U732MLC9;
+				INFOPLIST_FILE = TextureTangram/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = chaolong.TextureTangram;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BCBA27482118458000E8C0AD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 65U732MLC9;
+				INFOPLIST_FILE = TextureTangram/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = chaolong.TextureTangram;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		BCBA274A2118458000E8C0AD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 65U732MLC9;
+				INFOPLIST_FILE = TextureTangramTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = chaolong.TextureTangramTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TextureTangram.app/TextureTangram";
+			};
+			name = Debug;
+		};
+		BCBA274B2118458000E8C0AD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 65U732MLC9;
+				INFOPLIST_FILE = TextureTangramTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = chaolong.TextureTangramTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TextureTangram.app/TextureTangram";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BCBA27202118457D00E8C0AD /* Build configuration list for PBXProject "TextureTangram" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BCBA27442118458000E8C0AD /* Debug */,
+				BCBA27452118458000E8C0AD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BCBA27462118458000E8C0AD /* Build configuration list for PBXNativeTarget "TextureTangram" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BCBA27472118458000E8C0AD /* Debug */,
+				BCBA27482118458000E8C0AD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BCBA27492118458000E8C0AD /* Build configuration list for PBXNativeTarget "TextureTangramTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BCBA274A2118458000E8C0AD /* Debug */,
+				BCBA274B2118458000E8C0AD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BCBA271D2118457D00E8C0AD /* Project object */;
+}
