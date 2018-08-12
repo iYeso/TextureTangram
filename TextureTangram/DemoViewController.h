@@ -1,4 +1,4 @@
-// Copyright ZZinKin
+/// Copyright ZZinKin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -13,24 +13,11 @@
 // limitations under the License.
 //
 
-#import "ViewController.h"
 
-@interface ViewController ()
+#import <AsyncDisplayKit/AsyncDisplayKit.h>
 
-@end
-
-@implementation ViewController
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
-}
-
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+@interface DemoViewController : ASViewController
 
 
 @end
+

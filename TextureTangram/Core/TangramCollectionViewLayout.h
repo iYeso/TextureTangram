@@ -1,4 +1,4 @@
-/// Copyright ZZinKin
+// Copyright ZZinKin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,8 +16,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+// 要是写自定义layout，直接调用 self.collectionView.delegate 来获取布局大小等等信息
+// collectionNode 会使用 rangeController和DataController进行优化（但是有限）。先看看用flowlayout实现效果如何
+@interface TangramCollectionViewLayout : UICollectionViewLayout
 
 @end
-

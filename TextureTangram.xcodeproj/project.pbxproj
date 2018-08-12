@@ -9,12 +9,12 @@
 /* Begin PBXBuildFile section */
 		2F852D7DA9FC97BCFD9E7B48 /* libPods-TextureTangram.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F7BE0EF20EC4EA75CCB5038 /* libPods-TextureTangram.a */; };
 		BCBA272A2118457D00E8C0AD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBA27292118457D00E8C0AD /* AppDelegate.m */; };
-		BCBA272D2118457D00E8C0AD /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBA272C2118457D00E8C0AD /* ViewController.m */; };
-		BCBA27302118457E00E8C0AD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BCBA272E2118457E00E8C0AD /* Main.storyboard */; };
+		BCBA272D2118457D00E8C0AD /* DemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBA272C2118457D00E8C0AD /* DemoViewController.m */; };
 		BCBA27322118458000E8C0AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BCBA27312118458000E8C0AD /* Assets.xcassets */; };
 		BCBA27352118458000E8C0AD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BCBA27332118458000E8C0AD /* LaunchScreen.storyboard */; };
 		BCBA27382118458000E8C0AD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBA27372118458000E8C0AD /* main.m */; };
 		BCBA27422118458000E8C0AD /* TextureTangramTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBA27412118458000E8C0AD /* TextureTangramTests.m */; };
+		CB01B8ED212069FD00DD9BE7 /* TangramCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = CB01B8EC212069FD00DD9BE7 /* TangramCollectionViewLayout.m */; };
 		E77958A0D5E05468FC7F7104 /* libPods-TextureTangramTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ED60A47DBD7B5D406656A6FF /* libPods-TextureTangramTests.a */; };
 /* End PBXBuildFile section */
 
@@ -35,9 +35,8 @@
 		BCBA27252118457D00E8C0AD /* TextureTangram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TextureTangram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCBA27282118457D00E8C0AD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		BCBA27292118457D00E8C0AD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		BCBA272B2118457D00E8C0AD /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		BCBA272C2118457D00E8C0AD /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		BCBA272F2118457E00E8C0AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		BCBA272B2118457D00E8C0AD /* DemoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DemoViewController.h; sourceTree = "<group>"; };
+		BCBA272C2118457D00E8C0AD /* DemoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DemoViewController.m; sourceTree = "<group>"; };
 		BCBA27312118458000E8C0AD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BCBA27342118458000E8C0AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BCBA27362118458000E8C0AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -45,6 +44,8 @@
 		BCBA273D2118458000E8C0AD /* TextureTangramTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TextureTangramTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCBA27412118458000E8C0AD /* TextureTangramTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextureTangramTests.m; sourceTree = "<group>"; };
 		BCBA27432118458000E8C0AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CB01B8EB212069FD00DD9BE7 /* TangramCollectionViewLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TangramCollectionViewLayout.h; sourceTree = "<group>"; };
+		CB01B8EC212069FD00DD9BE7 /* TangramCollectionViewLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TangramCollectionViewLayout.m; sourceTree = "<group>"; };
 		ED60A47DBD7B5D406656A6FF /* libPods-TextureTangramTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TextureTangramTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7DAAD2A7B0A10FCEFC3B62B /* Pods-TextureTangramTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TextureTangramTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TextureTangramTests/Pods-TextureTangramTests.debug.xcconfig"; sourceTree = "<group>"; };
 		FB84F3E7791079E708BF191E /* Pods-TextureTangram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TextureTangram.release.xcconfig"; path = "Pods/Target Support Files/Pods-TextureTangram/Pods-TextureTangram.release.xcconfig"; sourceTree = "<group>"; };
@@ -113,11 +114,11 @@
 		BCBA27272118457D00E8C0AD /* TextureTangram */ = {
 			isa = PBXGroup;
 			children = (
+				CB01B8EA212069AA00DD9BE7 /* Core */,
 				BCBA27282118457D00E8C0AD /* AppDelegate.h */,
 				BCBA27292118457D00E8C0AD /* AppDelegate.m */,
-				BCBA272B2118457D00E8C0AD /* ViewController.h */,
-				BCBA272C2118457D00E8C0AD /* ViewController.m */,
-				BCBA272E2118457E00E8C0AD /* Main.storyboard */,
+				BCBA272B2118457D00E8C0AD /* DemoViewController.h */,
+				BCBA272C2118457D00E8C0AD /* DemoViewController.m */,
 				BCBA27312118458000E8C0AD /* Assets.xcassets */,
 				BCBA27332118458000E8C0AD /* LaunchScreen.storyboard */,
 				BCBA27362118458000E8C0AD /* Info.plist */,
@@ -133,6 +134,15 @@
 				BCBA27432118458000E8C0AD /* Info.plist */,
 			);
 			path = TextureTangramTests;
+			sourceTree = "<group>";
+		};
+		CB01B8EA212069AA00DD9BE7 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				CB01B8EB212069FD00DD9BE7 /* TangramCollectionViewLayout.h */,
+				CB01B8EC212069FD00DD9BE7 /* TangramCollectionViewLayout.m */,
+			);
+			path = Core;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,7 +229,6 @@
 			files = (
 				BCBA27352118458000E8C0AD /* LaunchScreen.storyboard in Resources */,
 				BCBA27322118458000E8C0AD /* Assets.xcassets in Resources */,
-				BCBA27302118457E00E8C0AD /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,9 +285,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BCBA272D2118457D00E8C0AD /* ViewController.m in Sources */,
+				BCBA272D2118457D00E8C0AD /* DemoViewController.m in Sources */,
 				BCBA27382118458000E8C0AD /* main.m in Sources */,
 				BCBA272A2118457D00E8C0AD /* AppDelegate.m in Sources */,
+				CB01B8ED212069FD00DD9BE7 /* TangramCollectionViewLayout.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,14 +311,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		BCBA272E2118457E00E8C0AD /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				BCBA272F2118457E00E8C0AD /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		BCBA27332118458000E8C0AD /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -438,6 +440,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 65U732MLC9;
 				INFOPLIST_FILE = TextureTangram/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -456,6 +459,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 65U732MLC9;
 				INFOPLIST_FILE = TextureTangram/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

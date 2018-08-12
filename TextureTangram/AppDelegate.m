@@ -13,6 +13,7 @@
 // limitations under the License.
 
 #import "AppDelegate.h"
+#import "DemoViewController.h"
 
 @interface AppDelegate ()
 
@@ -22,7 +23,11 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    UIWindow *keyWindow = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
+    DemoViewController *demo = DemoViewController.new;
+    ASNavigationController *nav = [[ASNavigationController alloc] initWithRootViewController:demo];
+    keyWindow.rootViewController = nav;
+    [keyWindow makeKeyAndVisible];
     return YES;
 }
 
