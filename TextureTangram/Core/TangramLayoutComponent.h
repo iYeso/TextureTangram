@@ -24,9 +24,10 @@ typedef NS_ENUM(NSUInteger, TangramLayoutComponentPinnedType) {
 @interface TangramLayoutComponent : NSObject
 
 @property (nonatomic) CGPoint layoutOrigin; ///< 布局的起点
+@property (nonatomic) CGFloat width; ///< 布局宽度 
 
-@property (nonatomic) UIEdgeInsets margin; ///< layout的外边距； margin
-@property (nonatomic) UIEdgeInsets insets; ///< layout的内边距；对应padding
+@property (nonatomic) UIEdgeInsets margin; ///< layout的外边距会控制background、header的范围； margin
+@property (nonatomic) UIEdgeInsets insets; ///< layout的内边距，控制items与header、footer之间的边距；对应padding
 
 @property (nonatomic) BOOL isFloatingLayout; ///< 是否为固定布局/浮动布局
 @property (nonatomic) TangramLayoutComponentPinnedType pinnedType; ///< 是否有吸顶/吸底效果

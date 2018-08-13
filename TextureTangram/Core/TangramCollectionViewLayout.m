@@ -44,7 +44,8 @@ NSString *const TangramCollectionViewBackgroundDecoratedKind = @"TangramCollecti
     for (NSInteger i = 0; i < self.layoutComponents.count; i++) {
         TangramLayoutComponent *component = self.layoutComponents[i];
         CGFloat maxMargin = MAX(last.margin.bottom, component.margin.top);
-        component.layoutOrigin = CGPointMake(0, last.layoutOrigin.y + last.height + maxMargin);
+        component.width = CGRectGetWidth(self.collectionView.frame) - component.margin.left - component.margin.right;
+        component.layoutOrigin = CGPointMake(component.margin.left, last.layoutOrigin.y + last.height + maxMargin + component.insets.top);
         [component computeLayouts];
         last = component;
         height += component.height;

@@ -15,6 +15,8 @@
 
 @property (nonatomic) CGRect frame;
 
+@property (nonatomic) CGFloat expectedHeight;
+
 @optional
 
 - (void)computeHeight; ///< 自计算高度
