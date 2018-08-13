@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2F852D7DA9FC97BCFD9E7B48 /* libPods-TextureTangram.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F7BE0EF20EC4EA75CCB5038 /* libPods-TextureTangram.a */; };
+		BC43AF54212159E700A2B9DE /* TangramLayoutComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = BC43AF53212159E700A2B9DE /* TangramLayoutComponent.m */; };
+		BC43AF5821216E5500A2B9DE /* TangramGridLayoutComponet.m in Sources */ = {isa = PBXBuildFile; fileRef = BC43AF5721216E5500A2B9DE /* TangramGridLayoutComponet.m */; };
 		BCBA272A2118457D00E8C0AD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBA27292118457D00E8C0AD /* AppDelegate.m */; };
 		BCBA272D2118457D00E8C0AD /* DemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBA272C2118457D00E8C0AD /* DemoViewController.m */; };
 		BCBA27322118458000E8C0AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BCBA27312118458000E8C0AD /* Assets.xcassets */; };
@@ -32,6 +34,11 @@
 		3F7BE0EF20EC4EA75CCB5038 /* libPods-TextureTangram.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TextureTangram.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		88950BE613CEB6E77CBDBAD2 /* Pods-TextureTangram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TextureTangram.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TextureTangram/Pods-TextureTangram.debug.xcconfig"; sourceTree = "<group>"; };
 		B5624ABFABBA8BF96F11636A /* Pods-TextureTangramTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TextureTangramTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TextureTangramTests/Pods-TextureTangramTests.release.xcconfig"; sourceTree = "<group>"; };
+		BC43AF52212159E700A2B9DE /* TangramLayoutComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TangramLayoutComponent.h; sourceTree = "<group>"; };
+		BC43AF53212159E700A2B9DE /* TangramLayoutComponent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TangramLayoutComponent.m; sourceTree = "<group>"; };
+		BC43AF55212162E900A2B9DE /* TangramComponentDescriptor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TangramComponentDescriptor.h; sourceTree = "<group>"; };
+		BC43AF5621216E5400A2B9DE /* TangramGridLayoutComponet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TangramGridLayoutComponet.h; sourceTree = "<group>"; };
+		BC43AF5721216E5500A2B9DE /* TangramGridLayoutComponet.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TangramGridLayoutComponet.m; sourceTree = "<group>"; };
 		BCBA27252118457D00E8C0AD /* TextureTangram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TextureTangram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCBA27282118457D00E8C0AD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		BCBA27292118457D00E8C0AD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -141,6 +148,11 @@
 			children = (
 				CB01B8EB212069FD00DD9BE7 /* TangramCollectionViewLayout.h */,
 				CB01B8EC212069FD00DD9BE7 /* TangramCollectionViewLayout.m */,
+				BC43AF55212162E900A2B9DE /* TangramComponentDescriptor.h */,
+				BC43AF52212159E700A2B9DE /* TangramLayoutComponent.h */,
+				BC43AF53212159E700A2B9DE /* TangramLayoutComponent.m */,
+				BC43AF5621216E5400A2B9DE /* TangramGridLayoutComponet.h */,
+				BC43AF5721216E5500A2B9DE /* TangramGridLayoutComponet.m */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -286,9 +298,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				BCBA272D2118457D00E8C0AD /* DemoViewController.m in Sources */,
+				BC43AF5821216E5500A2B9DE /* TangramGridLayoutComponet.m in Sources */,
 				BCBA27382118458000E8C0AD /* main.m in Sources */,
 				BCBA272A2118457D00E8C0AD /* AppDelegate.m in Sources */,
 				CB01B8ED212069FD00DD9BE7 /* TangramCollectionViewLayout.m in Sources */,
+				BC43AF54212159E700A2B9DE /* TangramLayoutComponent.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -16,6 +16,14 @@
 
 #import "TangramCollectionViewLayout.h"
 
+NSString *const TangramCollectionViewBackgroundDecoratedKind = @"TangramCollectionViewBackgroundDecoratedKind";
+
+@interface TangramCollectionViewLayout()
+
+@property (nonatomic) CGFloat cacheHeight;
+
+@end
+
 @implementation TangramCollectionViewLayout
 
 #pragma mark - override method for UICollectionViewLayout
@@ -30,6 +38,19 @@
 // Subclasses should always call super if they override.
 - (void)prepareLayout {
     [super prepareLayout];
+    
+    TangramLayoutComponent *last = nil; // 上一个布局，用来计算最大margin
+    CGFloat height = 0;
+    for (NSInteger i = 0; i < self.layoutComponents.count; i++) {
+        TangramLayoutComponent *component = self.layoutComponents[i];
+        CGFloat maxMargin = MAX(last.margin.bottom, component.margin.top);
+        component.layoutOrigin = CGPointMake(0, last.layoutOrigin.y + last.height + maxMargin);
+        [component computeLayouts];
+        last = component;
+        height += component.height;
+    }
+    _cacheHeight = height;
+    
 }
 
 // UICollectionView calls these four methods to determine the layout information.
@@ -39,14 +60,51 @@
 
 
 - (nullable NSArray<__kindof UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect {
-     // return an array layout attributes instances for all the views in the given rect
-    return nil;
+    NSMutableArray *visibleLayoutAttributes = [NSMutableArray array];
+    NSInteger i = 0;
+    for (TangramLayoutComponent *component in self.layoutComponents) {
+        
+        // 头部
+        if (component.headerInfo && CGRectIntersectsRect(component.headerInfo.frame, rect)) {
+            [visibleLayoutAttributes addObject:[self layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionHeader atIndexPath:[NSIndexPath indexPathForRow:0 inSection:i]]];
+        }
+        
+        // 尾部
+        if (component.headerInfo && CGRectIntersectsRect(component.headerInfo.frame, rect)) {
+            [visibleLayoutAttributes addObject:[self layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionFooter atIndexPath:[NSIndexPath indexPathForRow:0 inSection:i]]];
+        }
+        
+        // cell
+        NSInteger j = 0;
+        for (id<TangramComponentDescriptor> descriptor in component.itemInfos) {
+            if (CGRectIntersectsRect(descriptor.frame, rect)) {
+                [visibleLayoutAttributes addObject:[self layoutAttributesForItemAtIndexPath:[NSIndexPath indexPathForRow:j inSection:i]]];
+            }
+            j++;
+        }
+        
+        i++;
+    }
+    return visibleLayoutAttributes;
 }
 - (nullable UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return nil;
+    TangramLayoutComponent *layoutComponent = self.layoutComponents[indexPath.section];
+    UICollectionViewLayoutAttributes *attributes = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
+    attributes.frame = layoutComponent.itemInfos[indexPath.row].frame;
+    return attributes;
 }
 - (nullable UICollectionViewLayoutAttributes *)layoutAttributesForSupplementaryViewOfKind:(NSString *)elementKind atIndexPath:(NSIndexPath *)indexPath {
-    return nil;
+    TangramLayoutComponent *layoutComponent = self.layoutComponents[indexPath.section];
+    UICollectionViewLayoutAttributes *layoutAttributes = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:elementKind withIndexPath:indexPath];
+    if ([elementKind isEqualToString:UICollectionElementKindSectionHeader]) {
+        layoutAttributes.frame = layoutComponent.headerInfo.frame;
+    } else if ([elementKind isEqualToString:UICollectionElementKindSectionFooter]) {
+        layoutAttributes.frame = layoutComponent.footerInfo.frame;
+    } else {
+        return nil;
+    }
+    layoutAttributes.zIndex = 1;
+    return layoutAttributes;
 }
 - (nullable UICollectionViewLayoutAttributes *)layoutAttributesForDecorationViewOfKind:(NSString*)elementKind atIndexPath:(NSIndexPath *)indexPath {
     return nil;
@@ -56,24 +114,7 @@
     // return YES to cause the collection view to requery the layout for geometry information
     return YES;
 }
-- (UICollectionViewLayoutInvalidationContext *)invalidationContextForBoundsChange:(CGRect)newBounds {
-    UICollectionViewLayoutInvalidationContext *context = UICollectionViewLayoutInvalidationContext.new;
-    return context;
-}
 
-- (BOOL)shouldInvalidateLayoutForPreferredLayoutAttributes:(UICollectionViewLayoutAttributes *)preferredAttributes withOriginalAttributes:(UICollectionViewLayoutAttributes *)originalAttributes {
-    // 需要比较一下，是否需要刷新
-    return YES;
-}
-- (UICollectionViewLayoutInvalidationContext *)invalidationContextForPreferredLayoutAttributes:(UICollectionViewLayoutAttributes *)preferredAttributes withOriginalAttributes:(UICollectionViewLayoutAttributes *)originalAttributes  {
-    UICollectionViewLayoutInvalidationContext *context = UICollectionViewLayoutInvalidationContext.new;
-    return context;
-}
-
-//- (CGPoint)targetContentOffsetForProposedContentOffset:(CGPoint)proposedContentOffset withScrollingVelocity:(CGPoint)velocity {
-    // return a point at which to rest after scrolling - for layouts that want snap-to-point scrolling behavior
-//}
-//- (CGPoint)targetContentOffsetForProposedContentOffset:(CGPoint)proposedContentOffset NS_AVAILABLE_IOS(7_0); // a layout can return the content offset to be applied during transition or update animations
 
 
 - (CGSize)collectionViewContentSize {
