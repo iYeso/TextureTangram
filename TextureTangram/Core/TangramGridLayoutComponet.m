@@ -35,7 +35,7 @@
         descriptor.frame = CGRectMake(x, y, itemWidth,descriptor.expectedHeight);
     }
     
-    self.height = CGRectGetMaxY(self.itemInfos.lastObject.frame) + footerHeight;
+    self.height = CGRectGetMaxY(self.itemInfos.lastObject.frame) + footerHeight - self.layoutOrigin.y;
     return self.height;
 }
 

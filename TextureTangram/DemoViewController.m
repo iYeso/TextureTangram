@@ -37,17 +37,27 @@
 //    layout.sectionFootersPinToVisibleBounds = NO;
 //    layout.sectionInset = UIEdgeInsetsZero;
     
-    TangramGridLayoutComponet *gridLayout = [[TangramGridLayoutComponet alloc] init];
-    gridLayout.maximumColumn = 3;
-    
-    NSMutableArray *array = [NSMutableArray arrayWithCapacity:100];
-    for (NSInteger i = 0; i < 100; i++) {
+    // 测试数据
+    TangramGridLayoutComponet *threeColumn = [[TangramGridLayoutComponet alloc] init];
+    threeColumn.maximumColumn = 3;
+    NSMutableArray *array = [NSMutableArray arrayWithCapacity:50];
+    for (NSInteger i = 0; i < 50; i++) {
         ColorfulModel *m = [ColorfulModel new];
         [array addObject:m];
     }
-    gridLayout.itemInfos = array.copy;
+    threeColumn.itemInfos = array.copy;
+    
+    TangramGridLayoutComponet *twoColumn = [[TangramGridLayoutComponet alloc] init];
+    twoColumn.maximumColumn = 2;
+    array = [NSMutableArray arrayWithCapacity:100];
+    for (NSInteger i = 0; i < 20; i++) {
+        ColorfulModel *m = [ColorfulModel new];
+        [array addObject:m];
+    }
+    twoColumn.itemInfos = array.copy;
+    
     TangramCollectionViewLayout *collectionViewLayout = TangramCollectionViewLayout.new;
-    collectionViewLayout.layoutComponents = @[gridLayout];
+    collectionViewLayout.layoutComponents = @[threeColumn, twoColumn];
     
     self.layoutComponents = collectionViewLayout.layoutComponents;
     
@@ -80,11 +90,11 @@
 #pragma mark -  ASCollectionDataSource
 
 - (NSInteger)numberOfSectionsInCollectionNode:(ASCollectionNode *)collectionNode {
-    return 1;
+    return self.layoutComponents.count;
 }
 
 - (NSInteger)collectionNode:(ASCollectionNode *)collectionNode numberOfItemsInSection:(NSInteger)section {
-    return 100;
+    return self.layoutComponents[section].itemInfos.count;
 }
 
 
