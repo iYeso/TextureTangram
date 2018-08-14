@@ -18,8 +18,8 @@
     return self;
 }
 
-- (CGFloat)computeLayouts {
-    
+- (void)computeLayoutsWithOrigin:(CGPoint)origin width:(CGFloat)width {
+    [super computeLayoutsWithOrigin:origin width:width];
     [self.headerInfo computeHeight];
     [self.footerInfo computeHeight];
     CGFloat headerHeight = self.headerInfo.expectedHeight;
@@ -36,7 +36,6 @@
     }
     
     self.height = CGRectGetMaxY(self.itemInfos.lastObject.frame) + footerHeight - self.layoutOrigin.y;
-    return self.height;
 }
 
 @end

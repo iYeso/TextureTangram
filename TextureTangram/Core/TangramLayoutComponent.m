@@ -11,8 +11,9 @@
 @implementation TangramLayoutComponent
 
 
-- (CGFloat)computeLayouts {
-    return 0;
+- (void)computeLayoutsWithOrigin:(CGPoint)origin width:(CGFloat)width {
+    self.width = width;
+    self.layoutOrigin = origin;
 }
 
 @end

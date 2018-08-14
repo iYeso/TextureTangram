@@ -66,11 +66,11 @@
     for (NSInteger i = 0; i < self.layoutComponents.count; i++) {
         TangramLayoutComponent *component = self.layoutComponents[i];
         CGFloat maxMargin = MAX(last.margin.bottom, component.margin.top);
-        component.width = CGRectGetWidth(UIScreen.mainScreen.bounds) - component.margin.left - component.margin.right;
-        component.layoutOrigin = CGPointMake(component.margin.left, last.layoutOrigin.y + last.height + maxMargin);
-        CGFloat computeHeight = [component computeLayouts];
+        CGFloat width = CGRectGetWidth(UIScreen.mainScreen.bounds) - component.margin.left - component.margin.right;
+        CGPoint origin = CGPointMake(component.margin.left, last.layoutOrigin.y + last.height + maxMargin);
+        [component computeLayoutsWithOrigin:origin width:width];
         last = component;
-        height += computeHeight;
+        height += component.height;
     }
     collectionViewLayout.cacheHeight = height;
     ASCollectionNode *collectionNode = [[ASCollectionNode alloc] initWithCollectionViewLayout:collectionViewLayout];
@@ -78,6 +78,9 @@
     if (self = [super initWithNode:collectionNode]) {
         [self setupNodes];
     }
+    
+    // 预计算高度并不能利用collectionNode的优势
+    // 不过与计算这些信息都可以放在异步线程，从某种程度来讲更具优势
     return self;
 }
 
