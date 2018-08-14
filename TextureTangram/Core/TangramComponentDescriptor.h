@@ -11,7 +11,7 @@
 /** 对应每个组件的model，新增的model需要实现这个协议 */
 @protocol TangramComponentDescriptor <NSObject>
 
-@property (nonatomic, strong) NSString *type; ///< UI组件的类型
+@property (nonatomic, copy) NSString *type; ///< UI组件的类型
 
 @property (nonatomic) CGRect frame;
 

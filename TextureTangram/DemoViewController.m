@@ -15,13 +15,17 @@
 
 #import "DemoViewController.h"
 #import "TangramCollectionViewLayout.h"
+#import "TangramGridLayoutComponet.h"
+#import "ColorfulModel.h"
+#import "ColorfulCellNode.h"
 
 @interface DemoViewController () <ASCollectionDelegate, ASCollectionDataSource>
 
 @property (nonatomic, strong) ASCollectionNode *collectionNode;
-
+@property (nonatomic, strong) NSArray<TangramLayoutComponent *> *layoutComponents;
 @end
 
+// 这个controller可以看做一个中间层，用来计算布局，接收重新布局的信号，刷新数据的信号；注册nodetype于id对应;待完善这个中间层
 @implementation DemoViewController
 
 - (instancetype)init {
@@ -32,7 +36,34 @@
 //    layout.sectionHeadersPinToVisibleBounds = YES;
 //    layout.sectionFootersPinToVisibleBounds = NO;
 //    layout.sectionInset = UIEdgeInsetsZero;
-    ASCollectionNode *collectionNode = [[ASCollectionNode alloc] initWithCollectionViewLayout:TangramCollectionViewLayout.new];
+    
+    TangramGridLayoutComponet *gridLayout = [[TangramGridLayoutComponet alloc] init];
+    gridLayout.maximumColumn = 3;
+    
+    NSMutableArray *array = [NSMutableArray arrayWithCapacity:100];
+    for (NSInteger i = 0; i < 100; i++) {
+        ColorfulModel *m = [ColorfulModel new];
+        [array addObject:m];
+    }
+    gridLayout.itemInfos = array.copy;
+    TangramCollectionViewLayout *collectionViewLayout = TangramCollectionViewLayout.new;
+    collectionViewLayout.layoutComponents = @[gridLayout];
+    
+    self.layoutComponents = collectionViewLayout.layoutComponents;
+    
+    TangramLayoutComponent *last = nil; // 上一个布局，用来计算最大margin
+    CGFloat height = 0;
+    for (NSInteger i = 0; i < self.layoutComponents.count; i++) {
+        TangramLayoutComponent *component = self.layoutComponents[i];
+        CGFloat maxMargin = MAX(last.margin.bottom, component.margin.top);
+        component.width = CGRectGetWidth(UIScreen.mainScreen.bounds) - component.margin.left - component.margin.right;
+        component.layoutOrigin = CGPointMake(component.margin.left, last.layoutOrigin.y + last.height + maxMargin);
+        CGFloat computeHeight = [component computeLayouts];
+        last = component;
+        height += computeHeight;
+    }
+    collectionViewLayout.cacheHeight = height;
+    ASCollectionNode *collectionNode = [[ASCollectionNode alloc] initWithCollectionViewLayout:collectionViewLayout];
     _collectionNode = collectionNode;
     if (self = [super initWithNode:collectionNode]) {
         [self setupNodes];
@@ -48,19 +79,25 @@
 
 #pragma mark -  ASCollectionDataSource
 
+- (NSInteger)numberOfSectionsInCollectionNode:(ASCollectionNode *)collectionNode {
+    return 1;
+}
+
 - (NSInteger)collectionNode:(ASCollectionNode *)collectionNode numberOfItemsInSection:(NSInteger)section {
-    return 1000;
+    return 100;
 }
 
 
-- (ASCellNode *)collectionNode:(ASCollectionNode *)collectionNode nodeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    ASCellNode *node = [[ASCellNode alloc] init];
-    node.backgroundColor = [UIColor grayColor];
-    return node;
+- (ASCellNodeBlock)collectionNode:(ASCollectionNode *)collectionNode nodeBlockForItemAtIndexPath:(NSIndexPath *)indexPath {
+    return ^ASCellNode * _Nonnull(void) {
+        ColorfulCellNode *node = [[ColorfulCellNode alloc] init];
+        return node;
+    };
 }
 
 - (ASSizeRange)collectionNode:(ASCollectionNode *)collectionNode constrainedSizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return ASSizeRangeMake(CGSizeMake(100, 100));
+    return ASSizeRangeMake(self.layoutComponents[indexPath.section].itemInfos[indexPath.row].frame.size);
 }
+
 
 @end

@@ -20,7 +20,6 @@ NSString *const TangramCollectionViewBackgroundDecoratedKind = @"TangramCollecti
 
 @interface TangramCollectionViewLayout()
 
-@property (nonatomic) CGFloat cacheHeight;
 
 @end
 
@@ -39,19 +38,6 @@ NSString *const TangramCollectionViewBackgroundDecoratedKind = @"TangramCollecti
 - (void)prepareLayout {
     [super prepareLayout];
     
-    TangramLayoutComponent *last = nil; // 上一个布局，用来计算最大margin
-    CGFloat height = 0;
-    for (NSInteger i = 0; i < self.layoutComponents.count; i++) {
-        TangramLayoutComponent *component = self.layoutComponents[i];
-        CGFloat maxMargin = MAX(last.margin.bottom, component.margin.top);
-        component.width = CGRectGetWidth(self.collectionView.frame) - component.margin.left - component.margin.right;
-        component.layoutOrigin = CGPointMake(component.margin.left, last.layoutOrigin.y + last.height + maxMargin + component.insets.top);
-        [component computeLayouts];
-        last = component;
-        height += component.height;
-    }
-    _cacheHeight = height;
-    
 }
 
 // UICollectionView calls these four methods to determine the layout information.
@@ -62,9 +48,10 @@ NSString *const TangramCollectionViewBackgroundDecoratedKind = @"TangramCollecti
 
 - (nullable NSArray<__kindof UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect {
     NSMutableArray *visibleLayoutAttributes = [NSMutableArray array];
-    NSInteger i = 0;
-    for (TangramLayoutComponent *component in self.layoutComponents) {
+    NSInteger sectionCount = [self.collectionView.dataSource numberOfSectionsInCollectionView:self.collectionView];
+    for (NSInteger i = 0; i < sectionCount; i++) {
         
+        TangramLayoutComponent *component = self.layoutComponents[i];
         // 头部
         if (component.headerInfo && CGRectIntersectsRect(component.headerInfo.frame, rect)) {
             [visibleLayoutAttributes addObject:[self layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionHeader atIndexPath:[NSIndexPath indexPathForRow:0 inSection:i]]];
@@ -76,17 +63,20 @@ NSString *const TangramCollectionViewBackgroundDecoratedKind = @"TangramCollecti
         }
         
         // cell
-        NSInteger j = 0;
-        for (id<TangramComponentDescriptor> descriptor in component.itemInfos) {
+        
+        NSInteger numberOfItems = [self.collectionView.dataSource collectionView:self.collectionView numberOfItemsInSection:i];
+        for (NSInteger j = 0; j < numberOfItems; j++) {
+            id<TangramComponentDescriptor> descriptor = component.itemInfos[j];
             if (CGRectIntersectsRect(descriptor.frame, rect)) {
                 [visibleLayoutAttributes addObject:[self layoutAttributesForItemAtIndexPath:[NSIndexPath indexPathForRow:j inSection:i]]];
             }
-            j++;
         }
-        
-        i++;
     }
-    return visibleLayoutAttributes;
+    if (visibleLayoutAttributes.count) {
+        return visibleLayoutAttributes;
+    } else {
+        return nil;
+    }
 }
 - (nullable UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath {
     TangramLayoutComponent *layoutComponent = self.layoutComponents[indexPath.section];
@@ -119,7 +109,7 @@ NSString *const TangramCollectionViewBackgroundDecoratedKind = @"TangramCollecti
 
 
 - (CGSize)collectionViewContentSize {
-    return UIScreen.mainScreen.bounds.size;
+    return CGSizeMake(CGRectGetWidth(self.collectionView.bounds), _cacheHeight);
 }
 
 @end

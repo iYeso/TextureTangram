@@ -12,13 +12,7 @@
 
 
 - (CGFloat)computeLayouts {
-    if ([self.headerInfo respondsToSelector:@selector(computeHeight)]&&[self.footerInfo respondsToSelector:@selector(computeHeight)]) {
-        [self.headerInfo computeHeight];
-        [self.footerInfo computeHeight];
-        return CGRectGetHeight(self.headerInfo.frame) + CGRectGetHeight(self.footerInfo.frame);
-    } else {
-        return 0;
-    }
+    return 0;
 }
 
 @end

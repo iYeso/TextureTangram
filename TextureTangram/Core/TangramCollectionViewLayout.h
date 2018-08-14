@@ -23,6 +23,7 @@ extern NSString *const TangramCollectionViewBackgroundDecoratedKind;
 /// collectionNode 会使用 rangeController和DataController进行优化（但是有限）。先看看用flowlayout实现效果如何
 @interface TangramCollectionViewLayout : UICollectionViewLayout
 
+@property (nonatomic) CGFloat cacheHeight;
 @property (nonatomic, strong) NSArray<TangramLayoutComponent *> *layoutComponents;
 
 @end

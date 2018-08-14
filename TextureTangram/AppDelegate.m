@@ -28,6 +28,7 @@
     ASNavigationController *nav = [[ASNavigationController alloc] initWithRootViewController:demo];
     keyWindow.rootViewController = nav;
     [keyWindow makeKeyAndVisible];
+    self.window = keyWindow;
     return YES;
 }
 
