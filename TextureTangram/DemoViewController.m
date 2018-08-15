@@ -16,6 +16,7 @@
 #import "DemoViewController.h"
 #import "TangramCollectionViewLayout.h"
 #import "TangramGridLayoutComponet.h"
+#import "TangramWaterFlowLayoutComponent.h"
 #import "ColorfulModel.h"
 #import "ColorfulCellNode.h"
 
@@ -43,12 +44,12 @@
     TangramGridLayoutComponet *threeColumn = [[TangramGridLayoutComponet alloc] init];
     threeColumn.maximumColumn = 3;
     NSMutableArray *array = [NSMutableArray arrayWithCapacity:50];
-    for (NSInteger i = 0; i < 50; i++) {
+    for (NSInteger i = 0; i < 15; i++) {
         ColorfulModel *m = [ColorfulModel new];
         [array addObject:m];
     }
     threeColumn.insets = UIEdgeInsetsMake(0, 10, 0, 10);
-    threeColumn.margin = UIEdgeInsetsMake(20, 0, 20, 0);
+    threeColumn.margin = UIEdgeInsetsMake(100, 0, 100, 0);
     threeColumn.horizontalInterItemsSpace = 8;
     threeColumn.verticalInterItemsSpace = 8;
     threeColumn.itemInfos = array.copy;
@@ -57,7 +58,7 @@
     TangramGridLayoutComponet *twoColumn = [[TangramGridLayoutComponet alloc] init];
     twoColumn.maximumColumn = 2;
     array = [NSMutableArray arrayWithCapacity:100];
-    for (NSInteger i = 0; i < 50; i++) {
+    for (NSInteger i = 0; i < 8; i++) {
         ColorfulModel *m = [ColorfulModel new];
         [array addObject:m];
     }
@@ -65,8 +66,22 @@
     twoColumn.itemInfos = array.copy;
     twoColumn.margin = UIEdgeInsetsMake(100, 8, 30, 8);
     
+    // 瀑布流
+    TangramWaterFlowLayoutComponent *water = [[TangramWaterFlowLayoutComponent alloc] init];
+    water.maximumColumn = 2;
+    array = [NSMutableArray arrayWithCapacity:100];
+    for (NSInteger i = 0; i < 100; i++) {
+        ColorfulModel *m = [ColorfulModel new];
+        m.randomHeight = YES;
+        [array addObject:m];
+    }
+    water.verticalInterItemsSpace = 8;
+    water.horizontalInterItemsSpace = 15;
+    water.itemInfos = array.copy;
+    water.margin = UIEdgeInsetsMake(30, 8, 0, 8);
+    
     TangramCollectionViewLayout *collectionViewLayout = TangramCollectionViewLayout.new;
-    collectionViewLayout.layoutComponents = @[threeColumn, twoColumn];
+    collectionViewLayout.layoutComponents = @[threeColumn, water];
     
     self.layoutComponents = collectionViewLayout.layoutComponents;
     
@@ -117,8 +132,11 @@
 
 
 - (ASCellNodeBlock)collectionNode:(ASCollectionNode *)collectionNode nodeBlockForItemAtIndexPath:(NSIndexPath *)indexPath {
+    __weak typeof(self) weakSelf = self;
     return ^ASCellNode * _Nonnull(void) {
+        typeof(weakSelf) sself = weakSelf;
         ColorfulCellNode *node = [[ColorfulCellNode alloc] init];
+        node.model = sself.layoutComponents[indexPath.section].itemInfos[indexPath.row];
         return node;
     };
 }

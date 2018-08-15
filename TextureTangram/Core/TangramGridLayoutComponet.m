@@ -32,11 +32,12 @@
     
     assert(_maximumColumn > 0);
     // 设置每个item的frame
-    CGFloat itemWidth = (self.width - (_maximumColumn-1) * self.horizontalInterItemsSpace - self.insets.left - self.insets.right) / _maximumColumn;
+    CGFloat itemWidth = (self.width - (_maximumColumn-1) * self.horizontalInterItemsSpace - self.insets.left - self.insets.right) / _maximumColumn; //TODO: 计算不一样的宽度
     NSUInteger column = 0;
     NSUInteger row = 0;
     
-    CGFloat y = self.insets.top + self.layoutOrigin.y + headerHeight;
+    CGFloat itemsOriginY = self.insets.top + self.layoutOrigin.y + headerHeight;
+    CGFloat y = itemsOriginY;
     NSUInteger rowMaxHeight = 0;
     NSUInteger rowMaxHeightRowNumber = 0; //记住当前行的最大高度；
     for (NSInteger i = 0; i < self.itemInfos.count; i++) {
@@ -56,7 +57,7 @@
         descriptor.frame = CGRectMake(x, y, itemWidth,descriptor.expectedHeight);
     }
     
-    self.height = y + rowMaxHeight + footerHeight - self.layoutOrigin.y + self.insets.bottom;
+    self.height = y - itemsOriginY + rowMaxHeight + footerHeight + self.insets.bottom;
 }
 
 @end

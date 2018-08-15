@@ -7,9 +7,10 @@
 //
 
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
+#import "ColorfulModel.h"
 
 @interface ColorfulCellNode : ASCellNode
 
-@property (nonatomic, strong) UIColor *color;
+@property (nonatomic, strong) ColorfulModel *model;
 
 @end

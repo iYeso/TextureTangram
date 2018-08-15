@@ -12,6 +12,7 @@
 
 @interface ColorfulCellNode()
 
+@property (nonatomic, strong) UIColor *color;
 @property (nonatomic, strong) ASDisplayNode *canvas;
 @property (nonatomic, strong) ASTextNode *redLabel;
 @property (nonatomic, strong) ASTextNode *greenLabel;
@@ -59,7 +60,11 @@
 #pragma mark - layout
 
 - (ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize {
-    self.canvas.style.height = ASDimensionMake(60+arc4random()%60);
+    if (self.model.randomHeight) {
+        self.canvas.style.height = ASDimensionMake(60+arc4random()%60);
+    } else {
+        self.canvas.style.height = ASDimensionMake(120);
+    }
     ASStackLayoutSpec *stackMain = [ASStackLayoutSpec stackLayoutSpecWithDirection:ASStackLayoutDirectionVertical spacing:10.0 justifyContent:ASStackLayoutJustifyContentStart alignItems:ASStackLayoutAlignItemsStart children:@[self.canvas, self.redLabel, self.greenLabel, self.blueLabel]];
     return stackMain;
 }
