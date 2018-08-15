@@ -22,7 +22,7 @@
     CGFloat totalItemWidth = (width - self.insets.left - self.insets.right);
     id<TangramComponentDescriptor> mainItem = self.itemInfos[0];
     mainItem.width = totalItemWidth/2;
-    mainItem.frame = CGRectMake(self.insets.left, origin.y + self.insets.top, mainItem.width, mainItem.expectedHeight);
+    mainItem.frame = CGRectMake(origin.x + self.insets.left, origin.y + self.insets.top, mainItem.width, mainItem.expectedHeight);
     
     id<TangramComponentDescriptor> secondItem = self.itemInfos[1];
     CGFloat secondItemHeight = rowRatio * mainItem.expectedHeight;

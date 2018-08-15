@@ -33,11 +33,24 @@
 - (instancetype)init {
     
     // 测试数据（本不应该放在这儿。等开发完毕就挪到别的地方）
+    NSMutableArray<ColorfulModel*> *array;
+    // 1 + N
+    TangramOnePlusLayoutComponent *onePlus = [[TangramOnePlusLayoutComponent alloc] init];
+    onePlus.rowPartitions = @[@4,@5];
+    array = [NSMutableArray arrayWithCapacity:5];
+    for (NSInteger i = 0; i < 4; i++) {
+        ColorfulModel *m = [ColorfulModel new];
+        [array addObject:m];
+    }
+    array[1].canvasHeight = 60;
+    array[0].canvasHeight = 280;
+    onePlus.margin = UIEdgeInsetsMake(30, 10, 30, 10);
+    onePlus.itemInfos = array.copy;
     
     // 3列网格
     TangramGridLayoutComponet *threeColumn = [[TangramGridLayoutComponet alloc] init];
     threeColumn.maximumColumn = 3;
-    NSMutableArray<ColorfulModel*> *array = [NSMutableArray arrayWithCapacity:50];
+    array = [NSMutableArray arrayWithCapacity:50];
     for (NSInteger i = 0; i < 10; i++) {
         ColorfulModel *m = [ColorfulModel new];
         [array addObject:m];
@@ -62,18 +75,7 @@
     twoColumn.columnPartitions = @[@5,@4];
     twoColumn.horizontalInterItemsSpace = 20;
     twoColumn.margin = UIEdgeInsetsMake(100, 8, 30, 8);
-    
-    // 1 + N
-    TangramOnePlusLayoutComponent *onePlus = [[TangramOnePlusLayoutComponent alloc] init];
-    onePlus.rowPartitions = @[@4,@5];
-    array = [NSMutableArray arrayWithCapacity:5];
-    for (NSInteger i = 0; i < 4; i++) {
-        ColorfulModel *m = [ColorfulModel new];
-        [array addObject:m];
-    }
-    array[1].canvasHeight = 60;
-    array[0].canvasHeight = 280;
-    onePlus.itemInfos = array.copy;
+
     
     // 瀑布流
     TangramWaterFlowLayoutComponent *water = [[TangramWaterFlowLayoutComponent alloc] init];
@@ -92,7 +94,7 @@
     
     //  设置布局组件
     TangramCollectionViewLayout *collectionViewLayout = TangramCollectionViewLayout.new;
-    collectionViewLayout.layoutComponents = @[threeColumn, twoColumn, onePlus ,water];
+    collectionViewLayout.layoutComponents = @[onePlus, threeColumn, twoColumn ,water];
     self.layoutComponents = collectionViewLayout.layoutComponents;
     
     
