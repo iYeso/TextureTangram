@@ -61,7 +61,7 @@
 
 - (ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize {
     if (self.model.randomHeight) {
-        self.canvas.style.height = ASDimensionMake(60+arc4random()%60);
+        self.canvas.style.height = ASDimensionMake(180+arc4random()%40);
     } else {
         self.canvas.style.height = ASDimensionMake(120);
     }
