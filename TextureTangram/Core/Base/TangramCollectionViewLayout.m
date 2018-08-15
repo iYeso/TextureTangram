@@ -21,6 +21,7 @@ NSString *const TangramCollectionViewBackgroundDecoratedKind = @"TangramCollecti
 @interface TangramCollectionViewLayout()
 
 @property (nonatomic) CGSize contentSize;
+@property (nonatomic) BOOL getExactHeight;
 
 
 @end
@@ -31,7 +32,7 @@ NSString *const TangramCollectionViewBackgroundDecoratedKind = @"TangramCollecti
 
 - (void)setLayoutComponents:(NSArray<TangramLayoutComponent *> *)layoutComponents {
     _layoutComponents = layoutComponents;
-    [self prepareLayout];
+    [self calculateLayout];
 }
 
 
@@ -44,7 +45,19 @@ NSString *const TangramCollectionViewBackgroundDecoratedKind = @"TangramCollecti
 // Subclasses should always call super if they override.
 - (void)prepareLayout {
     [super prepareLayout];
-    CFTimeInterval start = CFAbsoluteTimeGetCurrent();
+    static CFTimeInterval lastTime = 0;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        lastTime = CFAbsoluteTimeGetCurrent();
+    });
+    CFTimeInterval now =  CFAbsoluteTimeGetCurrent();
+    if (now - lastTime < 5) { //只有初始化的时候才计算，这样处理貌似不太妥当；最好是不要放在 prepareLayout，然后item的height不是自己给定的，如果通过sizeForItemAtIndexPath来获取，必须要多次调用才行（因为item是自计算的）这个时机不好把握到
+        [self calculateLayout];
+    }
+    
+}
+
+- (void)calculateLayout {
     TangramLayoutComponent *last = nil; // 上一个布局，用来计算最大margin
     CGFloat height = 0;
     for (NSInteger i = 0; i < self.layoutComponents.count; i++) {
@@ -54,7 +67,8 @@ NSString *const TangramCollectionViewBackgroundDecoratedKind = @"TangramCollecti
         // 更新每一个item的高度
         for (NSInteger j = 0; j < component.itemInfos.count; j++) {
             id<TangramComponentDescriptor> item = component.itemInfos[j];
-            item.expectedHeight = [(id<UICollectionViewDelegateFlowLayout>)self.collectionView.delegate collectionView:self.collectionView layout:self sizeForItemAtIndexPath:[NSIndexPath indexPathForRow:j inSection:i]].height;
+            CGFloat itemHeight = [(id<UICollectionViewDelegateFlowLayout>)self.collectionView.delegate collectionView:self.collectionView layout:self sizeForItemAtIndexPath:[NSIndexPath indexPathForRow:j inSection:i]].height;
+            item.expectedHeight = itemHeight;
         }
         CGPoint origin = CGPointMake(component.margin.left, last.layoutOrigin.y + last.height + maxMargin);
         [component computeLayoutsWithOrigin:origin width:width];
@@ -68,11 +82,6 @@ NSString *const TangramCollectionViewBackgroundDecoratedKind = @"TangramCollecti
     }
     self.cacheHeight = height;
     _contentSize = CGSizeMake(CGRectGetWidth(self.collectionView.bounds), _cacheHeight);
-    CFTimeInterval end = CFAbsoluteTimeGetCurrent();
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        NSLog(@"计算时间为:%fms", (end-start)*1000);
-    });
 }
 
 // UICollectionView calls these four methods to determine the layout information.
