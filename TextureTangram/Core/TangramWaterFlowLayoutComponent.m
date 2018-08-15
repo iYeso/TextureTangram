@@ -72,7 +72,7 @@
     }
     
     // 减去多加了的verticalSpace
-    self.height = y - itemsOriginY  + footerHeight + self.insets.bottom;
+    self.height = y - itemsOriginY  + footerHeight + self.insets.bottom +  self.insets.top - self.verticalInterItemsSpace;
 }
 
 @end

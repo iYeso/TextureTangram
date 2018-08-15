@@ -42,7 +42,7 @@
         [array addObject:m];
     }
     threeColumn.insets = UIEdgeInsetsMake(0, 10, 0, 10);
-    threeColumn.margin = UIEdgeInsetsMake(100, 0, 100, 0);
+    threeColumn.margin = UIEdgeInsetsMake(10, 0, 100, 0);
     threeColumn.columnPatitions = @[@1,@1,@1];
     threeColumn.horizontalInterItemsSpace = 8;
     threeColumn.verticalInterItemsSpace = 8;
@@ -77,7 +77,7 @@
     water.margin = UIEdgeInsetsMake(30, 8, 0, 8);
     
     TangramCollectionViewLayout *collectionViewLayout = TangramCollectionViewLayout.new;
-    collectionViewLayout.layoutComponents = @[threeColumn, twoColumn,water];
+    collectionViewLayout.layoutComponents = @[threeColumn, twoColumn ,water];
     
     self.layoutComponents = collectionViewLayout.layoutComponents;
     

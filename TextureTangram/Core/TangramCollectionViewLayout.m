@@ -60,12 +60,11 @@ NSString *const TangramCollectionViewBackgroundDecoratedKind = @"TangramCollecti
         CGPoint origin = CGPointMake(component.margin.left, last.layoutOrigin.y + last.height + maxMargin);
         [component computeLayoutsWithOrigin:origin width:width];
         height += component.height;
-        if (i < self.layoutComponents.count-1) {
-            height += (maxMargin + component.margin.bottom);
-            last = component;
-        } else {
+        height += maxMargin;
+        if (i == self.layoutComponents.count-1) {
             height += component.margin.bottom;
         }
+        last = component;
         
     }
     self.cacheHeight = height;
