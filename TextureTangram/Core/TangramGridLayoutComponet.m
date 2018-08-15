@@ -31,30 +31,43 @@
     }
     
     assert(_maximumColumn > 0);
+    assert(_maximumColumn == _columnPatitions.count);
     // 设置每个item的frame
-    CGFloat itemWidth = (self.width - (_maximumColumn-1) * self.horizontalInterItemsSpace - self.insets.left - self.insets.right) / _maximumColumn; //TODO: 计算不一样的宽度
+    CGFloat totalItemWidth = (self.width - (_maximumColumn-1) * self.horizontalInterItemsSpace - self.insets.left - self.insets.right);
     NSUInteger column = 0;
     NSUInteger row = 0;
+    double total = 0;
+    NSMutableArray *itemWidths = [NSMutableArray arrayWithCapacity:_maximumColumn];
+    for (NSInteger i = 0; i < _maximumColumn; i++) {
+        total += [_columnPatitions[i] doubleValue];
+    }
+    for (NSInteger i = 0; i < _maximumColumn; i++) {
+        [itemWidths addObject:@(totalItemWidth*[_columnPatitions[i] doubleValue]/total)];
+    }
     
     CGFloat itemsOriginY = self.insets.top + self.layoutOrigin.y + headerHeight;
+    CGFloat itemOriginX = self.insets.left + self.layoutOrigin.x;
     CGFloat y = itemsOriginY;
+    CGFloat x = itemOriginX;
     NSUInteger rowMaxHeight = 0;
     NSUInteger rowMaxHeightRowNumber = 0; //记住当前行的最大高度；
     for (NSInteger i = 0; i < self.itemInfos.count; i++) {
         id<TangramComponentDescriptor> descriptor = self.itemInfos[i];
         column = (i%_maximumColumn);
         row = (i/_maximumColumn);
-        CGFloat x = self.insets.left + self.layoutOrigin.x + (self.horizontalInterItemsSpace+itemWidth) * column;
+        CGFloat itemWidth = [itemWidths[column] doubleValue];
         descriptor.width = itemWidth;
         if (row != rowMaxHeightRowNumber) {
             y += rowMaxHeight + self.verticalInterItemsSpace;
             rowMaxHeightRowNumber = row;
             rowMaxHeight = descriptor.expectedHeight;
+            x = itemOriginX;
         }
         if (descriptor.expectedHeight > rowMaxHeight) {
             rowMaxHeight = descriptor.expectedHeight;
         }
         descriptor.frame = CGRectMake(x, y, itemWidth,descriptor.expectedHeight);
+        x += self.horizontalInterItemsSpace + itemWidth; //下个item的x
     }
     
     self.height = y - itemsOriginY + rowMaxHeight + footerHeight + self.insets.bottom;

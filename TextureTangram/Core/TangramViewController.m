@@ -30,15 +30,8 @@
 @implementation TangramViewController
 
 - (instancetype)init {
-    // 使用系统的flowlayout无法实现整个section的背景以及装饰
-//    FlowLayout *layout = FlowLayout.new;
-//    layout.minimumInteritemSpacing = 10;
-//    layout.minimumInteritemSpacing = 10;
-//    layout.sectionHeadersPinToVisibleBounds = YES;
-//    layout.sectionFootersPinToVisibleBounds = NO;
-//    layout.sectionInset = UIEdgeInsetsZero;
     
-    // 测试数据
+    // 测试数据（本不应该放在这儿。等开发完毕就挪到别的地方）
     
     // 3列网格
     TangramGridLayoutComponet *threeColumn = [[TangramGridLayoutComponet alloc] init];
@@ -50,6 +43,7 @@
     }
     threeColumn.insets = UIEdgeInsetsMake(0, 10, 0, 10);
     threeColumn.margin = UIEdgeInsetsMake(100, 0, 100, 0);
+    threeColumn.columnPatitions = @[@1,@1,@1];
     threeColumn.horizontalInterItemsSpace = 8;
     threeColumn.verticalInterItemsSpace = 8;
     threeColumn.itemInfos = array.copy;
@@ -64,13 +58,15 @@
     }
     twoColumn.verticalInterItemsSpace = 20;
     twoColumn.itemInfos = array.copy;
+    twoColumn.columnPatitions = @[@5,@4];
+    twoColumn.horizontalInterItemsSpace = 20;
     twoColumn.margin = UIEdgeInsetsMake(100, 8, 30, 8);
     
     // 瀑布流
     TangramWaterFlowLayoutComponent *water = [[TangramWaterFlowLayoutComponent alloc] init];
-    water.maximumColumn = 2;
+    water.maximumColumn = 3;
     array = [NSMutableArray arrayWithCapacity:100];
-    for (NSInteger i = 0; i < 15; i++) {
+    for (NSInteger i = 0; i < 21; i++) {
         ColorfulModel *m = [ColorfulModel new];
         m.randomHeight = YES;
         [array addObject:m];
@@ -81,7 +77,7 @@
     water.margin = UIEdgeInsetsMake(30, 8, 0, 8);
     
     TangramCollectionViewLayout *collectionViewLayout = TangramCollectionViewLayout.new;
-    collectionViewLayout.layoutComponents = @[threeColumn, water, twoColumn];
+    collectionViewLayout.layoutComponents = @[threeColumn, twoColumn,water];
     
     self.layoutComponents = collectionViewLayout.layoutComponents;
     
