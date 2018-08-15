@@ -11,8 +11,11 @@
 
 @interface ColorfulModel : NSObject <TangramComponentDescriptor>
 
-@property (nonatomic, copy) NSString *type;
+@property (nonatomic, copy) NSString *type; ///< UI组件的类型
+
 @property (nonatomic) CGRect frame;
+@property (nonatomic) CGFloat width;
+
 @property (nonatomic) CGFloat expectedHeight;
 
 @end

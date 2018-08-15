@@ -31,6 +31,11 @@ NSString *const TangramCollectionViewBackgroundDecoratedKind = @"TangramCollecti
 
 #pragma mark - override method for UICollectionViewLayout
 
+- (void)setLayoutComponents:(NSArray<TangramLayoutComponent *> *)layoutComponents {
+    _layoutComponents = layoutComponents;
+    [self prepareLayout];
+}
+
 
 + (Class)layoutAttributesClass {
     return [UICollectionViewLayoutAttributes class];
@@ -41,6 +46,24 @@ NSString *const TangramCollectionViewBackgroundDecoratedKind = @"TangramCollecti
 // Subclasses should always call super if they override.
 - (void)prepareLayout {
     [super prepareLayout];
+    TangramLayoutComponent *last = nil; // 上一个布局，用来计算最大margin
+    CGFloat height = 0;
+    for (NSInteger i = 0; i < self.layoutComponents.count; i++) {
+        TangramLayoutComponent *component = self.layoutComponents[i];
+        CGFloat maxMargin = MAX(last.margin.bottom, component.margin.top);
+        CGFloat width = CGRectGetWidth(UIScreen.mainScreen.bounds) - component.margin.left - component.margin.right;
+        // 更新每一个item的高度
+        for (NSInteger j = 0; j < component.itemInfos.count; j++) {
+            id<TangramComponentDescriptor> item = component.itemInfos[j];
+            item.expectedHeight = [(id<UICollectionViewDelegateFlowLayout>)self.collectionView.delegate collectionView:self.collectionView layout:self sizeForItemAtIndexPath:[NSIndexPath indexPathForRow:j inSection:i]].height;
+        }
+        CGPoint origin = CGPointMake(component.margin.left, last.layoutOrigin.y + last.height + maxMargin);
+        [component computeLayoutsWithOrigin:origin width:width];
+        last = component;
+        height += component.height;
+        height += (MAX(component.margin.top, last.margin.bottom) + component.margin.bottom);
+    }
+    self.cacheHeight = height;
     _contentSize = CGSizeMake(CGRectGetWidth(self.collectionView.bounds), _cacheHeight);
     self.cellAttributes = [NSMutableDictionary dictionary];
     self.supplementaryViewAttributes = [NSMutableDictionary dictionary];

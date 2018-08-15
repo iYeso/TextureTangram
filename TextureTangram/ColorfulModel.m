@@ -14,8 +14,6 @@
     return @"colorful";
 }
 
-- (CGFloat)expectedHeight {
-    return 200;
-}
+
 
 @end

@@ -18,7 +18,6 @@
 #import "TangramGridLayoutComponet.h"
 #import "ColorfulModel.h"
 #import "ColorfulCellNode.h"
-#import "FlowLayout.h"
 
 @interface DemoViewController () <ASCollectionDelegate, ASCollectionDataSource>
 
@@ -58,6 +57,7 @@
         ColorfulModel *m = [ColorfulModel new];
         [array addObject:m];
     }
+    twoColumn.verticalInterItemsSpace = 50;
     twoColumn.itemInfos = array.copy;
     
     TangramCollectionViewLayout *collectionViewLayout = TangramCollectionViewLayout.new;
@@ -65,18 +65,7 @@
     
     self.layoutComponents = collectionViewLayout.layoutComponents;
     
-    TangramLayoutComponent *last = nil; // 上一个布局，用来计算最大margin
-    CGFloat height = 0;
-    for (NSInteger i = 0; i < self.layoutComponents.count; i++) {
-        TangramLayoutComponent *component = self.layoutComponents[i];
-        CGFloat maxMargin = MAX(last.margin.bottom, component.margin.top);
-        CGFloat width = CGRectGetWidth(UIScreen.mainScreen.bounds) - component.margin.left - component.margin.right;
-        CGPoint origin = CGPointMake(component.margin.left, last.layoutOrigin.y + last.height + maxMargin);
-        [component computeLayoutsWithOrigin:origin width:width];
-        last = component;
-        height += component.height;
-    }
-    collectionViewLayout.cacheHeight = height;
+    
     ASCollectionNode *collectionNode = [[ASCollectionNode alloc] initWithCollectionViewLayout:collectionViewLayout];
     _collectionNode = collectionNode;
     if (self = [super initWithNode:collectionNode]) {
@@ -113,7 +102,9 @@
 }
 
 - (ASSizeRange)collectionNode:(ASCollectionNode *)collectionNode constrainedSizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return ASSizeRangeMake(self.layoutComponents[indexPath.section].itemInfos[indexPath.row].frame.size);
+    id<TangramComponentDescriptor> layoutDescriptor = self.layoutComponents[indexPath.section].itemInfos[indexPath.row];
+    return ASSizeRangeMake(CGSizeMake(layoutDescriptor.width, 0),
+                           CGSizeMake(layoutDescriptor.width, CGFLOAT_MAX));
 }
 
 

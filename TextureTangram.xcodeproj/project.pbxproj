@@ -16,7 +16,6 @@
 		BCBA27352118458000E8C0AD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BCBA27332118458000E8C0AD /* LaunchScreen.storyboard */; };
 		BCBA27382118458000E8C0AD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBA27372118458000E8C0AD /* main.m */; };
 		BCBA27422118458000E8C0AD /* TextureTangramTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBA27412118458000E8C0AD /* TextureTangramTests.m */; };
-		BCDD2A292123C2C200BFFA37 /* FlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = BCDD2A282123C2C200BFFA37 /* FlowLayout.m */; };
 		CB01B8ED212069FD00DD9BE7 /* TangramCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = CB01B8EC212069FD00DD9BE7 /* TangramCollectionViewLayout.m */; };
 		CB3F0F30212325B7005B0AE5 /* ColorfulCellNode.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3F0F2F212325B7005B0AE5 /* ColorfulCellNode.m */; };
 		CB3F0F3321232621005B0AE5 /* ColorfulModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3F0F3221232621005B0AE5 /* ColorfulModel.m */; };
@@ -54,8 +53,6 @@
 		BCBA273D2118458000E8C0AD /* TextureTangramTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TextureTangramTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCBA27412118458000E8C0AD /* TextureTangramTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextureTangramTests.m; sourceTree = "<group>"; };
 		BCBA27432118458000E8C0AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BCDD2A272123C2C200BFFA37 /* FlowLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlowLayout.h; sourceTree = "<group>"; };
-		BCDD2A282123C2C200BFFA37 /* FlowLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlowLayout.m; sourceTree = "<group>"; };
 		CB01B8EB212069FD00DD9BE7 /* TangramCollectionViewLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TangramCollectionViewLayout.h; sourceTree = "<group>"; };
 		CB01B8EC212069FD00DD9BE7 /* TangramCollectionViewLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TangramCollectionViewLayout.m; sourceTree = "<group>"; };
 		CB3F0F2E212325B6005B0AE5 /* ColorfulCellNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorfulCellNode.h; sourceTree = "<group>"; };
@@ -161,8 +158,6 @@
 			children = (
 				CB01B8EB212069FD00DD9BE7 /* TangramCollectionViewLayout.h */,
 				CB01B8EC212069FD00DD9BE7 /* TangramCollectionViewLayout.m */,
-				BCDD2A272123C2C200BFFA37 /* FlowLayout.h */,
-				BCDD2A282123C2C200BFFA37 /* FlowLayout.m */,
 				BC43AF55212162E900A2B9DE /* TangramComponentDescriptor.h */,
 				BC43AF52212159E700A2B9DE /* TangramLayoutComponent.h */,
 				BC43AF53212159E700A2B9DE /* TangramLayoutComponent.m */,
@@ -316,7 +311,6 @@
 				CB3F0F3321232621005B0AE5 /* ColorfulModel.m in Sources */,
 				BC43AF5821216E5500A2B9DE /* TangramGridLayoutComponet.m in Sources */,
 				BCBA27382118458000E8C0AD /* main.m in Sources */,
-				BCDD2A292123C2C200BFFA37 /* FlowLayout.m in Sources */,
 				BCBA272A2118457D00E8C0AD /* AppDelegate.m in Sources */,
 				CB3F0F30212325B7005B0AE5 /* ColorfulCellNode.m in Sources */,
 				CB01B8ED212069FD00DD9BE7 /* TangramCollectionViewLayout.m in Sources */,

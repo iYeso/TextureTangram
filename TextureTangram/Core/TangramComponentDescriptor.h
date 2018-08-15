@@ -14,6 +14,7 @@
 @property (nonatomic, copy) NSString *type; ///< UI组件的类型
 
 @property (nonatomic) CGRect frame;
+@property (nonatomic) CGFloat width;
 
 @property (nonatomic) CGFloat expectedHeight;
 

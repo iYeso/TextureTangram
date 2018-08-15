@@ -59,7 +59,7 @@
 
 - (ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize {
 //    self.canvas.style.preferredSize = CGSizeMake(40+arc4random()%120, 80+arc4random()%40);
-    self.canvas.style.height = ASDimensionMake(100);
+    self.canvas.style.height = ASDimensionMake(80);
     ASStackLayoutSpec *stackMain = [ASStackLayoutSpec stackLayoutSpecWithDirection:ASStackLayoutDirectionVertical spacing:10.0 justifyContent:ASStackLayoutJustifyContentStart alignItems:ASStackLayoutAlignItemsStart children:@[self.canvas, self.redLabel, self.greenLabel, self.blueLabel]];
     return stackMain;
 }
