@@ -33,15 +33,30 @@
     assert(_maximumColumn > 0);
     // 设置每个item的frame
     CGFloat itemWidth = (self.width - (_maximumColumn-1) * self.horizontalInterItemsSpace - self.insets.left - self.insets.right) / _maximumColumn;
+    NSUInteger column = 0;
+    NSUInteger row = 0;
+    
+    CGFloat y = self.insets.top + self.layoutOrigin.y + headerHeight;
+    NSUInteger rowMaxHeight = 0;
+    NSUInteger rowMaxHeightRowNumber = 0; //记住当前行的最大高度；
     for (NSInteger i = 0; i < self.itemInfos.count; i++) {
         id<TangramComponentDescriptor> descriptor = self.itemInfos[i];
-        CGFloat x = self.insets.left + self.layoutOrigin.x + (self.horizontalInterItemsSpace+itemWidth) * (i%_maximumColumn);
+        column = (i%_maximumColumn);
+        row = (i/_maximumColumn);
+        CGFloat x = self.insets.left + self.layoutOrigin.x + (self.horizontalInterItemsSpace+itemWidth) * column;
         descriptor.width = itemWidth;
-        CGFloat y = self.insets.top + self.layoutOrigin.y + (self.verticalInterItemsSpace+descriptor.expectedHeight) * (i/_maximumColumn) + headerHeight;
+        if (row != rowMaxHeightRowNumber) {
+            y += rowMaxHeight + self.verticalInterItemsSpace;
+            rowMaxHeightRowNumber = row;
+            rowMaxHeight = descriptor.expectedHeight;
+        }
+        if (descriptor.expectedHeight > rowMaxHeight) {
+            rowMaxHeight = descriptor.expectedHeight;
+        }
         descriptor.frame = CGRectMake(x, y, itemWidth,descriptor.expectedHeight);
     }
     
-    self.height = CGRectGetMaxY(self.itemInfos.lastObject.frame) + footerHeight - self.layoutOrigin.y + self.insets.bottom;
+    self.height = y + rowMaxHeight + footerHeight - self.layoutOrigin.y + self.insets.bottom;
 }
 
 @end

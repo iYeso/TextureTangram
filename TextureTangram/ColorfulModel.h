@@ -16,6 +16,6 @@
 @property (nonatomic) CGRect frame;
 @property (nonatomic) CGFloat width;
 
-@property (nonatomic) CGFloat expectedHeight;
+@property (nonatomic) CGFloat expectedHeight; //如果想高度固定，可以重写getter返回一个固定高度
 
 @end

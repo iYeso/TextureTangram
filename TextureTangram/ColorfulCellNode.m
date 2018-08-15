@@ -25,6 +25,7 @@
 
 - (instancetype)init {
     if (self = [super init]) {
+        //init方法是在主线程之外的线程执行，可以完成一些耗时操作
         _canvas = [ASDisplayNode new];
         _redLabel = [ASTextNode new];
         _greenLabel = [ASTextNode new];
@@ -58,8 +59,7 @@
 #pragma mark - layout
 
 - (ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize {
-//    self.canvas.style.preferredSize = CGSizeMake(40+arc4random()%120, 80+arc4random()%40);
-    self.canvas.style.height = ASDimensionMake(80);
+    self.canvas.style.height = ASDimensionMake(60+arc4random()%60);
     ASStackLayoutSpec *stackMain = [ASStackLayoutSpec stackLayoutSpecWithDirection:ASStackLayoutDirectionVertical spacing:10.0 justifyContent:ASStackLayoutJustifyContentStart alignItems:ASStackLayoutAlignItemsStart children:@[self.canvas, self.redLabel, self.greenLabel, self.blueLabel]];
     return stackMain;
 }
