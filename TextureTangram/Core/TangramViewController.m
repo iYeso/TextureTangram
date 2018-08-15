@@ -17,6 +17,7 @@
 #import "TangramCollectionViewLayout.h"
 #import "TangramGridLayoutComponet.h"
 #import "TangramWaterFlowLayoutComponent.h"
+#import "TangramOnePlusLayoutComponent.h"
 #import "ColorfulModel.h"
 #import "ColorfulCellNode.h"
 
@@ -36,14 +37,14 @@
     // 3列网格
     TangramGridLayoutComponet *threeColumn = [[TangramGridLayoutComponet alloc] init];
     threeColumn.maximumColumn = 3;
-    NSMutableArray *array = [NSMutableArray arrayWithCapacity:50];
+    NSMutableArray<ColorfulModel*> *array = [NSMutableArray arrayWithCapacity:50];
     for (NSInteger i = 0; i < 10; i++) {
         ColorfulModel *m = [ColorfulModel new];
         [array addObject:m];
     }
     threeColumn.insets = UIEdgeInsetsMake(0, 10, 0, 10);
     threeColumn.margin = UIEdgeInsetsMake(10, 0, 100, 0);
-    threeColumn.columnPatitions = @[@1,@1,@1];
+    threeColumn.columnPartitions = @[@1,@1,@1];
     threeColumn.horizontalInterItemsSpace = 8;
     threeColumn.verticalInterItemsSpace = 8;
     threeColumn.itemInfos = array.copy;
@@ -58,9 +59,21 @@
     }
     twoColumn.verticalInterItemsSpace = 20;
     twoColumn.itemInfos = array.copy;
-    twoColumn.columnPatitions = @[@5,@4];
+    twoColumn.columnPartitions = @[@5,@4];
     twoColumn.horizontalInterItemsSpace = 20;
     twoColumn.margin = UIEdgeInsetsMake(100, 8, 30, 8);
+    
+    // 1 + N
+    TangramOnePlusLayoutComponent *onePlus = [[TangramOnePlusLayoutComponent alloc] init];
+    onePlus.rowPartitions = @[@4,@5];
+    array = [NSMutableArray arrayWithCapacity:5];
+    for (NSInteger i = 0; i < 4; i++) {
+        ColorfulModel *m = [ColorfulModel new];
+        [array addObject:m];
+    }
+    array[1].canvasHeight = 60;
+    array[0].canvasHeight = 280;
+    onePlus.itemInfos = array.copy;
     
     // 瀑布流
     TangramWaterFlowLayoutComponent *water = [[TangramWaterFlowLayoutComponent alloc] init];
@@ -76,9 +89,10 @@
     water.itemInfos = array.copy;
     water.margin = UIEdgeInsetsMake(30, 8, 0, 8);
     
-    TangramCollectionViewLayout *collectionViewLayout = TangramCollectionViewLayout.new;
-    collectionViewLayout.layoutComponents = @[threeColumn, twoColumn ,water];
     
+    //  设置布局组件
+    TangramCollectionViewLayout *collectionViewLayout = TangramCollectionViewLayout.new;
+    collectionViewLayout.layoutComponents = @[threeColumn, twoColumn, onePlus ,water];
     self.layoutComponents = collectionViewLayout.layoutComponents;
     
     

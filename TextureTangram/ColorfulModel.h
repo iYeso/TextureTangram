@@ -18,5 +18,6 @@
 
 @property (nonatomic) CGFloat expectedHeight; //如果想高度固定，可以重写getter返回一个固定高度
 @property (nonatomic) BOOL randomHeight;
+@property (nonatomic) CGFloat canvasHeight;
 
 @end

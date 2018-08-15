@@ -31,7 +31,7 @@
     }
     
     assert(_maximumColumn > 0);
-    assert(_maximumColumn == _columnPatitions.count);
+    assert(_maximumColumn == _columnPartitions.count);
     // 设置每个item的frame
     CGFloat totalItemWidth = (self.width - (_maximumColumn-1) * self.horizontalInterItemsSpace - self.insets.left - self.insets.right);
     NSUInteger column = 0;
@@ -39,10 +39,10 @@
     double total = 0;
     NSMutableArray *itemWidths = [NSMutableArray arrayWithCapacity:_maximumColumn];
     for (NSInteger i = 0; i < _maximumColumn; i++) {
-        total += [_columnPatitions[i] doubleValue];
+        total += [_columnPartitions[i] doubleValue];
     }
     for (NSInteger i = 0; i < _maximumColumn; i++) {
-        [itemWidths addObject:@(totalItemWidth*[_columnPatitions[i] doubleValue]/total)];
+        [itemWidths addObject:@(totalItemWidth*[_columnPartitions[i] doubleValue]/total)];
     }
     
     CGFloat itemsOriginY = self.insets.top + self.layoutOrigin.y + headerHeight;

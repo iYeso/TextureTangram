@@ -63,7 +63,7 @@
     if (self.model.randomHeight) {
         self.canvas.style.height = ASDimensionMake(180+arc4random()%40);
     } else {
-        self.canvas.style.height = ASDimensionMake(120);
+        self.canvas.style.height = ASDimensionMake(self.model.canvasHeight?:120);
     }
     ASStackLayoutSpec *stackMain = [ASStackLayoutSpec stackLayoutSpecWithDirection:ASStackLayoutDirectionVertical spacing:10.0 justifyContent:ASStackLayoutJustifyContentStart alignItems:ASStackLayoutAlignItemsStart children:@[self.canvas, self.redLabel, self.greenLabel, self.blueLabel]];
     return stackMain;
