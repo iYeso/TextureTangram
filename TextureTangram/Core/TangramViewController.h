@@ -16,7 +16,7 @@
 
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
 
-@interface DemoViewController : ASViewController
+@interface TangramViewController : ASViewController
 
 
 @end

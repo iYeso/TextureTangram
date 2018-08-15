@@ -13,21 +13,21 @@
 // limitations under the License.
 //
 
-#import "DemoViewController.h"
+#import "TangramViewController.h"
 #import "TangramCollectionViewLayout.h"
 #import "TangramGridLayoutComponet.h"
 #import "TangramWaterFlowLayoutComponent.h"
 #import "ColorfulModel.h"
 #import "ColorfulCellNode.h"
 
-@interface DemoViewController () <ASCollectionDelegate, ASCollectionDataSource>
+@interface TangramViewController () <ASCollectionDelegate, ASCollectionDataSource>
 
 @property (nonatomic, strong) ASCollectionNode *collectionNode;
 @property (nonatomic, strong) NSArray<TangramLayoutComponent *> *layoutComponents;
 @end
 
 // 这个controller可以看做一个中间层，用来计算布局，接收重新布局的信号，刷新数据的信号；注册nodetype于id对应;待完善这个中间层
-@implementation DemoViewController
+@implementation TangramViewController
 
 - (instancetype)init {
     // 使用系统的flowlayout无法实现整个section的背景以及装饰
@@ -44,7 +44,7 @@
     TangramGridLayoutComponet *threeColumn = [[TangramGridLayoutComponet alloc] init];
     threeColumn.maximumColumn = 3;
     NSMutableArray *array = [NSMutableArray arrayWithCapacity:50];
-    for (NSInteger i = 0; i < 15; i++) {
+    for (NSInteger i = 0; i < 10; i++) {
         ColorfulModel *m = [ColorfulModel new];
         [array addObject:m];
     }
@@ -70,7 +70,7 @@
     TangramWaterFlowLayoutComponent *water = [[TangramWaterFlowLayoutComponent alloc] init];
     water.maximumColumn = 2;
     array = [NSMutableArray arrayWithCapacity:100];
-    for (NSInteger i = 0; i < 100; i++) {
+    for (NSInteger i = 0; i < 15; i++) {
         ColorfulModel *m = [ColorfulModel new];
         m.randomHeight = YES;
         [array addObject:m];
@@ -81,7 +81,7 @@
     water.margin = UIEdgeInsetsMake(30, 8, 0, 8);
     
     TangramCollectionViewLayout *collectionViewLayout = TangramCollectionViewLayout.new;
-    collectionViewLayout.layoutComponents = @[threeColumn, water];
+    collectionViewLayout.layoutComponents = @[threeColumn, water, twoColumn];
     
     self.layoutComponents = collectionViewLayout.layoutComponents;
     

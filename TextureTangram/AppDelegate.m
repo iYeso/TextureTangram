@@ -13,7 +13,7 @@
 // limitations under the License.
 
 #import "AppDelegate.h"
-#import "DemoViewController.h"
+#import "TangramViewController.h"
 
 @interface AppDelegate ()
 
@@ -24,8 +24,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     UIWindow *keyWindow = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
-    DemoViewController *demo = DemoViewController.new;
-    ASNavigationController *nav = [[ASNavigationController alloc] initWithRootViewController:demo];
+    TangramViewController *tan = TangramViewController.new;
+    ASNavigationController *nav = [[ASNavigationController alloc] initWithRootViewController:tan];
     keyWindow.rootViewController = nav;
     [keyWindow makeKeyAndVisible];
     self.window = keyWindow;
