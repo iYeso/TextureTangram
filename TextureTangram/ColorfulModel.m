@@ -15,7 +15,7 @@
 }
 
 - (CGFloat)expectedHeight {
-    return 240;
+    return 200;
 }
 
 @end

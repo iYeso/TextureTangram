@@ -20,6 +20,10 @@ NSString *const TangramCollectionViewBackgroundDecoratedKind = @"TangramCollecti
 
 @interface TangramCollectionViewLayout()
 
+@property (nonatomic) CGSize contentSize;
+@property (nonatomic, strong) NSMutableDictionary *cellAttributes;
+@property (nonatomic, strong) NSMutableDictionary *supplementaryViewAttributes;
+@property (nonatomic, strong) NSMutableDictionary *decoratedViewAttributes;
 
 @end
 
@@ -37,7 +41,10 @@ NSString *const TangramCollectionViewBackgroundDecoratedKind = @"TangramCollecti
 // Subclasses should always call super if they override.
 - (void)prepareLayout {
     [super prepareLayout];
-    
+    _contentSize = CGSizeMake(CGRectGetWidth(self.collectionView.bounds), _cacheHeight);
+    self.cellAttributes = [NSMutableDictionary dictionary];
+    self.supplementaryViewAttributes = [NSMutableDictionary dictionary];
+    self.decoratedViewAttributes = [NSMutableDictionary dictionary];
 }
 
 // UICollectionView calls these four methods to determine the layout information.
@@ -79,22 +86,34 @@ NSString *const TangramCollectionViewBackgroundDecoratedKind = @"TangramCollecti
     }
 }
 - (nullable UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath {
-    TangramLayoutComponent *layoutComponent = self.layoutComponents[indexPath.section];
-    UICollectionViewLayoutAttributes *attributes = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
-    attributes.frame = layoutComponent.itemInfos[indexPath.row].frame;
+    UICollectionViewLayoutAttributes *attributes = self.cellAttributes[indexPath];
+    if (!attributes) {
+        TangramLayoutComponent *layoutComponent = self.layoutComponents[indexPath.section];
+        attributes = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
+        attributes.frame = layoutComponent.itemInfos[indexPath.row].frame;
+        self.cellAttributes[indexPath] = attributes;
+    }
+    
     return attributes;
 }
 - (nullable UICollectionViewLayoutAttributes *)layoutAttributesForSupplementaryViewOfKind:(NSString *)elementKind atIndexPath:(NSIndexPath *)indexPath {
-    TangramLayoutComponent *layoutComponent = self.layoutComponents[indexPath.section];
-    UICollectionViewLayoutAttributes *layoutAttributes = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:elementKind withIndexPath:indexPath];
-    if ([elementKind isEqualToString:UICollectionElementKindSectionHeader]) {
-        layoutAttributes.frame = layoutComponent.headerInfo.frame;
-    } else if ([elementKind isEqualToString:UICollectionElementKindSectionFooter]) {
-        layoutAttributes.frame = layoutComponent.footerInfo.frame;
-    } else {
-        return nil;
+    NSString *key = [NSString stringWithFormat:@"%@%@",@(indexPath.section),elementKind];
+    UICollectionViewLayoutAttributes *layoutAttributes = self.supplementaryViewAttributes[key];
+    if (!layoutAttributes) {
+        TangramLayoutComponent *layoutComponent = self.layoutComponents[indexPath.section];
+        layoutAttributes = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:elementKind withIndexPath:indexPath];
+        if ([elementKind isEqualToString:UICollectionElementKindSectionHeader]) {
+            layoutAttributes.frame = layoutComponent.headerInfo.frame;
+        } else if ([elementKind isEqualToString:UICollectionElementKindSectionFooter]) {
+            layoutAttributes.frame = layoutComponent.footerInfo.frame;
+        } else {
+            layoutAttributes = nil;
+        }
+        layoutAttributes.zIndex = 1;
+        self.supplementaryViewAttributes[key] = layoutAttributes;
     }
-    layoutAttributes.zIndex = 1;
+    
+    
     return layoutAttributes;
 }
 - (nullable UICollectionViewLayoutAttributes *)layoutAttributesForDecorationViewOfKind:(NSString*)elementKind atIndexPath:(NSIndexPath *)indexPath {
@@ -103,13 +122,13 @@ NSString *const TangramCollectionViewBackgroundDecoratedKind = @"TangramCollecti
 
 - (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds {
     // return YES to cause the collection view to requery the layout for geometry information
-    return YES;
+    return [super shouldInvalidateLayoutForBoundsChange:newBounds];
 }
 
 
 
 - (CGSize)collectionViewContentSize {
-    return CGSizeMake(CGRectGetWidth(self.collectionView.bounds), _cacheHeight);
+    return _contentSize;
 }
 
 @end

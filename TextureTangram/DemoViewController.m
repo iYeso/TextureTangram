@@ -18,6 +18,7 @@
 #import "TangramGridLayoutComponet.h"
 #import "ColorfulModel.h"
 #import "ColorfulCellNode.h"
+#import "FlowLayout.h"
 
 @interface DemoViewController () <ASCollectionDelegate, ASCollectionDataSource>
 
@@ -30,7 +31,7 @@
 
 - (instancetype)init {
     // 使用系统的flowlayout无法实现整个section的背景以及装饰
-//    UICollectionViewFlowLayout *layout = UICollectionViewFlowLayout.new;
+//    FlowLayout *layout = FlowLayout.new;
 //    layout.minimumInteritemSpacing = 10;
 //    layout.minimumInteritemSpacing = 10;
 //    layout.sectionHeadersPinToVisibleBounds = YES;
@@ -45,6 +46,9 @@
         ColorfulModel *m = [ColorfulModel new];
         [array addObject:m];
     }
+    threeColumn.insets = UIEdgeInsetsMake(0, 10, 0, 10);
+    threeColumn.margin = UIEdgeInsetsMake(100, 0, 100, 0);
+    threeColumn.horizontalInterItemsSpace = 8;
     threeColumn.itemInfos = array.copy;
     
     TangramGridLayoutComponet *twoColumn = [[TangramGridLayoutComponet alloc] init];

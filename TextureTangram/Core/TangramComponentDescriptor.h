@@ -19,7 +19,7 @@
 
 @optional
 
-- (void)computeHeight; ///< 自计算高度
+- (CGFloat)computeHeightWithWidth:(CGFloat)width; ///< 自计算高度
 
 
 @end

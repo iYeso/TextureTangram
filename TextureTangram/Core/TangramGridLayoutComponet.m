@@ -20,14 +20,12 @@
 
 - (void)computeLayoutsWithOrigin:(CGPoint)origin width:(CGFloat)width {
     [super computeLayoutsWithOrigin:origin width:width];
-    [self.headerInfo computeHeight];
-    [self.footerInfo computeHeight];
-    CGFloat headerHeight = self.headerInfo.expectedHeight;
-    CGFloat footerHeight = self.footerInfo.expectedHeight;
+    CGFloat headerHeight = [self.headerInfo computeHeightWithWidth:width];
+    CGFloat footerHeight = [self.footerInfo computeHeightWithWidth:width];
     
     assert(_maximumColumn > 0);
     // 设置每个item的frame
-    CGFloat itemWidth = (self.width - (_maximumColumn-1) * self.horizontalInterItemsSpace) / _maximumColumn;
+    CGFloat itemWidth = (self.width - (_maximumColumn-1) * self.horizontalInterItemsSpace - self.insets.left - self.insets.right) / _maximumColumn;
     for (NSInteger i = 0; i < self.itemInfos.count; i++) {
         id<TangramComponentDescriptor> descriptor = self.itemInfos[i];
         CGFloat x = self.insets.left + self.layoutOrigin.x + (self.horizontalInterItemsSpace+itemWidth) * (i%_maximumColumn);
