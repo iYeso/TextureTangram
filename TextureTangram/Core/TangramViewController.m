@@ -24,7 +24,8 @@
 @interface TangramViewController () <ASCollectionDelegate, ASCollectionDataSource>
 
 @property (nonatomic, strong) ASCollectionNode *collectionNode;
-@property (nonatomic, strong) NSArray<TangramLayoutComponent *> *layoutComponents;
+@property (nonatomic, strong) TangramCollectionViewLayout *collectionLayout;
+@property (nonatomic, strong) NSNumber *stickyIndex;
 @end
 
 // 这个controller可以看做一个中间层，用来计算布局，接收重新布局的信号，刷新数据的信号；注册nodetype于id对应;待完善这个中间层
@@ -62,6 +63,21 @@
     threeColumn.verticalInterItemsSpace = 8;
     threeColumn.itemInfos = array.copy;
     
+    // sticky
+    TangramGridLayoutComponet *sticky = [[TangramGridLayoutComponet alloc] init];
+    sticky.maximumColumn = 1;
+    array = [NSMutableArray arrayWithCapacity:50];
+    for (NSInteger i = 0; i < 1; i++) {
+        ColorfulModel *m = [ColorfulModel new];
+        m.canvasHeight = 50;
+        [array addObject:m];
+    }
+    sticky.margin = UIEdgeInsetsMake(50, 0, 100, 0);
+    sticky.columnPartitions = @[@1];
+    sticky.itemInfos = array.copy;
+    sticky.pinnedType = TangramLayoutComponentPinnedTypeTop;
+    _stickyIndex = @(2);
+    
     // 双列网格
     TangramGridLayoutComponet *twoColumn = [[TangramGridLayoutComponet alloc] init];
     twoColumn.maximumColumn = 2;
@@ -80,8 +96,9 @@
     // 瀑布流
     TangramWaterFlowLayoutComponent *water = [[TangramWaterFlowLayoutComponent alloc] init];
     water.maximumColumn = 3;
-    array = [NSMutableArray arrayWithCapacity:100];
-    for (NSInteger i = 0; i < 21; i++) {
+    NSInteger itemCount = 15; //打开实时刷新， iPhone 5S 的瓶颈是3000个item（CPU100%)。不打开的话，10000个item的内存创建需要耗时10秒左右，不会卡顿
+    array = [NSMutableArray arrayWithCapacity:itemCount];
+    for (NSInteger i = 0; i < itemCount; i++) {
         ColorfulModel *m = [ColorfulModel new];
         m.randomHeight = YES;
         [array addObject:m];
@@ -94,8 +111,8 @@
     
     //  设置布局组件
     TangramCollectionViewLayout *collectionViewLayout = TangramCollectionViewLayout.new;
-    collectionViewLayout.layoutComponents = @[onePlus, threeColumn, twoColumn ,water];
-    self.layoutComponents = collectionViewLayout.layoutComponents;
+    collectionViewLayout.layoutComponents = @[onePlus, threeColumn, sticky, twoColumn ,water];
+    self.collectionLayout = collectionViewLayout;
     
     
     ASCollectionNode *collectionNode = [[ASCollectionNode alloc] initWithCollectionViewLayout:collectionViewLayout];
@@ -117,6 +134,10 @@
     _collectionNode.dataSource = self;
 }
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+}
+
 #pragma mark - ASCollectionDelegate
 
 - (void)collectionNode:(ASCollectionNode *)collectionNode didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -124,7 +145,7 @@
 }
 
 - (ASSizeRange)collectionNode:(ASCollectionNode *)collectionNode constrainedSizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    id<TangramComponentDescriptor> layoutDescriptor = self.layoutComponents[indexPath.section].itemInfos[indexPath.row];
+    id<TangramComponentDescriptor> layoutDescriptor = self.collectionLayout.layoutComponents[indexPath.section].itemInfos[indexPath.row];
     if (layoutDescriptor.expectedHeight > 0) { //已经计算好高度
         return ASSizeRangeMake(CGSizeMake(layoutDescriptor.width, layoutDescriptor.expectedHeight));
     } else { //尚未计算高度
@@ -134,23 +155,33 @@
 }
 #pragma mark -  ASCollectionDataSource
 
+
 - (NSInteger)numberOfSectionsInCollectionNode:(ASCollectionNode *)collectionNode {
-    return self.layoutComponents.count;
+    return self.collectionLayout.layoutComponents.count;
 }
 
 - (NSInteger)collectionNode:(ASCollectionNode *)collectionNode numberOfItemsInSection:(NSInteger)section {
-    return self.layoutComponents[section].itemInfos.count;
+    return self.collectionLayout.layoutComponents[section].itemInfos.count;
 }
 
 
 - (ASCellNodeBlock)collectionNode:(ASCollectionNode *)collectionNode nodeBlockForItemAtIndexPath:(NSIndexPath *)indexPath {
     __weak typeof(self) weakSelf = self;
-    return ^ASCellNode * _Nonnull(void) {
-        typeof(weakSelf) sself = weakSelf;
-        ColorfulCellNode *node = [[ColorfulCellNode alloc] init];
-        node.model = sself.layoutComponents[indexPath.section].itemInfos[indexPath.row];
-        return node;
-    };
+    if (_stickyIndex==nil || indexPath.section != _stickyIndex.integerValue) {
+        return ^ASCellNode * _Nonnull(void) {
+            typeof(weakSelf) sself = weakSelf;
+            ColorfulCellNode *node = [[ColorfulCellNode alloc] init];
+            node.model = sself.collectionLayout.layoutComponents[indexPath.section].itemInfos[indexPath.row];
+            return node;
+        };
+    } else {
+        return ^ASCellNode * _Nonnull(void) {
+            ASCellNode *cellNode = ASCellNode.new;
+            cellNode.backgroundColor = UIColor.redColor;
+            cellNode.style.minHeight = ASDimensionMake(50);
+            return cellNode;
+        };
+    }
 }
 
 

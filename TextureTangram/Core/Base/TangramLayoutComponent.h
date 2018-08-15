@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /** 类似tableView header吸顶、footer吸底的效果 */
 typedef NS_ENUM(NSUInteger, TangramLayoutComponentPinnedType) {
-    TangramLayoutComponentPinnedTypeNone,
+    TangramLayoutComponentPinnedTypeNone = 0,
     TangramLayoutComponentPinnedTypeTop,
     TangramLayoutComponentPinnedTypeBottom,
 };
