@@ -26,3 +26,4 @@ TextureTangram是一个布局工具并不是[Tangram](https://github.com/alibaba
 3. 横向布局、Banner的实现。（需要做一层转化和delegate判断）
 4. `TangramNode`需要暴露的接口、代理。
 5. 插入新的布局元素、删除部分布局元素有待检验。
+6. 数据解析层，事件传递还没动工。
