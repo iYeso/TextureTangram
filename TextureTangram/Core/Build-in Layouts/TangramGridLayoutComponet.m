@@ -30,6 +30,7 @@
         footerHeight =[self.footerInfo computeHeightWithWidth:width];
     }
     
+
     assert(_maximumColumn > 0);
     assert(_maximumColumn == _columnPartitions.count);
     // 设置每个item的frame

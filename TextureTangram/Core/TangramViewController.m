@@ -25,7 +25,6 @@
 
 @property (nonatomic, strong) ASCollectionNode *collectionNode;
 @property (nonatomic, strong) TangramCollectionViewLayout *collectionLayout;
-@property (nonatomic, strong) NSNumber *stickyIndex;
 @property (nonatomic, strong) ASCellNode *stickyNode;
 @end
 
@@ -92,7 +91,6 @@
     sticky.columnPartitions = @[@1];
     sticky.itemInfos = array.copy;
     sticky.pinnedType = TangramLayoutComponentPinnedTypeTop;
-    _stickyIndex = @(3);
     
     // 瀑布流
     TangramWaterFlowLayoutComponent *water = [[TangramWaterFlowLayoutComponent alloc] init];
@@ -112,7 +110,7 @@
     
     //  设置布局组件
     TangramCollectionViewLayout *collectionViewLayout = TangramCollectionViewLayout.new;
-    collectionViewLayout.stickyIndex = self.stickyIndex;
+    collectionViewLayout.stickyIndex = @3;
     collectionViewLayout.layoutComponents = @[onePlus, threeColumn, twoColumn, sticky, water];
     self.collectionLayout = collectionViewLayout;
     
@@ -164,7 +162,7 @@
 #pragma mark -  ASCollectionDataSource
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    BOOL isLegalIndex = _stickyIndex.integerValue >= 0 &&_stickyIndex.integerValue < self.collectionLayout.layoutComponents.count;
+    BOOL isLegalIndex = self.collectionLayout.stickyIndex.integerValue >= 0 && self.collectionLayout.stickyIndex.integerValue < self.collectionLayout.layoutComponents.count;
     if (isLegalIndex) {
         [self.collectionLayout layouStickyNode];
     }
@@ -184,7 +182,7 @@
 
 - (ASCellNodeBlock)collectionNode:(ASCollectionNode *)collectionNode nodeBlockForItemAtIndexPath:(NSIndexPath *)indexPath {
     __weak typeof(self) weakSelf = self;
-    if (_stickyIndex==nil || indexPath.section != _stickyIndex.integerValue) {
+    if (self.collectionLayout.stickyIndex==nil || indexPath.section != self.collectionLayout.stickyIndex.integerValue) {
         return ^ASCellNode * _Nonnull(void) {
             typeof(weakSelf) sself = weakSelf;
             ColorfulCellNode *node = [[ColorfulCellNode alloc] init];
