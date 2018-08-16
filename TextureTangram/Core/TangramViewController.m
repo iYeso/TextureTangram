@@ -96,7 +96,7 @@
     // 瀑布流
     TangramWaterFlowLayoutComponent *water = [[TangramWaterFlowLayoutComponent alloc] init];
     water.maximumColumn = 3;
-    NSInteger itemCount = 15; //打开实时刷新， iPhone 5S 的瓶颈是3000个item（CPU100%)。不打开的话，10000个item的内存创建需要耗时10秒左右，不会卡顿
+    NSInteger itemCount = 3000; //打开实时刷新， iPhone 5S 的瓶颈是3000个item（CPU100%)。不打开的话，10000个item的内存创建需要耗时10秒左右，不会卡顿
     array = [NSMutableArray arrayWithCapacity:itemCount];
     for (NSInteger i = 0; i < itemCount; i++) {
         ColorfulModel *m = [ColorfulModel new];
@@ -116,6 +116,7 @@
     
     
     ASCollectionNode *collectionNode = [[ASCollectionNode alloc] initWithCollectionViewLayout:collectionViewLayout];
+    collectionViewLayout.collectionNode = collectionNode;
     _collectionNode = collectionNode;
     if (self = [super initWithNode:collectionNode]) {
         [self setupNodes];

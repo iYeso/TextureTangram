@@ -16,7 +16,7 @@
 
 #import <UIKit/UIKit.h>
 #import "TangramLayoutComponent.h"
-
+#import <AsyncDisplayKit/AsyncDisplayKit.h>
 extern NSString *const TangramCollectionViewBackgroundDecoratedKind;
 
 /// 要是写自定义layout，直接调用 self.collectionView.delegate 来获取布局大小等等信息；
@@ -25,6 +25,7 @@ extern NSString *const TangramCollectionViewBackgroundDecoratedKind;
 
 @property (nonatomic) CGFloat cacheHeight;
 @property (nonatomic, strong) NSArray<TangramLayoutComponent *> *layoutComponents;
+@property (nonatomic, weak) ASCollectionNode *collectionNode;
 //@property (nonatomic, strong) NSMutableDictionary *cellAttributes;
 //@property (nonatomic, strong) NSMutableDictionary *supplementaryViewAttributes;
 //@property (nonatomic, strong) NSMutableDictionary *decoratedViewAttributes;

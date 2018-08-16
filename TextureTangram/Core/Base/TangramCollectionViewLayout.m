@@ -22,7 +22,7 @@ NSString *const TangramCollectionViewBackgroundDecoratedKind = @"TangramCollecti
 
 @property (nonatomic) CGSize contentSize;
 @property (nonatomic) BOOL getExactHeight;
-
+@property (nonatomic) BOOL needLoad;
 
 @end
 
@@ -33,6 +33,7 @@ NSString *const TangramCollectionViewBackgroundDecoratedKind = @"TangramCollecti
 - (void)setLayoutComponents:(NSArray<TangramLayoutComponent *> *)layoutComponents {
     _layoutComponents = layoutComponents;
     [self calculateLayout];
+    _needLoad = YES;
 }
 
 
@@ -51,8 +52,10 @@ NSString *const TangramCollectionViewBackgroundDecoratedKind = @"TangramCollecti
         lastTime = CFAbsoluteTimeGetCurrent();
     });
     CFTimeInterval now =  CFAbsoluteTimeGetCurrent();
-    if (now - lastTime < 5) { //只有初始化的时候才计算，这样处理貌似不太妥当；最好是不要放在 prepareLayout，然后item的height不是自己给定的，如果通过sizeForItemAtIndexPath来获取，必须要多次调用才行（因为item是自计算的）这个时机不好把握到
+    
+    if (now-lastTime < 5) { //只有初始化的时候才计算，这样处理貌似不太妥当；最好是不要放在 prepareLayout，然后item的height不是自己给定的，如果通过sizeForItemAtIndexPath来获取，必须要多次调用才行（因为item是自计算的）这个时机不好把握到；我只能假设某个时间内计算完所有的layout
         [self calculateLayout];
+        _needLoad = NO;
     }
     
 }
@@ -96,6 +99,10 @@ NSString *const TangramCollectionViewBackgroundDecoratedKind = @"TangramCollecti
     for (NSInteger i = 0; i < sectionCount; i++) {
         
         TangramLayoutComponent *component = self.layoutComponents[i];
+        CGRect componentRect = CGRectMake(component.layoutOrigin.x, component.layoutOrigin.y, component.width, component.height);
+        if (!CGRectIntersectsRect(componentRect, rect) && component.pinnedType == TangramLayoutComponentPinnedTypeNone) {
+            continue;
+        }
         // 头部
         if (component.headerInfo && CGRectIntersectsRect(component.headerInfo.frame, rect)) {
             [visibleLayoutAttributes addObject:[self layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionHeader atIndexPath:[NSIndexPath indexPathForRow:0 inSection:i]]];
@@ -109,11 +116,15 @@ NSString *const TangramCollectionViewBackgroundDecoratedKind = @"TangramCollecti
         // cell
         
         NSInteger numberOfItems = [self.collectionView.dataSource collectionView:self.collectionView numberOfItemsInSection:i];
+        BOOL found = NO;
         for (NSInteger j = 0; j < numberOfItems; j++) {
             id<TangramComponentDescriptor> descriptor = component.itemInfos[j];
-      
+            
             if (CGRectIntersectsRect(descriptor.frame, rect) || component.pinnedType) {
                 [visibleLayoutAttributes addObject:[self layoutAttributesForItemAtIndexPath:[NSIndexPath indexPathForRow:j inSection:i]]];
+                found = YES;
+            } else if (found) {
+                break;
             }
             
         }
