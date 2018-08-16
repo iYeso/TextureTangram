@@ -15,9 +15,10 @@
 
 
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
+#import "TangramLayoutComponent.h"
+@interface TangramNode : ASDisplayNode
 
-@interface TangramViewController : ASViewController
-
+@property (nonatomic, copy) NSArray<TangramLayoutComponent *> *layoutComponents;
 
 @end
 

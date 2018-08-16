@@ -11,7 +11,7 @@
 		BC43AF54212159E700A2B9DE /* TangramLayoutComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = BC43AF53212159E700A2B9DE /* TangramLayoutComponent.m */; };
 		BC43AF5821216E5500A2B9DE /* TangramGridLayoutComponet.m in Sources */ = {isa = PBXBuildFile; fileRef = BC43AF5721216E5500A2B9DE /* TangramGridLayoutComponet.m */; };
 		BCBA272A2118457D00E8C0AD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBA27292118457D00E8C0AD /* AppDelegate.m */; };
-		BCBA272D2118457D00E8C0AD /* TangramViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBA272C2118457D00E8C0AD /* TangramViewController.m */; };
+		BCBA272D2118457D00E8C0AD /* TangramNode.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBA272C2118457D00E8C0AD /* TangramNode.m */; };
 		BCBA27322118458000E8C0AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BCBA27312118458000E8C0AD /* Assets.xcassets */; };
 		BCBA27352118458000E8C0AD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BCBA27332118458000E8C0AD /* LaunchScreen.storyboard */; };
 		BCBA27382118458000E8C0AD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBA27372118458000E8C0AD /* main.m */; };
@@ -46,8 +46,8 @@
 		BCBA27252118457D00E8C0AD /* TextureTangram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TextureTangram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCBA27282118457D00E8C0AD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		BCBA27292118457D00E8C0AD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		BCBA272B2118457D00E8C0AD /* TangramViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TangramViewController.h; sourceTree = "<group>"; };
-		BCBA272C2118457D00E8C0AD /* TangramViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TangramViewController.m; sourceTree = "<group>"; };
+		BCBA272B2118457D00E8C0AD /* TangramNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TangramNode.h; sourceTree = "<group>"; };
+		BCBA272C2118457D00E8C0AD /* TangramNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TangramNode.m; sourceTree = "<group>"; };
 		BCBA27312118458000E8C0AD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BCBA27342118458000E8C0AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BCBA27362118458000E8C0AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -162,8 +162,8 @@
 			children = (
 				CB3F0F382124618C005B0AE5 /* Base */,
 				CB3F0F3721244D35005B0AE5 /* Build-in Layouts */,
-				BCBA272B2118457D00E8C0AD /* TangramViewController.h */,
-				BCBA272C2118457D00E8C0AD /* TangramViewController.m */,
+				BCBA272B2118457D00E8C0AD /* TangramNode.h */,
+				BCBA272C2118457D00E8C0AD /* TangramNode.m */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -333,7 +333,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BCBA272D2118457D00E8C0AD /* TangramViewController.m in Sources */,
+				BCBA272D2118457D00E8C0AD /* TangramNode.m in Sources */,
 				CB3F0F3321232621005B0AE5 /* ColorfulModel.m in Sources */,
 				BC43AF5821216E5500A2B9DE /* TangramGridLayoutComponet.m in Sources */,
 				BCBA27382118458000E8C0AD /* main.m in Sources */,

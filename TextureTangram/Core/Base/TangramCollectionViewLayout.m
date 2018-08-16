@@ -68,6 +68,9 @@ NSString *const TangramCollectionViewBackgroundDecoratedKind = @"TangramCollecti
     CGFloat height = 0;
     for (NSInteger i = 0; i < self.layoutComponents.count; i++) {
         TangramLayoutComponent *component = self.layoutComponents[i];
+        if (component.pinnedType == TangramLayoutComponentPinnedTypeTop) {
+            _stickyIndex = @(i);
+        }
         CGFloat maxMargin = MAX(last.margin.bottom, component.margin.top);
         CGFloat width = CGRectGetWidth(UIScreen.mainScreen.bounds) - component.margin.left - component.margin.right;
         // 更新每一个item的高度
