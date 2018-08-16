@@ -11,6 +11,6 @@
 /** 1+N 布局 */
 @interface TangramOnePlusLayoutComponent : TangramLayoutComponent
 
-@property (nonatomic) NSArray *rowPartitions; ///< 垂直方向每个组件的间距；vGap
+@property (nonatomic) NSArray *rowPartitions; ///< 右方的行高比例；最终的高度是左边的item定的
 
 @end
