@@ -117,6 +117,7 @@
     if (self.collectionLayout.stickyIndex==nil || indexPath.section != self.collectionLayout.stickyIndex.integerValue) {
         return ^ASCellNode * _Nonnull(void) {
             typeof(weakSelf) sself = weakSelf;
+            // TODO: 通用的cellNode创建，根据ID获取node的类型
             ColorfulCellNode *node = [[ColorfulCellNode alloc] init];
             node.model = sself.collectionLayout.layoutComponents[indexPath.section].itemInfos[indexPath.row];
             return node;

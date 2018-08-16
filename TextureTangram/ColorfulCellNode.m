@@ -7,6 +7,7 @@
 //
 
 #import "ColorfulCellNode.h"
+#import "ColorfulModel.h"
 
 #define RANDOM_FLOAT_VALUE ((arc4random()%1001)/1000.0)
 
@@ -23,6 +24,7 @@
 @implementation ColorfulCellNode
 
 #pragma mark - setters and getters
+
 
 - (instancetype)init {
     if (self = [super init]) {

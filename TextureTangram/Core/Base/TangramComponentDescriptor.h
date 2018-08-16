@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-/** 对应每个组件的model，新增的model需要实现这个协议 */
+/**
+ 对应每个组件的model，新增的model需要实现这个协议;不使用继承应该会更好。
+ */
 @protocol TangramComponentDescriptor <NSObject>
 
 @property (nonatomic, copy) NSString *type; ///< UI组件的类型

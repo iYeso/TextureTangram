@@ -175,8 +175,6 @@ NSString *const TangramCollectionViewBackgroundDecoratedKind = @"TangramCollecti
 
 - (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds {
     // return YES to cause the collection view to requery the layout for geometry information
-//    return YES;
-    
     return [super shouldInvalidateLayoutForBoundsChange:newBounds];
 }
 

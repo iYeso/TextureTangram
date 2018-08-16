@@ -30,9 +30,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     UIWindow *keyWindow = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
-    
-    
-    TangramNode *tan = TangramNode.new;
+
 
     // **************   测试数据  *****************8
     NSMutableArray<ColorfulModel*> *array;
@@ -109,7 +107,7 @@
     water.margin = UIEdgeInsetsMake(30, 8, 0, 8);
     NSArray *components = @[onePlus, threeColumn, twoColumn, sticky, water];
     
-    
+    TangramNode *tan = TangramNode.new;
     tan.layoutComponents = components;
     ASViewController *viewController = [[ASViewController alloc] initWithNode:tan];
     ASNavigationController *nav = [[ASNavigationController alloc] initWithRootViewController:viewController];
