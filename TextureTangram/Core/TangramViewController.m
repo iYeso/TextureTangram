@@ -73,7 +73,7 @@
         m.canvasHeight = 50;
         [array addObject:m];
     }
-    sticky.margin = UIEdgeInsetsMake(50, 0, 100, 0);
+    sticky.margin = UIEdgeInsetsMake(50, 0, 0, 0);
     sticky.columnPartitions = @[@1];
     sticky.itemInfos = array.copy;
     sticky.pinnedType = TangramLayoutComponentPinnedTypeTop;
