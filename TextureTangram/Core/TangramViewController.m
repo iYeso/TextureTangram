@@ -63,21 +63,7 @@
     threeColumn.horizontalInterItemsSpace = 8;
     threeColumn.verticalInterItemsSpace = 8;
     threeColumn.itemInfos = array.copy;
-    
-    // sticky
-    TangramGridLayoutComponet *sticky = [[TangramGridLayoutComponet alloc] init];
-    sticky.maximumColumn = 1;
-    array = [NSMutableArray arrayWithCapacity:50];
-    for (NSInteger i = 0; i < 1; i++) {
-        ColorfulModel *m = [ColorfulModel new];
-        m.canvasHeight = 50;
-        [array addObject:m];
-    }
-    sticky.margin = UIEdgeInsetsMake(50, 0, 0, 0);
-    sticky.columnPartitions = @[@1];
-    sticky.itemInfos = array.copy;
-    sticky.pinnedType = TangramLayoutComponentPinnedTypeTop;
-    _stickyIndex = @(1);
+
     
     // 双列网格
     TangramGridLayoutComponet *twoColumn = [[TangramGridLayoutComponet alloc] init];
@@ -93,6 +79,20 @@
     twoColumn.horizontalInterItemsSpace = 20;
     twoColumn.margin = UIEdgeInsetsMake(100, 8, 30, 8);
 
+    // sticky
+    TangramGridLayoutComponet *sticky = [[TangramGridLayoutComponet alloc] init];
+    sticky.maximumColumn = 1;
+    array = [NSMutableArray arrayWithCapacity:50];
+    for (NSInteger i = 0; i < 1; i++) {
+        ColorfulModel *m = [ColorfulModel new];
+        m.canvasHeight = 50;
+        [array addObject:m];
+    }
+    sticky.margin = UIEdgeInsetsMake(50, 0, 0, 0);
+    sticky.columnPartitions = @[@1];
+    sticky.itemInfos = array.copy;
+    sticky.pinnedType = TangramLayoutComponentPinnedTypeTop;
+    _stickyIndex = @(3);
     
     // 瀑布流
     TangramWaterFlowLayoutComponent *water = [[TangramWaterFlowLayoutComponent alloc] init];
@@ -113,7 +113,7 @@
     //  设置布局组件
     TangramCollectionViewLayout *collectionViewLayout = TangramCollectionViewLayout.new;
     collectionViewLayout.stickyIndex = self.stickyIndex;
-    collectionViewLayout.layoutComponents = @[onePlus, sticky, threeColumn, twoColumn ,water];
+    collectionViewLayout.layoutComponents = @[onePlus, threeColumn, twoColumn, sticky, water];
     self.collectionLayout = collectionViewLayout;
     
     
@@ -127,7 +127,7 @@
     // 预计算高度并不能利用collectionNode的优势
     // 不过与计算这些信息都可以放在异步线程，从某种程度来讲更具优势
     // 目前有所取舍： 使用CollectionNode自带的高度计算，那么需要在prepareLayout（主线程）里面重新设置高度。
-    // 后续把layout计算放在异步看有没有可能
+    
     return self;
 }
 
