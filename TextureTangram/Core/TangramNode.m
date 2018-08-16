@@ -67,6 +67,10 @@
 
 }
 
+- (void)reloadDataWithCompletion:(void (^)(void))completion {
+    [self.collectionNode reloadDataWithCompletion:completion];
+}
+
 - (ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize {
     return [ASAbsoluteLayoutSpec absoluteLayoutSpecWithChildren:@[self.collectionNode]];
 }
@@ -81,12 +85,12 @@
 
 - (ASSizeRange)collectionNode:(ASCollectionNode *)collectionNode constrainedSizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     id<TangramComponentDescriptor> layoutDescriptor = self.collectionLayout.layoutComponents[indexPath.section].itemInfos[indexPath.row];
-//    if (layoutDescriptor.expectedHeight > 0) { //已经计算好高度
-//        return ASSizeRangeMake(CGSizeMake(layoutDescriptor.width, layoutDescriptor.expectedHeight));
-//    } else { //尚未计算高度
+    if (layoutDescriptor.expectedHeight > 0) { //已经计算好高度
+        return ASSizeRangeMake(CGSizeMake(layoutDescriptor.width, layoutDescriptor.expectedHeight));
+    } else { //尚未计算高度
         return ASSizeRangeMake(CGSizeMake(layoutDescriptor.width, 0),
                                CGSizeMake(layoutDescriptor.width, CGFLOAT_MAX));
-//    }
+    }
 }
 #pragma mark -  ASCollectionDataSource
 
@@ -94,7 +98,9 @@
     BOOL isLegalIndex = self.collectionLayout.stickyIndex.integerValue >= 0 && self.collectionLayout.stickyIndex.integerValue < self.collectionLayout.layoutComponents.count;
     if (isLegalIndex) {
         [self.collectionLayout layouStickyNode];
-    }}
+    }
+    
+}
 
 
 - (NSInteger)numberOfSectionsInCollectionNode:(ASCollectionNode *)collectionNode {

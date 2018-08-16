@@ -56,7 +56,7 @@
     TangramGridLayoutComponet *threeColumn = [[TangramGridLayoutComponet alloc] init];
     threeColumn.maximumColumn = 3;
     array = [NSMutableArray arrayWithCapacity:50];
-    for (NSInteger i = 0; i < 10; i++) {
+    for (NSInteger i = 0; i < 9; i++) {
         ColorfulModel *m = [ColorfulModel new];
         m.color = RANDOM_COLOR;
         m.canvasHeight = 150;
@@ -122,8 +122,12 @@
     tan.layoutComponents = components;
     ASViewController *viewController = [[ASViewController alloc] initWithNode:tan];
     _tangramNode = tan;
+    // 删除操作
     UIBarButtonItem *deleteItem = [[UIBarButtonItem alloc] initWithTitle:@"删除" style:UIBarButtonItemStylePlain target:self action:@selector(removeFirst)];
     viewController.navigationItem.rightBarButtonItem = deleteItem;
+    // 添加操作
+    UIBarButtonItem *addItem = [[UIBarButtonItem alloc] initWithTitle:@"添加" style:UIBarButtonItemStylePlain target:self action:@selector(addItemsToSecondLayout)];
+    viewController.navigationItem.leftBarButtonItem = addItem;
     ASNavigationController *nav = [[ASNavigationController alloc] initWithRootViewController:viewController];
     keyWindow.rootViewController = nav;
     [keyWindow makeKeyAndVisible];
@@ -135,6 +139,28 @@
     NSMutableArray *array = [NSMutableArray arrayWithArray:self.tangramNode.layoutComponents];
     [array removeObjectAtIndex:0];
     self.tangramNode.layoutComponents = array.copy;
+}
+
+- (void)addItemsToSecondLayout {
+    
+    [self.tangramNode.collectionNode performBatchUpdates:^{
+        NSMutableArray *array = [NSMutableArray arrayWithArray:self.tangramNode.layoutComponents[1].itemInfos];
+        self.tangramNode.layoutComponents[1].itemInfos = array;
+        
+        NSMutableArray *indexPaths = [NSMutableArray arrayWithCapacity:array.count+3];
+        NSInteger originalCount = array.count;
+        for (NSInteger i = originalCount; i < originalCount+3; i++) {
+            ColorfulModel *m = [ColorfulModel new];
+            m.color = RANDOM_COLOR;
+            m.canvasHeight = 150;
+            [array addObject:m];
+            [indexPaths addObject:[NSIndexPath indexPathForRow:i inSection:1]];
+        }
+        [self.tangramNode.collectionNode insertItemsAtIndexPaths:indexPaths];
+    } completion:^(BOOL finished) {
+        [self.tangramNode.collectionNode relayoutItems];
+    }];
+    
 }
 
 

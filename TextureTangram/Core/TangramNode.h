@@ -21,5 +21,7 @@
 @property (nonatomic, copy) NSArray<TangramLayoutComponent *> *layoutComponents;
 @property (nonatomic, strong) ASCollectionNode *collectionNode;
 
+- (void)reloadDataWithCompletion:(void (^)(void))completion;
+
 @end
 
