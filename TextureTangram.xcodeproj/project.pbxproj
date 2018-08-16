@@ -57,6 +57,7 @@
 		BCBA27432118458000E8C0AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BCDD2A312123FDA000BFFA37 /* TangramWaterFlowLayoutComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TangramWaterFlowLayoutComponent.h; sourceTree = "<group>"; };
 		BCDD2A322123FDA000BFFA37 /* TangramWaterFlowLayoutComponent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TangramWaterFlowLayoutComponent.m; sourceTree = "<group>"; };
+		BCDD2A4221256F3100BFFA37 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		CB01B8EB212069FD00DD9BE7 /* TangramCollectionViewLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TangramCollectionViewLayout.h; sourceTree = "<group>"; };
 		CB01B8EC212069FD00DD9BE7 /* TangramCollectionViewLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TangramCollectionViewLayout.m; sourceTree = "<group>"; };
 		CB3F0F2E212325B6005B0AE5 /* ColorfulCellNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorfulCellNode.h; sourceTree = "<group>"; };
@@ -113,6 +114,7 @@
 		BCBA271C2118457D00E8C0AD = {
 			isa = PBXGroup;
 			children = (
+				BCDD2A4221256F3100BFFA37 /* README.md */,
 				BCBA27272118457D00E8C0AD /* TextureTangram */,
 				BCBA27402118458000E8C0AD /* TextureTangramTests */,
 				BCBA27262118457D00E8C0AD /* Products */,
