@@ -26,7 +26,7 @@ extern NSString *const TangramCollectionViewBackgroundDecoratedKind;
 @property (nonatomic) CGFloat cacheHeight;
 @property (nonatomic, strong) NSArray<TangramLayoutComponent *> *layoutComponents;
 @property (nonatomic, weak) ASCollectionNode *collectionNode;
-@property (nonatomic, weak) ASDisplayNode *stickyNode;
+@property (nonatomic, strong) ASDisplayNode *stickyNode;
 @property (nonatomic, strong, readonly) NSNumber *stickyIndex;
 //@property (nonatomic, strong) NSMutableDictionary *cellAttributes;
 //@property (nonatomic, strong) NSMutableDictionary *supplementaryViewAttributes;

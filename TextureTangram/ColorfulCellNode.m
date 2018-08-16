@@ -9,7 +9,6 @@
 #import "ColorfulCellNode.h"
 #import "ColorfulModel.h"
 
-#define RANDOM_FLOAT_VALUE ((arc4random()%1001)/1000.0)
 
 @interface ColorfulCellNode()
 
@@ -25,6 +24,11 @@
 
 #pragma mark - setters and getters
 
+- (void)setModel:(ColorfulModel *)model {
+    _model = model;
+    self.color = model.color;
+}
+
 
 - (instancetype)init {
     if (self = [super init]) {
@@ -37,7 +41,6 @@
         [self addSubnode:_redLabel];
         [self addSubnode:_greenLabel];
         [self addSubnode:_blueLabel];
-        [self setColor:[UIColor colorWithRed:RANDOM_FLOAT_VALUE green:RANDOM_FLOAT_VALUE blue:RANDOM_FLOAT_VALUE alpha:1.0]];
     }
     return self;
 }
@@ -62,11 +65,7 @@
 #pragma mark - layout
 
 - (ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize {
-    if (self.model.randomHeight) {
-        self.canvas.style.height = ASDimensionMake(180+arc4random()%40);
-    } else {
-        self.canvas.style.height = ASDimensionMake(self.model.canvasHeight?:120);
-    }
+    self.canvas.style.height = ASDimensionMake(self.model.canvasHeight);
     ASStackLayoutSpec *stackMain = [ASStackLayoutSpec stackLayoutSpecWithDirection:ASStackLayoutDirectionVertical spacing:10.0 justifyContent:ASStackLayoutJustifyContentStart alignItems:ASStackLayoutAlignItemsStart children:@[self.canvas, self.redLabel, self.greenLabel, self.blueLabel]];
     return stackMain;
 }

@@ -11,6 +11,6 @@
 
 @interface ColorfulCellNode : ASCellNode
 
-@property (atomic, strong) ColorfulModel *model;
+@property (nonatomic, strong) ColorfulModel *model;
 
 @end

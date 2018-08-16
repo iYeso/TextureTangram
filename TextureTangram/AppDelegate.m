@@ -23,14 +23,17 @@
 
 @interface AppDelegate ()
 
+@property (nonatomic,strong) TangramNode *tangramNode;
+
 @end
 
 @implementation AppDelegate
 
+#define RANDOM_FLOAT_VALUE ((arc4random()%1001)/1000.0)
+#define RANDOM_COLOR [UIColor colorWithRed:RANDOM_FLOAT_VALUE green:RANDOM_FLOAT_VALUE blue:RANDOM_FLOAT_VALUE alpha:1.0]
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     UIWindow *keyWindow = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
-
 
     // **************   测试数据  *****************8
     NSMutableArray<ColorfulModel*> *array;
@@ -40,6 +43,8 @@
     array = [NSMutableArray arrayWithCapacity:5];
     for (NSInteger i = 0; i < 4; i++) {
         ColorfulModel *m = [ColorfulModel new];
+        m.color = RANDOM_COLOR;
+        m.canvasHeight = 120;
         [array addObject:m];
     }
     array[1].canvasHeight = 60;
@@ -53,6 +58,8 @@
     array = [NSMutableArray arrayWithCapacity:50];
     for (NSInteger i = 0; i < 10; i++) {
         ColorfulModel *m = [ColorfulModel new];
+        m.color = RANDOM_COLOR;
+        m.canvasHeight = 150;
         [array addObject:m];
     }
     threeColumn.insets = UIEdgeInsetsMake(0, 10, 0, 10);
@@ -69,6 +76,8 @@
     array = [NSMutableArray arrayWithCapacity:100];
     for (NSInteger i = 0; i < 8; i++) {
         ColorfulModel *m = [ColorfulModel new];
+        m.color = RANDOM_COLOR;
+        m.canvasHeight = 150;
         [array addObject:m];
     }
     twoColumn.verticalInterItemsSpace = 20;
@@ -83,6 +92,7 @@
     array = [NSMutableArray arrayWithCapacity:50];
     for (NSInteger i = 0; i < 1; i++) {
         ColorfulModel *m = [ColorfulModel new];
+        m.color = RANDOM_COLOR;
         m.canvasHeight = 50;
         [array addObject:m];
     }
@@ -98,7 +108,8 @@
     array = [NSMutableArray arrayWithCapacity:itemCount];
     for (NSInteger i = 0; i < itemCount; i++) {
         ColorfulModel *m = [ColorfulModel new];
-        m.randomHeight = YES;
+        m.color = RANDOM_COLOR;
+        m.canvasHeight = 120+arc4random()%20;
         [array addObject:m];
     }
     water.verticalInterItemsSpace = 8;
@@ -110,11 +121,20 @@
     TangramNode *tan = TangramNode.new;
     tan.layoutComponents = components;
     ASViewController *viewController = [[ASViewController alloc] initWithNode:tan];
+    _tangramNode = tan;
+    UIBarButtonItem *deleteItem = [[UIBarButtonItem alloc] initWithTitle:@"删除" style:UIBarButtonItemStylePlain target:self action:@selector(removeFirst)];
+    viewController.navigationItem.rightBarButtonItem = deleteItem;
     ASNavigationController *nav = [[ASNavigationController alloc] initWithRootViewController:viewController];
     keyWindow.rootViewController = nav;
     [keyWindow makeKeyAndVisible];
     self.window = keyWindow;
     return YES;
+}
+
+- (void)removeFirst {
+    NSMutableArray *array = [NSMutableArray arrayWithArray:self.tangramNode.layoutComponents];
+    [array removeObjectAtIndex:0];
+    self.tangramNode.layoutComponents = array.copy;
 }
 
 

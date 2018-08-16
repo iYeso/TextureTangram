@@ -29,7 +29,6 @@ NSString *const TangramCollectionViewBackgroundDecoratedKind = @"TangramCollecti
 
 - (void)setLayoutComponents:(NSArray<TangramLayoutComponent *> *)layoutComponents {
     _layoutComponents = layoutComponents;
-    [self calculateLayout];
 }
 
 
@@ -50,6 +49,10 @@ NSString *const TangramCollectionViewBackgroundDecoratedKind = @"TangramCollecti
 }
 
 - (void)layouStickyNode {
+    
+    if (_stickyIndex.integerValue >= self.layoutComponents.count) {
+        return;
+    }
     CGFloat adjuestInset;
     if (@available(iOS 11.0, *)) {
         adjuestInset = self.collectionView.adjustedContentInset.top;
@@ -66,10 +69,14 @@ NSString *const TangramCollectionViewBackgroundDecoratedKind = @"TangramCollecti
 - (void)calculateLayout {
     TangramLayoutComponent *last = nil; // 上一个布局，用来计算最大margin
     CGFloat height = 0;
+    _stickyIndex = nil;
+    NSUInteger stickyIndex = 0;
+    BOOL foundSticky = NO;
     for (NSInteger i = 0; i < self.layoutComponents.count; i++) {
         TangramLayoutComponent *component = self.layoutComponents[i];
         if (component.pinnedType == TangramLayoutComponentPinnedTypeTop) {
-            _stickyIndex = @(i);
+            stickyIndex = i;
+            foundSticky = YES;
         }
         CGFloat maxMargin = MAX(last.margin.bottom, component.margin.top);
         CGFloat width = CGRectGetWidth(UIScreen.mainScreen.bounds) - component.margin.left - component.margin.right;
@@ -89,6 +96,18 @@ NSString *const TangramCollectionViewBackgroundDecoratedKind = @"TangramCollecti
         last = component;
         
     }
+    
+    _stickyIndex = @(stickyIndex);
+    if (!foundSticky) {
+        [_stickyNode removeFromSupernode];
+        _stickyNode = nil;
+    } else if (!_stickyNode) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:stickyIndex];
+        ASDisplayNode *node = [self.collectionNode.dataSource collectionNode:self.collectionNode nodeBlockForItemAtIndexPath:indexPath]();
+        _stickyNode = node;
+        [self.collectionNode addSubnode:_stickyNode];
+    }
+    
     self.cacheHeight = height;
     _contentSize = CGSizeMake(CGRectGetWidth(self.collectionView.bounds), _cacheHeight);
 }

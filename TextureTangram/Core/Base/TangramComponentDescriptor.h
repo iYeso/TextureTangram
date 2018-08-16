@@ -19,6 +19,7 @@
 @property (nonatomic) CGFloat width;
 
 @property (nonatomic) CGFloat expectedHeight;
+@property (nonatomic) BOOL fixHeight; ///<是否为灵活高度
 
 @optional
 

@@ -24,7 +24,6 @@
 @interface TangramNode () <ASCollectionDelegate, ASCollectionDataSource>
 
 @property (nonatomic, strong) TangramCollectionViewLayout *collectionLayout;
-@property (nonatomic, strong) ASCellNode *stickyNode;
 @end
 
 // 这个node可以看做一个中间层，用来计算布局，接收重新布局的信号，刷新数据的信号；注册nodetype于id对应;待完善这个中间层
@@ -56,11 +55,7 @@
     _collectionNode.backgroundColor = UIColor.whiteColor;
     _collectionNode.delegate = self;
     _collectionNode.dataSource = self;
-    _stickyNode = [ASCellNode new];
-    _stickyNode.backgroundColor = UIColor.blueColor;
-    [_collectionNode addSubnode:_stickyNode];
-    _collectionLayout.stickyNode = _stickyNode;
-    _stickyNode.hidden = YES;
+
     self.backgroundColor = UIColor.whiteColor;
 }
 
@@ -68,6 +63,8 @@
 - (void)setLayoutComponents:(NSArray<TangramLayoutComponent *> *)layoutComponents {
     _layoutComponents = layoutComponents;
     self.collectionLayout.layoutComponents = layoutComponents;
+    [self.collectionNode reloadData];
+
 }
 
 - (ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize {
@@ -84,12 +81,12 @@
 
 - (ASSizeRange)collectionNode:(ASCollectionNode *)collectionNode constrainedSizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     id<TangramComponentDescriptor> layoutDescriptor = self.collectionLayout.layoutComponents[indexPath.section].itemInfos[indexPath.row];
-    if (layoutDescriptor.expectedHeight > 0) { //已经计算好高度
-        return ASSizeRangeMake(CGSizeMake(layoutDescriptor.width, layoutDescriptor.expectedHeight));
-    } else { //尚未计算高度
+//    if (layoutDescriptor.expectedHeight > 0) { //已经计算好高度
+//        return ASSizeRangeMake(CGSizeMake(layoutDescriptor.width, layoutDescriptor.expectedHeight));
+//    } else { //尚未计算高度
         return ASSizeRangeMake(CGSizeMake(layoutDescriptor.width, 0),
                                CGSizeMake(layoutDescriptor.width, CGFLOAT_MAX));
-    }
+//    }
 }
 #pragma mark -  ASCollectionDataSource
 
@@ -97,10 +94,7 @@
     BOOL isLegalIndex = self.collectionLayout.stickyIndex.integerValue >= 0 && self.collectionLayout.stickyIndex.integerValue < self.collectionLayout.layoutComponents.count;
     if (isLegalIndex) {
         [self.collectionLayout layouStickyNode];
-    }
-    
-    
-}
+    }}
 
 
 - (NSInteger)numberOfSectionsInCollectionNode:(ASCollectionNode *)collectionNode {
@@ -114,23 +108,13 @@
 
 - (ASCellNodeBlock)collectionNode:(ASCollectionNode *)collectionNode nodeBlockForItemAtIndexPath:(NSIndexPath *)indexPath {
     __weak typeof(self) weakSelf = self;
-    if (self.collectionLayout.stickyIndex==nil || indexPath.section != self.collectionLayout.stickyIndex.integerValue) {
-        return ^ASCellNode * _Nonnull(void) {
-            typeof(weakSelf) sself = weakSelf;
-            // TODO: 通用的cellNode创建，根据ID获取node的类型
-            ColorfulCellNode *node = [[ColorfulCellNode alloc] init];
-            node.model = sself.collectionLayout.layoutComponents[indexPath.section].itemInfos[indexPath.row];
-            return node;
-        };
-    } else {
-        return ^ASCellNode * _Nonnull(void) {
-            typeof(weakSelf) sself = weakSelf;
-            ASCellNode *cellNode = ASCellNode.new;
-            // placeholder
-            cellNode.style.height = ASDimensionMake(sself.collectionLayout.layoutComponents[indexPath.section].itemInfos[indexPath.row].expectedHeight);
-            return cellNode;
-        };
-    }
+    return ^ASCellNode * _Nonnull(void) {
+        typeof(weakSelf) sself = weakSelf;
+        // TODO: 通用的cellNode创建，根据ID获取node的类型
+        ColorfulCellNode *node = [[ColorfulCellNode alloc] init];
+        node.model = sself.collectionLayout.layoutComponents[indexPath.section].itemInfos[indexPath.row];
+        return node;
+    };
 }
 
 
