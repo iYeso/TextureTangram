@@ -26,6 +26,7 @@
 @property (nonatomic, strong) ASCollectionNode *collectionNode;
 @property (nonatomic, strong) TangramCollectionViewLayout *collectionLayout;
 @property (nonatomic, strong) NSNumber *stickyIndex;
+@property (nonatomic, strong) ASCellNode *stickyNode;
 @end
 
 // 这个controller可以看做一个中间层，用来计算布局，接收重新布局的信号，刷新数据的信号；注册nodetype于id对应;待完善这个中间层
@@ -76,7 +77,7 @@
     sticky.columnPartitions = @[@1];
     sticky.itemInfos = array.copy;
     sticky.pinnedType = TangramLayoutComponentPinnedTypeTop;
-    _stickyIndex = @(2);
+    _stickyIndex = @(1);
     
     // 双列网格
     TangramGridLayoutComponet *twoColumn = [[TangramGridLayoutComponet alloc] init];
@@ -96,7 +97,7 @@
     // 瀑布流
     TangramWaterFlowLayoutComponent *water = [[TangramWaterFlowLayoutComponent alloc] init];
     water.maximumColumn = 3;
-    NSInteger itemCount = 3000; //打开实时刷新， iPhone 5S 的瓶颈是3000个item（CPU100%)。不打开的话，10000个item的内存创建需要耗时10秒左右，不会卡顿
+    NSInteger itemCount = 15; //打开实时刷新， iPhone 5S 的瓶颈是3000个item（CPU100%)。不打开的话，10000个item的内存创建需要耗时10秒左右，不会卡顿; 现在采用直接stickyView添加到scrollView的做法，避免重新layout的开销
     array = [NSMutableArray arrayWithCapacity:itemCount];
     for (NSInteger i = 0; i < itemCount; i++) {
         ColorfulModel *m = [ColorfulModel new];
@@ -111,7 +112,8 @@
     
     //  设置布局组件
     TangramCollectionViewLayout *collectionViewLayout = TangramCollectionViewLayout.new;
-    collectionViewLayout.layoutComponents = @[onePlus, threeColumn, sticky, twoColumn ,water];
+    collectionViewLayout.stickyIndex = self.stickyIndex;
+    collectionViewLayout.layoutComponents = @[onePlus, sticky, threeColumn, twoColumn ,water];
     self.collectionLayout = collectionViewLayout;
     
     
@@ -133,6 +135,11 @@
     _collectionNode.backgroundColor = UIColor.whiteColor;
     _collectionNode.delegate = self;
     _collectionNode.dataSource = self;
+    _stickyNode = [ASCellNode new];
+    _stickyNode.backgroundColor = UIColor.blueColor;
+    [_collectionNode addSubnode:_stickyNode];
+    _collectionLayout.stickyNode = _stickyNode;
+    _stickyNode.hidden = YES;
 }
 
 - (void)viewDidLoad {
@@ -155,6 +162,15 @@
     }
 }
 #pragma mark -  ASCollectionDataSource
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    BOOL isLegalIndex = _stickyIndex.integerValue >= 0 &&_stickyIndex.integerValue < self.collectionLayout.layoutComponents.count;
+    if (isLegalIndex) {
+        [self.collectionLayout layouStickyNode];
+    }
+    
+    
+}
 
 
 - (NSInteger)numberOfSectionsInCollectionNode:(ASCollectionNode *)collectionNode {

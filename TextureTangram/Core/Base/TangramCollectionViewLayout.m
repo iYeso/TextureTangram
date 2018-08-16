@@ -21,9 +21,6 @@ NSString *const TangramCollectionViewBackgroundDecoratedKind = @"TangramCollecti
 @interface TangramCollectionViewLayout()
 
 @property (nonatomic) CGSize contentSize;
-@property (nonatomic) BOOL getExactHeight;
-@property (nonatomic) BOOL needLoad;
-
 @end
 
 @implementation TangramCollectionViewLayout
@@ -33,7 +30,6 @@ NSString *const TangramCollectionViewBackgroundDecoratedKind = @"TangramCollecti
 - (void)setLayoutComponents:(NSArray<TangramLayoutComponent *> *)layoutComponents {
     _layoutComponents = layoutComponents;
     [self calculateLayout];
-    _needLoad = YES;
 }
 
 
@@ -46,18 +42,18 @@ NSString *const TangramCollectionViewBackgroundDecoratedKind = @"TangramCollecti
 // Subclasses should always call super if they override.
 - (void)prepareLayout {
     [super prepareLayout];
-    static CFTimeInterval lastTime = 0;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        lastTime = CFAbsoluteTimeGetCurrent();
-    });
-    CFTimeInterval now =  CFAbsoluteTimeGetCurrent();
     
-    if (now-lastTime < 5) { //只有初始化的时候才计算，这样处理貌似不太妥当；最好是不要放在 prepareLayout，然后item的height不是自己给定的，如果通过sizeForItemAtIndexPath来获取，必须要多次调用才行（因为item是自计算的）这个时机不好把握到；我只能假设某个时间内计算完所有的layout
-        [self calculateLayout];
-        _needLoad = NO;
-    }
+    [self calculateLayout];
+    [self layouStickyNode];
+
     
+}
+
+- (void)layouStickyNode {
+    TangramLayoutComponent *stickyComponent = self.layoutComponents[_stickyIndex.integerValue];
+    CGFloat y = (self.collectionView.contentOffset.y+64 > stickyComponent.layoutOrigin.y)?self.collectionView.contentOffset.y+64:stickyComponent.layoutOrigin.y;
+    CGRect componentRect = CGRectMake(stickyComponent.layoutOrigin.x, y, stickyComponent.width, stickyComponent.height);
+    _stickyNode.frame = componentRect;
 }
 
 - (void)calculateLayout {
@@ -94,13 +90,17 @@ NSString *const TangramCollectionViewBackgroundDecoratedKind = @"TangramCollecti
 
 
 - (nullable NSArray<__kindof UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect {
+    if (self.collectionNode.visibleNodes.count) {
+        self.stickyNode.hidden = NO;
+    }
+
     NSMutableArray *visibleLayoutAttributes = [NSMutableArray array];
     NSInteger sectionCount = [self.collectionView.dataSource numberOfSectionsInCollectionView:self.collectionView];
     for (NSInteger i = 0; i < sectionCount; i++) {
         
         TangramLayoutComponent *component = self.layoutComponents[i];
         CGRect componentRect = CGRectMake(component.layoutOrigin.x, component.layoutOrigin.y, component.width, component.height);
-        if (!CGRectIntersectsRect(componentRect, rect) && component.pinnedType == TangramLayoutComponentPinnedTypeNone) {
+        if (!CGRectIntersectsRect(componentRect, rect)) {
             continue;
         }
         // 头部
@@ -120,7 +120,7 @@ NSString *const TangramCollectionViewBackgroundDecoratedKind = @"TangramCollecti
         for (NSInteger j = 0; j < numberOfItems; j++) {
             id<TangramComponentDescriptor> descriptor = component.itemInfos[j];
             
-            if (CGRectIntersectsRect(descriptor.frame, rect) || component.pinnedType) {
+            if (CGRectIntersectsRect(descriptor.frame, rect)) {
                 [visibleLayoutAttributes addObject:[self layoutAttributesForItemAtIndexPath:[NSIndexPath indexPathForRow:j inSection:i]]];
                 found = YES;
             } else if (found) {
@@ -139,13 +139,6 @@ NSString *const TangramCollectionViewBackgroundDecoratedKind = @"TangramCollecti
     TangramLayoutComponent *layoutComponent = self.layoutComponents[indexPath.section];
     UICollectionViewLayoutAttributes *attributes = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
     attributes.frame = layoutComponent.itemInfos[indexPath.row].frame;
-    if (layoutComponent.pinnedType) {
-        CGFloat contentOffsetY = self.collectionView.contentOffset.y + 64;
-        if (attributes.frame.origin.y < contentOffsetY) {
-            attributes.frame = CGRectMake(attributes.frame.origin.x, contentOffsetY, attributes.size.width, attributes.size.height);
-        }
-        attributes.zIndex = 5;
-    }
     return attributes;
 }
 - (nullable UICollectionViewLayoutAttributes *)layoutAttributesForSupplementaryViewOfKind:(NSString *)elementKind atIndexPath:(NSIndexPath *)indexPath {
@@ -166,14 +159,15 @@ NSString *const TangramCollectionViewBackgroundDecoratedKind = @"TangramCollecti
     return nil;
 }
 
+// 是否要实时更新。吸顶布局必须要打开
 - (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds {
     // return YES to cause the collection view to requery the layout for geometry information
-    return YES;
-    CGRect oldBounds = self.collectionView.bounds;
-    
-    if (CGRectGetWidth(newBounds) != CGRectGetWidth(oldBounds)) {
-        return YES;
-    }
+//    return YES;
+//    CGRect oldBounds = self.collectionView.bounds;
+//
+//    if (CGRectGetWidth(newBounds) != CGRectGetWidth(oldBounds)) {
+//        return YES;
+//    }
     
     return [super shouldInvalidateLayoutForBoundsChange:newBounds];
 }
