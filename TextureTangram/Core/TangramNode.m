@@ -23,12 +23,12 @@
 
 @interface TangramNode () <ASCollectionDelegate, ASCollectionDataSource>
 
-@property (nonatomic, strong) ASCollectionNode *collectionNode;
 @property (nonatomic, strong) TangramCollectionViewLayout *collectionLayout;
 @property (nonatomic, strong) ASCellNode *stickyNode;
 @end
 
-// 这个controller可以看做一个中间层，用来计算布局，接收重新布局的信号，刷新数据的信号；注册nodetype于id对应;待完善这个中间层
+// 这个node可以看做一个中间层，用来计算布局，接收重新布局的信号，刷新数据的信号；注册nodetype于id对应;待完善这个中间层
+
 @implementation TangramNode
 
 - (instancetype)init {

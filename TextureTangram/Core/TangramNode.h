@@ -19,6 +19,7 @@
 @interface TangramNode : ASDisplayNode
 
 @property (nonatomic, copy) NSArray<TangramLayoutComponent *> *layoutComponents;
+@property (nonatomic, strong) ASCollectionNode *collectionNode;
 
 @end
 
