@@ -193,9 +193,10 @@
         };
     } else {
         return ^ASCellNode * _Nonnull(void) {
+            typeof(weakSelf) sself = weakSelf;
             ASCellNode *cellNode = ASCellNode.new;
-            cellNode.backgroundColor = UIColor.redColor;
-            cellNode.style.minHeight = ASDimensionMake(50);
+            // placeholder
+            cellNode.style.height = ASDimensionMake(sself.collectionLayout.layoutComponents[indexPath.section].itemInfos[indexPath.row].expectedHeight);
             return cellNode;
         };
     }

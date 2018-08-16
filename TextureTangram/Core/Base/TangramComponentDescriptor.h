@@ -20,7 +20,7 @@
 
 @optional
 
-- (CGFloat)computeHeightWithWidth:(CGFloat)width; ///< 自计算高度
+- (CGFloat)computeHeightWithWidth:(CGFloat)width; ///< 自计算高度；会影响expectedHeight属性
 
 
 @end

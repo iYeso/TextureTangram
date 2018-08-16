@@ -13,13 +13,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 /** 类似tableView header吸顶、footer吸底的效果 */
 typedef NS_ENUM(NSUInteger, TangramLayoutComponentPinnedType) {
-    TangramLayoutComponentPinnedTypeNone = 0,
-    TangramLayoutComponentPinnedTypeTop,
-    TangramLayoutComponentPinnedTypeBottom,
+    TangramLayoutComponentPinnedTypeNone = 0, ///< 正常布局
+    TangramLayoutComponentPinnedTypeTop, ///< 吸顶；目前只支持一个吸顶布局
+    TangramLayoutComponentPinnedTypeBottom, ///< 吸底，目前没有实现
 };
 
 /**
  对应tangram的内置布局；类似collectionView的section
+ 添加一种layout类型需要继承它
  */
 @interface TangramLayoutComponent : NSObject
 

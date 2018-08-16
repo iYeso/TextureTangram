@@ -50,8 +50,15 @@ NSString *const TangramCollectionViewBackgroundDecoratedKind = @"TangramCollecti
 }
 
 - (void)layouStickyNode {
+    CGFloat adjuestInset;
+    if (@available(iOS 11.0, *)) {
+        adjuestInset = self.collectionView.adjustedContentInset.top;
+    } else {
+        adjuestInset = self.collectionView.contentInset.top;
+    }
+    
     TangramLayoutComponent *stickyComponent = self.layoutComponents[_stickyIndex.integerValue];
-    CGFloat y = (self.collectionView.contentOffset.y+64 > stickyComponent.layoutOrigin.y)?self.collectionView.contentOffset.y+64:stickyComponent.layoutOrigin.y;
+    CGFloat y = (self.collectionView.contentOffset.y+ adjuestInset> stickyComponent.layoutOrigin.y)?self.collectionView.contentOffset.y+64:stickyComponent.layoutOrigin.y;
     CGRect componentRect = CGRectMake(stickyComponent.layoutOrigin.x, y, stickyComponent.width, stickyComponent.height);
     _stickyNode.frame = componentRect;
 }
@@ -88,9 +95,11 @@ NSString *const TangramCollectionViewBackgroundDecoratedKind = @"TangramCollecti
 // Additionally, all layout subclasses should implement -layoutAttributesForItemAtIndexPath: to return layout attributes instances on demand for specific index paths.
 // If the layout supports any supplementary or decoration view types, it should also implement the respective atIndexPath: methods for those types.
 
-
+// 找到可显示的视图，返回其布局属性
 - (nullable NSArray<__kindof UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect {
-    if (self.collectionNode.visibleNodes.count) {
+    
+    // 存在吸顶结点的话，显示吸顶结点。放在这里不是很好，但是没找到更好的时机
+    if (self.stickyNode && self.collectionNode.visibleNodes.count) {
         self.stickyNode.hidden = NO;
     }
 
@@ -100,6 +109,7 @@ NSString *const TangramCollectionViewBackgroundDecoratedKind = @"TangramCollecti
         
         TangramLayoutComponent *component = self.layoutComponents[i];
         CGRect componentRect = CGRectMake(component.layoutOrigin.x, component.layoutOrigin.y, component.width, component.height);
+        // 查找符合规格的section
         if (!CGRectIntersectsRect(componentRect, rect)) {
             continue;
         }
@@ -114,7 +124,8 @@ NSString *const TangramCollectionViewBackgroundDecoratedKind = @"TangramCollecti
         }
         
         // cell
-        
+        // 优化：找到一个不在rect内的，就退出循环。
+        // TODO： 采用类似二分法的方法查找；这个不是很必要，10000个item都不会很占用CPU
         NSInteger numberOfItems = [self.collectionView.dataSource collectionView:self.collectionView numberOfItemsInSection:i];
         BOOL found = NO;
         for (NSInteger j = 0; j < numberOfItems; j++) {
@@ -159,15 +170,9 @@ NSString *const TangramCollectionViewBackgroundDecoratedKind = @"TangramCollecti
     return nil;
 }
 
-// 是否要实时更新。吸顶布局必须要打开
 - (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds {
     // return YES to cause the collection view to requery the layout for geometry information
 //    return YES;
-//    CGRect oldBounds = self.collectionView.bounds;
-//
-//    if (CGRectGetWidth(newBounds) != CGRectGetWidth(oldBounds)) {
-//        return YES;
-//    }
     
     return [super shouldInvalidateLayoutForBoundsChange:newBounds];
 }
