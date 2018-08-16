@@ -1,10 +1,10 @@
 # 缘由
 
-TextureTangram并不是[Tangram](https://github.com/alibaba/Tangram-iOS)的分支，但很大程度地启发自它的思想。
+TextureTangram是一个布局工具，它定义了几种常用的布局类型，足以应付大部分情况的布局。通过一个简单，可读性强的布局配置文件，就可以生成一个个丰富的原生高性能的页面。这种方式是需要牺牲一定灵活性为前提，带来开发量的降低和重复造轮子。
 
-[Tangram](https://github.com/alibaba/Tangram-iOS)定义了几种常用的布局类型，足以应付大部分情况的布局。通过一个简单，可读性强的布局配置文件，就可以生成一个个丰富的原生、高性能的页面。这种方式是需要牺牲一定灵活性为前提，带来开发量的降低和重复造轮子。
+TextureTangram是一个布局工具并不是[Tangram](https://github.com/alibaba/Tangram-iOS)的分支，但很大程度地启发自它的布局思想，并尽量做到兼容。
 
-然而[Tangram](https://github.com/alibaba/Tangram-iOS)存在一些问题：
+[Tangram](https://github.com/alibaba/Tangram-iOS)存在一些问题：
 1. Demo中的瀑布流已经不可用。
 2. Draggable Layout加载到scrollView上，我认为是没必要的，滑动的时候会抖动。
 3. 存在耦合，难以添加新定义的布局类型。
