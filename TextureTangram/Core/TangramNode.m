@@ -34,7 +34,7 @@
 - (instancetype)init {
 
     if (self = [super init]) {
-        //  设置布局组件
+
         TangramCollectionViewLayout *collectionViewLayout = TangramCollectionViewLayout.new;
         self.collectionLayout = collectionViewLayout;
         
