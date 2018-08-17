@@ -143,13 +143,16 @@
 
 - (void)addItemsToSecondLayout {
     
+    NSMutableArray *indexPaths = [NSMutableArray array];
     [self.tangramNode.collectionNode performBatchUpdates:^{
         NSMutableArray *array = [NSMutableArray arrayWithArray:self.tangramNode.layoutComponents[1].itemInfos];
         self.tangramNode.layoutComponents[1].itemInfos = array;
         
-        NSMutableArray *indexPaths = [NSMutableArray arrayWithCapacity:array.count+3];
+        
         NSInteger originalCount = array.count;
-        for (NSInteger i = originalCount; i < originalCount+3; i++) {
+        // 插入100个操作耗时： 当前如果需要展示刚插入的node，会耗时6ms左右，如果还不需要展示，耗时1ms内。
+        // 所以最好事先 batch update 操作（预加载）
+        for (NSInteger i = originalCount; i < originalCount+100; i++) {
             ColorfulModel *m = [ColorfulModel new];
             m.color = RANDOM_COLOR;
             m.canvasHeight = 150;
@@ -157,8 +160,12 @@
             [indexPaths addObject:[NSIndexPath indexPathForRow:i inSection:1]];
         }
         [self.tangramNode.collectionNode insertItemsAtIndexPaths:indexPaths];
+        
     } completion:^(BOOL finished) {
-        [self.tangramNode.collectionNode relayoutItems];
+        CFTimeInterval start = CFAbsoluteTimeGetCurrent();
+        [self.tangramNode.collectionNode reloadItemsAtIndexPaths:indexPaths];
+//        [self.tangramNode.collectionNode relayoutItems];
+        NSLog(@"插入的layout耗时 %.2fms", (CFAbsoluteTimeGetCurrent()-start)*1000);
     }];
     
 }
