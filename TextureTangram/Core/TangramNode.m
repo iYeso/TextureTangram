@@ -61,15 +61,12 @@
 
 
 - (void)setLayoutComponents:(NSArray<TangramLayoutComponent *> *)layoutComponents {
-    _layoutComponents = layoutComponents;
+    _layoutComponents = layoutComponents.copy;
     self.collectionLayout.layoutComponents = layoutComponents;
     [self.collectionNode reloadData];
 
 }
 
-- (void)reloadDataWithCompletion:(void (^)(void))completion {
-    [self.collectionNode reloadDataWithCompletion:completion];
-}
 
 - (ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize {
     return [ASAbsoluteLayoutSpec absoluteLayoutSpecWithChildren:@[self.collectionNode]];
@@ -123,6 +120,18 @@
     };
 }
 
+- (BOOL)shouldBatchFetchForCollectionNode:(ASCollectionNode *)collectionNode {
+    return YES;
+}
+
+
+- (void)collectionNode:(ASCollectionNode *)collectionNode willBeginBatchFetchWithContext:(ASBatchContext *)context {
+    if ([self.delegate respondsToSelector:@selector(tangramNode:willBeginBatchFetchWithContext:)]) {
+        [self.delegate tangramNode:self willBeginBatchFetchWithContext:context];
+    } else {
+        [context cancelBatchFetching];
+    }
+}
 
 
 @end

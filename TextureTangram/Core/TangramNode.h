@@ -16,12 +16,20 @@
 
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
 #import "TangramLayoutComponent.h"
+
+@class TangramNode;
+@protocol TangramNodeDelegate<NSObject>
+
+@optional
+- (void)tangramNode:(TangramNode *)tangram willBeginBatchFetchWithContext:(ASBatchContext *)context;
+
+@end
+
 @interface TangramNode : ASDisplayNode
 
 @property (nonatomic, copy) NSArray<TangramLayoutComponent *> *layoutComponents;
 @property (nonatomic, strong) ASCollectionNode *collectionNode;
-
-- (void)reloadDataWithCompletion:(void (^)(void))completion;
+@property (nonatomic, weak) id<TangramNodeDelegate> delegate;
 
 @end
 

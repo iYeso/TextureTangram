@@ -152,7 +152,7 @@
         NSInteger originalCount = array.count;
         // 插入100个操作耗时： 当前如果需要展示刚插入的node，会耗时6ms左右，如果还不需要展示，耗时1ms内。
         // 所以最好事先 batch update 操作（预加载）
-        for (NSInteger i = originalCount; i < originalCount+100; i++) {
+        for (NSInteger i = originalCount; i < originalCount+6; i++) {
             ColorfulModel *m = [ColorfulModel new];
             m.color = RANDOM_COLOR;
             m.canvasHeight = 150;
@@ -164,6 +164,7 @@
     } completion:^(BOOL finished) {
         CFTimeInterval start = CFAbsoluteTimeGetCurrent();
         [self.tangramNode.collectionNode reloadItemsAtIndexPaths:indexPaths];
+        //不需要整个collectionNode刷新，不然耗时很多
 //        [self.tangramNode.collectionNode relayoutItems];
         NSLog(@"插入的layout耗时 %.2fms", (CFAbsoluteTimeGetCurrent()-start)*1000);
     }];
