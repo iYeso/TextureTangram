@@ -34,17 +34,18 @@ typedef NS_ENUM(NSUInteger, TangramLayoutComponentPinnedType) {
 @property (nonatomic) TangramLayoutComponentPinnedType pinnedType; ///< 是否有吸顶/吸底效果
 @property (nonatomic) CGFloat height;  ///< 整个布局的高度；调用computeLayoutsWithOrigin会改变此属性
 /// 整个layout的头部描述信息，布局在items上方
-@property (nonatomic, strong, nullable) id<TangramComponentDescriptor> headerInfo;
+@property (nonatomic, strong, nullable) TangramComponentDescriptor *headerInfo;
 /// 整个layout尾部信息，布局在items下方
-@property (nonatomic, strong, nullable) id<TangramComponentDescriptor> footerInfo;
+@property (nonatomic, strong, nullable) TangramComponentDescriptor *footerInfo;
 
+@property (nonatomic, strong, nullable) TangramComponentDescriptor *backgroundInfo;
 /// 背景图片地址
 @property (nonatomic, strong, nullable) NSString *backgroundImageURL;
 /// 背景颜色
 @property (nonatomic, strong, nullable) UIColor *backgroundColor;
 
 ///  布局项，对应cell
-@property (nonatomic, strong, nonnull)  NSArray<id<TangramComponentDescriptor>> *itemInfos;
+@property (nonatomic, strong, nonnull)  NSArray<TangramComponentDescriptor*> *itemInfos;
 @property (nonatomic) UIEdgeInsets edgeInsets;  ///< 整个layout的边距；需要注意附近的layout也可能会设置
 
 

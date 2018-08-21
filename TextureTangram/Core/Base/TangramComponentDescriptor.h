@@ -9,19 +9,15 @@
 #import <UIKit/UIKit.h>
 
 /**
- 对应每个组件的model，新增的model需要实现这个协议;不使用继承应该会更好。
+ 对应每个组件的model，新增的model继承它
  */
-@protocol TangramComponentDescriptor <NSObject>
+@interface TangramComponentDescriptor: NSObject
 
-@property (nonatomic, copy) NSString *type; ///< UI组件的类型
-
-@property (nonatomic) CGRect frame;
-@property (nonatomic) CGFloat width;
-
+@property (nonatomic, strong) NSString *type; ///< UI组件的类型
+@property (nonatomic) CGRect frame; ///< 布局的frame，未完成布局之前，使用此属性会不准确
+@property (nonatomic) CGFloat width; ///< 控件的宽度，第一次布局的时候会设置这个属性。
 @property (nonatomic) CGFloat expectedHeight;
 @property (nonatomic) BOOL fixHeight; ///<是否为灵活高度
-
-@optional
 
 - (CGFloat)computeHeightWithWidth:(CGFloat)width; ///< 自计算高度；会影响expectedHeight属性
 

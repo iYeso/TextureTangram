@@ -8,10 +8,12 @@
 
 #import "ColorfulCellNode.h"
 #import "ColorfulModel.h"
+#import "TangramNodeRegistry.h"
 
 
 @interface ColorfulCellNode()
 
+@property (nonatomic, strong) ColorfulModel *model;
 @property (nonatomic, strong) UIColor *color;
 @property (nonatomic, strong) ASDisplayNode *canvas;
 @property (nonatomic, strong) ASTextNode *redLabel;
@@ -22,10 +24,18 @@
 
 @implementation ColorfulCellNode
 
++ (void)load {
+    [TangramNodeRegistry registerClass:self forType:@"colorful"];
+}
+
 #pragma mark - setters and getters
 
+- (ColorfulModel *)model {
+    return (ColorfulModel *)[super model];
+}
+
 - (void)setModel:(ColorfulModel *)model {
-    _model = model;
+    [super setModel:model];
     self.color = model.color;
 }
 

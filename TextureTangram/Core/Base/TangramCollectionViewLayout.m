@@ -82,7 +82,7 @@ NSString *const TangramCollectionViewBackgroundDecoratedKind = @"TangramCollecti
         CGFloat width = CGRectGetWidth(UIScreen.mainScreen.bounds) - component.margin.left - component.margin.right;
         // 更新每一个item的高度
         for (NSInteger j = 0; j < component.itemInfos.count; j++) {
-            id<TangramComponentDescriptor> item = component.itemInfos[j];
+            TangramComponentDescriptor * item = component.itemInfos[j];
             CGFloat itemHeight = [(id<UICollectionViewDelegateFlowLayout>)self.collectionView.delegate collectionView:self.collectionView layout:self sizeForItemAtIndexPath:[NSIndexPath indexPathForRow:j inSection:i]].height;
             item.expectedHeight = itemHeight;
         }
@@ -151,7 +151,7 @@ NSString *const TangramCollectionViewBackgroundDecoratedKind = @"TangramCollecti
         NSInteger numberOfItems = [self.collectionView.dataSource collectionView:self.collectionView numberOfItemsInSection:i];
         BOOL found = NO;
         for (NSInteger j = 0; j < numberOfItems; j++) {
-            id<TangramComponentDescriptor> descriptor = component.itemInfos[j];
+            TangramComponentDescriptor * descriptor = component.itemInfos[j];
             
             if (CGRectIntersectsRect(descriptor.frame, rect)) {
                 [visibleLayoutAttributes addObject:[self layoutAttributesForItemAtIndexPath:[NSIndexPath indexPathForRow:j inSection:i]]];

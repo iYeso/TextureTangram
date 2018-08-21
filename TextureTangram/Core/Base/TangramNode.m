@@ -20,10 +20,13 @@
 #import "TangramOnePlusLayoutComponent.h"
 #import "ColorfulModel.h"
 #import "ColorfulCellNode.h"
+#import "TangramItemNode.h"
+#import "TangramNodeRegistry.h"
 
 @interface TangramNode () <ASCollectionDelegate, ASCollectionDataSource>
 
 @property (nonatomic, strong) TangramCollectionViewLayout *collectionLayout;
+
 @end
 
 // 这个node可以看做一个中间层，用来计算布局，接收重新布局的信号，刷新数据的信号；注册nodetype于id对应;待完善这个中间层
@@ -81,7 +84,7 @@
 }
 
 - (ASSizeRange)collectionNode:(ASCollectionNode *)collectionNode constrainedSizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    id<TangramComponentDescriptor> layoutDescriptor = self.collectionLayout.layoutComponents[indexPath.section].itemInfos[indexPath.row];
+    TangramComponentDescriptor * layoutDescriptor = self.collectionLayout.layoutComponents[indexPath.section].itemInfos[indexPath.row];
     if (layoutDescriptor.expectedHeight > 0) { //已经计算好高度
         return ASSizeRangeMake(CGSizeMake(layoutDescriptor.width, layoutDescriptor.expectedHeight));
     } else { //尚未计算高度
@@ -108,17 +111,23 @@
     return self.collectionLayout.layoutComponents[section].itemInfos.count;
 }
 
+- (ASCellNodeBlock)collectionNode:(ASCollectionNode *)collectionNode nodeBlockForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+    if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
+        return [self nodeBlockWithModel:self.collectionLayout.layoutComponents[indexPath.section].headerInfo];
+    } else if ([kind isEqualToString:UICollectionElementKindSectionFooter]) {
+        return [self nodeBlockWithModel:self.collectionLayout.layoutComponents[indexPath.section].footerInfo];
+    } else if ([kind isEqualToString:UICollectionElementKindSectionFooter]) {
+        return [self nodeBlockWithModel:self.collectionLayout.layoutComponents[indexPath.section].backgroundInfo];
+    } else {
+        return nil;
+    }
+}
 
 - (ASCellNodeBlock)collectionNode:(ASCollectionNode *)collectionNode nodeBlockForItemAtIndexPath:(NSIndexPath *)indexPath {
-    __weak typeof(self) weakSelf = self;
-    return ^ASCellNode * _Nonnull(void) {
-        typeof(weakSelf) sself = weakSelf;
-        // TODO: 通用的cellNode创建，根据ID获取node的类型
-        ColorfulCellNode *node = [[ColorfulCellNode alloc] init];
-        node.model = sself.collectionLayout.layoutComponents[indexPath.section].itemInfos[indexPath.row];
-        return node;
-    };
+    TangramComponentDescriptor *model = self.collectionLayout.layoutComponents[indexPath.section].itemInfos[indexPath.row];
+    return [self nodeBlockWithModel:model];
 }
+
 
 - (BOOL)shouldBatchFetchForCollectionNode:(ASCollectionNode *)collectionNode {
     return YES;
@@ -133,5 +142,18 @@
     }
 }
 
+#pragma mark - helper method
+
+- (ASCellNodeBlock)nodeBlockWithModel:(TangramComponentDescriptor *)model {
+    return ^ASCellNode * _Nonnull(void) {
+        Class nodeClass = [TangramNodeRegistry classForType:model.type];
+        if (!nodeClass || ![nodeClass isSubclassOfClass:TangramItemNode.class]) {
+            return nil;
+        }
+        TangramItemNode *node = (TangramItemNode*)[[nodeClass alloc] init];
+        node.model = model;
+        return node;
+    };
+}
 
 @end

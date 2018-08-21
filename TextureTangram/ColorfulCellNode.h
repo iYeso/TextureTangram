@@ -8,9 +8,8 @@
 
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
 #import "ColorfulModel.h"
+#import "TangramItemNode.h"
 
-@interface ColorfulCellNode : ASCellNode
-
-@property (nonatomic, strong) ColorfulModel *model;
+@interface ColorfulCellNode : TangramItemNode
 
 @end

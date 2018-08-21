@@ -20,11 +20,11 @@
     }
     
     CGFloat totalItemWidth = (width - self.insets.left - self.insets.right);
-    id<TangramComponentDescriptor> mainItem = self.itemInfos[0];
+    TangramComponentDescriptor * mainItem = self.itemInfos[0];
     mainItem.width = totalItemWidth/2;
     mainItem.frame = CGRectMake(origin.x + self.insets.left, origin.y + self.insets.top, mainItem.width, mainItem.expectedHeight);
     
-    id<TangramComponentDescriptor> secondItem = self.itemInfos[1];
+    TangramComponentDescriptor * secondItem = self.itemInfos[1];
     CGFloat secondItemHeight = rowRatio * mainItem.expectedHeight;
     secondItem.expectedHeight = secondItemHeight;
     CGFloat othersHeight = mainItem.expectedHeight - secondItemHeight;
@@ -34,7 +34,7 @@
     if (self.itemInfos.count > 2) {
         CGFloat otherWidth = totalItemWidth/(self.itemInfos.count-2)/2;
         for (NSInteger i = 2; i < self.itemInfos.count; i++) {
-            id<TangramComponentDescriptor> item = self.itemInfos[i];
+            TangramComponentDescriptor * item = self.itemInfos[i];
             item.expectedHeight = othersHeight;
             NSInteger innerRowNumber = i - 2;
             item.frame = CGRectMake(CGRectGetMaxX(mainItem.frame)+innerRowNumber*otherWidth, CGRectGetMaxY(secondItem.frame), otherWidth, othersHeight);
