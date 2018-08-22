@@ -128,6 +128,22 @@
     }
 }
 
+/**
+ * Asks the data source to provide a context object for the given section. This object
+ * can later be retrieved by calling @c contextForSection: and is useful when implementing
+ * custom @c UICollectionViewLayout subclasses. The context object is ret
+ *
+ * @param collectionNode The sender.
+ * @param section The index of the section to provide context for.
+ *
+ * @return A context object to assign to the given section, or @c nil.
+ */
+- (nullable id<ASSectionContext>)collectionNode:(ASCollectionNode *)collectionNode contextForSection:(NSInteger)section {
+    TangramLayoutComponent *component =  self.collectionLayout.layoutComponents[section];
+    component.collectionView = collectionNode.view;
+    return component;
+}
+
 - (NSArray<NSString *> *)collectionNode:(ASCollectionNode *)collectionNode supplementaryElementKindsInSection:(NSInteger)section {
     NSMutableArray *strs = [NSMutableArray arrayWithCapacity:2];
     TangramComponentDescriptor *headerInfo = self.collectionLayout.layoutComponents[section].headerInfo;
@@ -138,11 +154,7 @@
     if (footerInfo) {
         [strs addObject:TangramCollectionViewSupplementaryKindFooter];
     }
-    if (strs.count) {
-        return strs;
-    } else {
-        return nil;
-    }
+    return strs.copy;
 }
 
 - (ASCellNodeBlock)collectionNode:(ASCollectionNode *)collectionNode nodeBlockForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -169,16 +181,19 @@
 /**
  * Asks the inspector to provide a constrained size range for the given collection view node.
  */
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wincompatible-pointer-types"
 - (ASSizeRange)collectionView:(ASCollectionView *)collectionView constrainedSizeForNodeAtIndexPath:(NSIndexPath *)indexPath {
     return [self collectionNode:self.collectionNode constrainedSizeForItemAtIndexPath:indexPath];
 }
+#pragma clang diagnostic pop
 
 
 /**
  * Return the directions in which your collection view can scroll
  */
 - (ASScrollDirection)scrollableDirections {
-    return ASScrollDirectionNone;
+    return ASScrollDirectionUp|ASScrollDirectionDown;
 }
 
 
@@ -197,7 +212,9 @@
     
     if (info.expectedHeight > 0) {
         return ASSizeRangeMake(CGSizeMake(info.width, info.expectedHeight));
-    } else {
+    } else if (!info) {
+        return ASSizeRangeZero;
+    }  else {
         return ASSizeRangeMake(CGSizeMake(info.width, 0),
                                CGSizeMake(info.width, CGFLOAT_MAX));
     }
@@ -209,13 +226,15 @@
  * Asks the inspector for the number of supplementary views for the given kind in the specified section.
  */
 - (NSUInteger)collectionView:(ASCollectionView *)collectionView supplementaryNodesOfKind:(NSString *)kind inSection:(NSUInteger)section {
-    if ([kind isEqualToString:TangramCollectionViewSupplementaryKindHeader] && self.collectionLayout.layoutComponents[section].headerInfo) {
-        return 1;
-    } else if ([kind isEqualToString:TangramCollectionViewSupplementaryKindFooter] && self.collectionLayout.layoutComponents[section].footerInfo) {
-        return 1;
-    } else {
-        return 0;
-    }
+    ASSizeRange constraint = [self collectionView:collectionView constrainedSizeForSupplementaryNodeOfKind:kind atIndexPath:[NSIndexPath indexPathForItem:0 inSection:section]];
+     return (constraint.max.height > 0 ? 1 : 0);
+//    if ([kind isEqualToString:TangramCollectionViewSupplementaryKindHeader] && self.collectionLayout.layoutComponents[section].headerInfo != nil) {
+//        return 1;
+//    } else if ([kind isEqualToString:TangramCollectionViewSupplementaryKindFooter] && self.collectionLayout.layoutComponents[section].footerInfo != nil) {
+//        return 1;
+//    } else {
+//        return 0;
+//    }
 }
 
 

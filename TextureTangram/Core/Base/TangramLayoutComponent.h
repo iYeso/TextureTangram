@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "TangramComponentDescriptor.h"
-
+#import <AsyncDisplayKit/ASSectionContext.h>
 NS_ASSUME_NONNULL_BEGIN
 
 /** 类似tableView header吸顶、footer吸底的效果 */
@@ -22,7 +22,7 @@ typedef NS_ENUM(NSUInteger, TangramLayoutComponentPinnedType) {
  对应tangram的内置布局；类似collectionView的section
  添加一种layout类型需要继承它
  */
-@interface TangramLayoutComponent : NSObject
+@interface TangramLayoutComponent : NSObject <ASSectionContext>
 
 @property (nonatomic) CGPoint layoutOrigin; ///< 布局的起点
 @property (nonatomic) CGFloat width; ///< 布局宽度 
@@ -47,6 +47,12 @@ typedef NS_ENUM(NSUInteger, TangramLayoutComponentPinnedType) {
 ///  布局项，对应cell
 @property (nonatomic, strong, nonnull)  NSArray<TangramComponentDescriptor*> *itemInfos;
 @property (nonatomic) UIEdgeInsets edgeInsets;  ///< 整个layout的边距；需要注意附近的layout也可能会设置
+
+/**
+ * Custom name of this section, for debugging only.
+ */
+@property (nonatomic, copy, nullable) NSString *sectionName;
+@property (nonatomic, weak, nullable) ASCollectionView *collectionView;
 
 
 /**

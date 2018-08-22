@@ -40,6 +40,7 @@
     NSMutableArray<TangramComponentDescriptor*> *array;
     // 1 + N
     TangramOnePlusLayoutComponent *onePlus = [[TangramOnePlusLayoutComponent alloc] init];
+    onePlus.sectionName = @"1+N";
     onePlus.rowPartitions = @[@4,@5];
     array = [NSMutableArray arrayWithCapacity:5];
     for (NSInteger i = 0; i < 4; i++) {
@@ -66,6 +67,7 @@
     
     // 3列网格
     TangramGridLayoutComponet *threeColumn = [[TangramGridLayoutComponet alloc] init];
+    threeColumn.sectionName = @"3 columns";
     threeColumn.maximumColumn = 3;
     array = [NSMutableArray arrayWithCapacity:50];
     for (NSInteger i = 0; i < 9; i++) {
@@ -94,6 +96,7 @@
 
     // 双列网格
     TangramGridLayoutComponet *twoColumn = [[TangramGridLayoutComponet alloc] init];
+    twoColumn.sectionName = @"2 columns";
     twoColumn.maximumColumn = 2;
     array = [NSMutableArray arrayWithCapacity:100];
     for (NSInteger i = 0; i < 8; i++) {
@@ -110,6 +113,7 @@
     
     // sticky
     TangramGridLayoutComponet *sticky = [[TangramGridLayoutComponet alloc] init];
+    sticky.sectionName = @"Sticky";
     sticky.maximumColumn = 1;
     array = [NSMutableArray arrayWithCapacity:50];
     for (NSInteger i = 0; i < 1; i++) {
@@ -127,6 +131,7 @@
     
     // 瀑布流
     TangramWaterFlowLayoutComponent *water = [[TangramWaterFlowLayoutComponent alloc] init];
+    water.sectionName = @"waterfull";
     water.maximumColumn = 3;
     NSInteger itemCount = 15; //打开实时刷新， iPhone 5S 的瓶颈是3000个item（CPU100%)。不打开的话，10000个item的内存创建需要耗时10秒左右，不会卡顿; 现在采用直接stickyView添加到scrollView的做法，避免重新layout的开销
     array = [NSMutableArray arrayWithCapacity:itemCount];
@@ -139,7 +144,8 @@
     water.verticalInterItemsSpace = 8;
     water.horizontalInterItemsSpace = 15;
     water.itemInfos = array.copy;
-    water.margin = UIEdgeInsetsMake(30, 8, 0, 8);
+    water.margin = UIEdgeInsetsMake(30, 8, 50, 8);
+    water.insets = UIEdgeInsetsMake(10, 0, 10, 0);
     ColorWithInnerTextModel *waterHeaderInfo = [ColorWithInnerTextModel new];;
     waterHeaderInfo.expectedHeight = 60;
     waterHeaderInfo.text = @"waterfull Header";
