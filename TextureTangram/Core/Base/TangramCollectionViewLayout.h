@@ -18,6 +18,8 @@
 #import "TangramLayoutComponent.h"
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
 extern NSString *const TangramCollectionViewBackgroundDecoratedKind;
+extern NSString *const TangramCollectionViewSupplementaryKindHeader;
+extern NSString *const TangramCollectionViewSupplementaryKindFooter;
 
 /// 要是写自定义layout，直接调用 self.collectionView.delegate 来获取布局大小等等信息；
 /// collectionNode 会使用 rangeController和DataController进行优化（但是有限）。先看看用flowlayout实现效果如何

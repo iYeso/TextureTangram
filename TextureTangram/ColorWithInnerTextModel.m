@@ -15,4 +15,8 @@
     return @"innerText";
 }
 
+- (CGFloat)computeHeightWithWidth:(CGFloat)width {
+    return self.expectedHeight > 0?self.expectedHeight:60;
+}
+
 @end

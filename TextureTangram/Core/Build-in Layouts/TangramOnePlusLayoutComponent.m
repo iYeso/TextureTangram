@@ -12,7 +12,16 @@
 
 - (void)computeLayoutsWithOrigin:(CGPoint)origin width:(CGFloat)width {
     [super computeLayoutsWithOrigin:origin width:width];
-    assert(self.itemInfos.count >= 2);
+    CGFloat headerHeight = self.headerInfo.expectedHeight;
+    if ([self.headerInfo respondsToSelector:@selector(computeHeightWithWidth:)]) {
+        headerHeight =[self.headerInfo computeHeightWithWidth:width];
+    }
+    self.headerInfo.frame = CGRectMake(self.layoutOrigin.x, self.layoutOrigin.y, width, headerHeight);
+    
+    CGFloat footerHeight = self.footerInfo.expectedHeight;
+    if ([self.footerInfo respondsToSelector:@selector(computeHeightWithWidth:)]) {
+        footerHeight =[self.footerInfo computeHeightWithWidth:width];
+    }
     
     CGFloat rowRatio = 1;
     if (self.rowPartitions.count == 2) {
@@ -43,6 +52,8 @@
     
     
     self.height = self.insets.top + mainItem.expectedHeight + self.insets.bottom;
+    
+    self.footerInfo.frame = CGRectMake(self.layoutOrigin.x, self.layoutOrigin.y+self.height-footerHeight, width, footerHeight);
 }
 
 @end

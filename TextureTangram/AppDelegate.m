@@ -20,6 +20,7 @@
 #import "TangramOnePlusLayoutComponent.h"
 #import "ColorfulModel.h"
 #import "ColorfulCellNode.h"
+#import "ColorWithInnerTextModel.h"
 
 @interface AppDelegate ()
 
@@ -36,21 +37,26 @@
     UIWindow *keyWindow = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
 
     // **************   测试数据  *****************8
-    NSMutableArray<ColorfulModel*> *array;
+    NSMutableArray<TangramComponentDescriptor*> *array;
     // 1 + N
     TangramOnePlusLayoutComponent *onePlus = [[TangramOnePlusLayoutComponent alloc] init];
     onePlus.rowPartitions = @[@4,@5];
     array = [NSMutableArray arrayWithCapacity:5];
     for (NSInteger i = 0; i < 4; i++) {
-        ColorfulModel *m = [ColorfulModel new];
+        ColorWithInnerTextModel *m = [ColorWithInnerTextModel new];
         m.color = RANDOM_COLOR;
-        m.canvasHeight = 120;
+        m.text = [NSString stringWithFormat:@"1+N Part %d", (int)i];
         [array addObject:m];
     }
-    array[1].canvasHeight = 60;
-    array[0].canvasHeight = 280;
+    
+    array[0].expectedHeight = 280;
     onePlus.margin = UIEdgeInsetsMake(30, 10, 30, 10);
     onePlus.itemInfos = array.copy;
+    ColorWithInnerTextModel *onePlusHeaderInfo = [ColorWithInnerTextModel new];;
+    onePlus.headerInfo = onePlusHeaderInfo;
+    onePlusHeaderInfo.expectedHeight = 60;
+    onePlusHeaderInfo.text = @"1+N Header";
+    onePlusHeaderInfo.color = RANDOM_COLOR;
     
     // 3列网格
     TangramGridLayoutComponet *threeColumn = [[TangramGridLayoutComponet alloc] init];
@@ -77,7 +83,7 @@
     for (NSInteger i = 0; i < 8; i++) {
         ColorfulModel *m = [ColorfulModel new];
         m.color = RANDOM_COLOR;
-        m.canvasHeight = 150;
+        m.canvasHeight = 120;
         [array addObject:m];
     }
     twoColumn.verticalInterItemsSpace = 20;
@@ -91,9 +97,11 @@
     sticky.maximumColumn = 1;
     array = [NSMutableArray arrayWithCapacity:50];
     for (NSInteger i = 0; i < 1; i++) {
-        ColorfulModel *m = [ColorfulModel new];
+        
+        ColorWithInnerTextModel *m = [ColorWithInnerTextModel new];
         m.color = RANDOM_COLOR;
-        m.canvasHeight = 50;
+        m.expectedHeight = 60;
+        m.text = @"Sticky Node";
         [array addObject:m];
     }
     sticky.margin = UIEdgeInsetsMake(50, 0, 0, 0);
@@ -109,7 +117,7 @@
     for (NSInteger i = 0; i < itemCount; i++) {
         ColorfulModel *m = [ColorfulModel new];
         m.color = RANDOM_COLOR;
-        m.canvasHeight = 120+arc4random()%20;
+        m.canvasHeight = 170+arc4random()%80;
         [array addObject:m];
     }
     water.verticalInterItemsSpace = 8;

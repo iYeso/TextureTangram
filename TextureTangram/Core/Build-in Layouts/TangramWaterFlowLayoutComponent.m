@@ -24,6 +24,7 @@
     if ([self.headerInfo respondsToSelector:@selector(computeHeightWithWidth:)]) {
         headerHeight =[self.headerInfo computeHeightWithWidth:width];
     }
+    self.headerInfo.frame = CGRectMake(self.layoutOrigin.x, self.layoutOrigin.y, width, headerHeight);
     
     CGFloat footerHeight = self.footerInfo.expectedHeight;
     if ([self.footerInfo respondsToSelector:@selector(computeHeightWithWidth:)]) {
@@ -73,6 +74,7 @@
     
     // 减去多加了的verticalSpace
     self.height = y - itemsOriginY  + footerHeight + self.insets.bottom +  self.insets.top - self.verticalInterItemsSpace;
+    self.footerInfo.frame = CGRectMake(self.layoutOrigin.x, self.layoutOrigin.y+self.height-footerHeight, width, footerHeight);
 }
 
 @end

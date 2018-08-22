@@ -10,8 +10,8 @@
 #import "ColorWithInnerTextModel.h"
 #import "TangramItemNode.h"
 
+// Header Footer必须实现ASCollectionViewLayoutInspecting协议
 @interface ColorWithInnerTextNode : TangramItemNode
 
-@property (nonatomic, strong) ColorWithInnerTextModel *model;
 
 @end

@@ -17,6 +17,8 @@
 #import "TangramCollectionViewLayout.h"
 
 NSString *const TangramCollectionViewBackgroundDecoratedKind = @"TangramCollectionViewBackgroundDecoratedKind";
+NSString *const TangramCollectionViewSupplementaryKindHeader = @"TangramCollectionViewSupplementaryKindHeader";
+NSString *const TangramCollectionViewSupplementaryKindFooter = @"TangramCollectionViewSupplementaryKindFooter";
 
 @interface TangramCollectionViewLayout()
 
@@ -137,12 +139,12 @@ NSString *const TangramCollectionViewBackgroundDecoratedKind = @"TangramCollecti
         }
         // 头部
         if (component.headerInfo && CGRectIntersectsRect(component.headerInfo.frame, rect)) {
-            [visibleLayoutAttributes addObject:[self layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionHeader atIndexPath:[NSIndexPath indexPathForRow:0 inSection:i]]];
+            [visibleLayoutAttributes addObject:[self layoutAttributesForSupplementaryViewOfKind:TangramCollectionViewSupplementaryKindHeader atIndexPath:[NSIndexPath indexPathForRow:0 inSection:i]]];
         }
         
         // 尾部
         if (component.headerInfo && CGRectIntersectsRect(component.headerInfo.frame, rect)) {
-            [visibleLayoutAttributes addObject:[self layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionFooter atIndexPath:[NSIndexPath indexPathForRow:0 inSection:i]]];
+            [visibleLayoutAttributes addObject:[self layoutAttributesForSupplementaryViewOfKind:TangramCollectionViewSupplementaryKindFooter atIndexPath:[NSIndexPath indexPathForRow:0 inSection:i]]];
         }
         
         // cell
@@ -177,9 +179,9 @@ NSString *const TangramCollectionViewBackgroundDecoratedKind = @"TangramCollecti
 - (nullable UICollectionViewLayoutAttributes *)layoutAttributesForSupplementaryViewOfKind:(NSString *)elementKind atIndexPath:(NSIndexPath *)indexPath {
     TangramLayoutComponent *layoutComponent = self.layoutComponents[indexPath.section];
     UICollectionViewLayoutAttributes *layoutAttributes = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:elementKind withIndexPath:indexPath];
-    if ([elementKind isEqualToString:UICollectionElementKindSectionHeader]) {
+    if ([elementKind isEqualToString:TangramCollectionViewSupplementaryKindHeader]) {
         layoutAttributes.frame = layoutComponent.headerInfo.frame;
-    } else if ([elementKind isEqualToString:UICollectionElementKindSectionFooter]) {
+    } else if ([elementKind isEqualToString:TangramCollectionViewSupplementaryKindFooter]) {
         layoutAttributes.frame = layoutComponent.footerInfo.frame;
     } else {
         layoutAttributes = nil;

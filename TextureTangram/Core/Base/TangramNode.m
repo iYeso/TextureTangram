@@ -18,14 +18,13 @@
 #import "TangramGridLayoutComponet.h"
 #import "TangramWaterFlowLayoutComponent.h"
 #import "TangramOnePlusLayoutComponent.h"
-#import "ColorfulModel.h"
-#import "ColorfulCellNode.h"
 #import "TangramItemNode.h"
 #import "TangramNodeRegistry.h"
 
-@interface TangramNode () <ASCollectionDelegate, ASCollectionDataSource>
+@interface TangramNode () <ASCollectionDelegate, ASCollectionDataSource, ASCollectionViewLayoutInspecting>
 
 @property (nonatomic, strong) TangramCollectionViewLayout *collectionLayout;
+@property (nonatomic, strong) NSLock *simpleLock;
 
 @end
 
@@ -55,11 +54,16 @@
 }
 
 - (void)setupNodes {
+    _simpleLock = [[NSLock alloc] init];
     _collectionNode.backgroundColor = UIColor.whiteColor;
     _collectionNode.delegate = self;
     _collectionNode.dataSource = self;
-
+    _collectionNode.layoutInspector = self;
     self.backgroundColor = UIColor.whiteColor;
+}
+
+- (void)didLoad {
+    [super didLoad];
 }
 
 
@@ -79,6 +83,15 @@
 
 #pragma mark - ASCollectionDelegate
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    BOOL isLegalIndex = self.collectionLayout.stickyIndex.integerValue >= 0 && self.collectionLayout.stickyIndex.integerValue < self.collectionLayout.layoutComponents.count;
+    if (isLegalIndex) {
+        [self.collectionLayout layouStickyNode];
+    }
+    
+}
+
+
 - (void)collectionNode:(ASCollectionNode *)collectionNode didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"select item at section:%@, row:%@", @(indexPath.section), @(indexPath.row));
 }
@@ -94,15 +107,6 @@
 }
 #pragma mark -  ASCollectionDataSource
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    BOOL isLegalIndex = self.collectionLayout.stickyIndex.integerValue >= 0 && self.collectionLayout.stickyIndex.integerValue < self.collectionLayout.layoutComponents.count;
-    if (isLegalIndex) {
-        [self.collectionLayout layouStickyNode];
-    }
-    
-}
-
-
 - (NSInteger)numberOfSectionsInCollectionNode:(ASCollectionNode *)collectionNode {
     return self.collectionLayout.layoutComponents.count;
 }
@@ -111,13 +115,30 @@
     return self.collectionLayout.layoutComponents[section].itemInfos.count;
 }
 
+
 - (ASCellNodeBlock)collectionNode:(ASCollectionNode *)collectionNode nodeBlockForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
-    if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
+    if ([kind isEqualToString:TangramCollectionViewSupplementaryKindHeader]) {
         return [self nodeBlockWithModel:self.collectionLayout.layoutComponents[indexPath.section].headerInfo];
-    } else if ([kind isEqualToString:UICollectionElementKindSectionFooter]) {
+    } else if ([kind isEqualToString:TangramCollectionViewSupplementaryKindFooter]) {
         return [self nodeBlockWithModel:self.collectionLayout.layoutComponents[indexPath.section].footerInfo];
-    } else if ([kind isEqualToString:UICollectionElementKindSectionFooter]) {
-        return [self nodeBlockWithModel:self.collectionLayout.layoutComponents[indexPath.section].backgroundInfo];
+        
+    } else {
+        return nil;
+    }
+}
+
+- (NSArray<NSString *> *)collectionNode:(ASCollectionNode *)collectionNode supplementaryElementKindsInSection:(NSInteger)section {
+    NSMutableArray *strs = [NSMutableArray arrayWithCapacity:2];
+    TangramComponentDescriptor *headerInfo = self.collectionLayout.layoutComponents[section].headerInfo;
+    if (headerInfo) {
+        [strs addObject:TangramCollectionViewSupplementaryKindHeader];
+    }
+    TangramComponentDescriptor *footerInfo = self.collectionLayout.layoutComponents[section].footerInfo;
+    if (footerInfo) {
+        [strs addObject:TangramCollectionViewSupplementaryKindFooter];
+    }
+    if (strs.count) {
+        return strs;
     } else {
         return nil;
     }
@@ -142,13 +163,70 @@
     }
 }
 
+#pragma mark - ASCollectionViewLayoutInspecting
+
+/**
+ * Asks the inspector to provide a constrained size range for the given collection view node.
+ */
+- (ASSizeRange)collectionView:(ASCollectionView *)collectionView constrainedSizeForNodeAtIndexPath:(NSIndexPath *)indexPath {
+    return [self collectionNode:self.collectionNode constrainedSizeForItemAtIndexPath:indexPath];
+}
+
+
+/**
+ * Return the directions in which your collection view can scroll
+ */
+- (ASScrollDirection)scrollableDirections {
+    return ASScrollDirectionNone;
+}
+
+
+/**
+ * Asks the inspector to provide a constrained size range for the given supplementary node.
+ */
+- (ASSizeRange)collectionView:(ASCollectionView *)collectionView constrainedSizeForSupplementaryNodeOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+    TangramComponentDescriptor *info = nil;
+    if ([kind isEqualToString:TangramCollectionViewSupplementaryKindHeader]) {
+        info = self.collectionLayout.layoutComponents[indexPath.section].headerInfo;
+    } else if ([kind isEqualToString:TangramCollectionViewSupplementaryKindFooter]) {
+        info = self.collectionLayout.layoutComponents[indexPath.section].footerInfo;
+    } else {
+        return ASSizeRangeZero;
+    }
+    
+    if (info.expectedHeight > 0) {
+        return ASSizeRangeMake(CGSizeMake(info.width, info.expectedHeight));
+    } else {
+        return ASSizeRangeMake(CGSizeMake(info.width, 0),
+                               CGSizeMake(info.width, CGFLOAT_MAX));
+    }
+    
+    
+}
+
+/**
+ * Asks the inspector for the number of supplementary views for the given kind in the specified section.
+ */
+- (NSUInteger)collectionView:(ASCollectionView *)collectionView supplementaryNodesOfKind:(NSString *)kind inSection:(NSUInteger)section {
+    return 1;
+}
+
+
+- (void)lock {
+    [_simpleLock tryLock];
+}
+
+- (void)unlock {
+    [_simpleLock unlock];
+}
+
 #pragma mark - helper method
 
 - (ASCellNodeBlock)nodeBlockWithModel:(TangramComponentDescriptor *)model {
     return ^ASCellNode * _Nonnull(void) {
         Class nodeClass = [TangramNodeRegistry classForType:model.type];
         if (!nodeClass || ![nodeClass isSubclassOfClass:TangramItemNode.class]) {
-            return nil;
+            return [TangramItemNode new];
         }
         TangramItemNode *node = (TangramItemNode*)[[nodeClass alloc] init];
         node.model = model;
