@@ -159,7 +159,7 @@
     
     
     
-    NSArray *components = @[onePlus, threeColumn, twoColumn, sticky, water];
+    NSArray *components = @[onePlus, sticky, threeColumn, twoColumn, water];
     
     TangramNode *tan = TangramNode.new;
     tan.layoutComponents = components;

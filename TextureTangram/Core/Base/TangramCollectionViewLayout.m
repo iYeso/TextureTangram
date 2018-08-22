@@ -99,11 +99,11 @@ NSString *const TangramCollectionViewSupplementaryKindFooter = @"TangramCollecti
         
     }
     
-    _stickyIndex = @(stickyIndex);
     if (!foundSticky) {
         [_stickyNode removeFromSupernode];
         _stickyNode = nil;
-    } else if (!_stickyNode) {
+    } else  {
+        _stickyIndex = @(stickyIndex);
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:stickyIndex];
         ASDisplayNode *node = [self.collectionNode.dataSource collectionNode:self.collectionNode nodeBlockForItemAtIndexPath:indexPath]();
         _stickyNode = node;
