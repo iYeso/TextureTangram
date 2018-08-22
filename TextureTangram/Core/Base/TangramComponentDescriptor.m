@@ -10,6 +10,10 @@
 
 @implementation TangramComponentDescriptor
 
+- (NSString *)type {
+    return @"placeholder";
+}
+
 - (CGFloat)computeHeightWithWidth:(CGFloat)width {
     return 0;
 }

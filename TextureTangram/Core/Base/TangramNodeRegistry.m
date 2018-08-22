@@ -23,6 +23,7 @@
     dispatch_once(&onceToken, ^{
         instance = [self new];
         instance.registry = [NSMutableDictionary dictionaryWithCapacity:8];
+        instance.registry[@"placeholder"] = NSClassFromString(@"TangramItemNode");
     });
     return instance;
 }

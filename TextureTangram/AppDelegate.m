@@ -58,11 +58,11 @@
     onePlusHeaderInfo.text = @"1+N Header";
     onePlusHeaderInfo.color = RANDOM_COLOR;
     onePlus.headerInfo = onePlusHeaderInfo;
-    ColorWithInnerTextModel *onePlusFooterInfo = [ColorWithInnerTextModel new];;
-    onePlusFooterInfo.expectedHeight = 60;
-    onePlusFooterInfo.text = @"1+N Footer";
-    onePlusFooterInfo.color = RANDOM_COLOR;
-    onePlus.footerInfo = onePlusFooterInfo;
+//    ColorWithInnerTextModel *onePlusFooterInfo = [ColorWithInnerTextModel new];;
+//    onePlusFooterInfo.expectedHeight = 60;
+//    onePlusFooterInfo.text = @"1+N Footer";
+//    onePlusFooterInfo.color = RANDOM_COLOR;
+//    onePlus.footerInfo = onePlusFooterInfo;
     
     
     // 3列网格
@@ -76,7 +76,7 @@
         m.canvasHeight = 150;
         [array addObject:m];
     }
-    threeColumn.insets = UIEdgeInsetsMake(0, 10, 0, 10);
+    threeColumn.insets = UIEdgeInsetsMake(15, 10, 15, 10);
     threeColumn.margin = UIEdgeInsetsMake(10, 0, 100, 0);
     threeColumn.columnPartitions = @[@1,@1,@1];
     threeColumn.horizontalInterItemsSpace = 8;

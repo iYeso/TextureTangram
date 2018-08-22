@@ -145,16 +145,8 @@
 }
 
 - (NSArray<NSString *> *)collectionNode:(ASCollectionNode *)collectionNode supplementaryElementKindsInSection:(NSInteger)section {
-    NSMutableArray *strs = [NSMutableArray arrayWithCapacity:2];
-    TangramComponentDescriptor *headerInfo = self.collectionLayout.layoutComponents[section].headerInfo;
-    if (headerInfo) {
-        [strs addObject:TangramCollectionViewSupplementaryKindHeader];
-    }
-    TangramComponentDescriptor *footerInfo = self.collectionLayout.layoutComponents[section].footerInfo;
-    if (footerInfo) {
-        [strs addObject:TangramCollectionViewSupplementaryKindFooter];
-    }
-    return strs.copy;
+
+    return @[TangramCollectionViewSupplementaryKindHeader, TangramCollectionViewSupplementaryKindFooter];
 }
 
 - (ASCellNodeBlock)collectionNode:(ASCollectionNode *)collectionNode nodeBlockForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -228,13 +220,6 @@
 - (NSUInteger)collectionView:(ASCollectionView *)collectionView supplementaryNodesOfKind:(NSString *)kind inSection:(NSUInteger)section {
     ASSizeRange constraint = [self collectionView:collectionView constrainedSizeForSupplementaryNodeOfKind:kind atIndexPath:[NSIndexPath indexPathForItem:0 inSection:section]];
      return (constraint.max.height > 0 ? 1 : 0);
-//    if ([kind isEqualToString:TangramCollectionViewSupplementaryKindHeader] && self.collectionLayout.layoutComponents[section].headerInfo != nil) {
-//        return 1;
-//    } else if ([kind isEqualToString:TangramCollectionViewSupplementaryKindFooter] && self.collectionLayout.layoutComponents[section].footerInfo != nil) {
-//        return 1;
-//    } else {
-//        return 0;
-//    }
 }
 
 
