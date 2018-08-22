@@ -15,11 +15,10 @@
 
 #import "TangramNode.h"
 #import "TangramCollectionViewLayout.h"
-#import "TangramGridLayoutComponet.h"
-#import "TangramWaterFlowLayoutComponent.h"
-#import "TangramOnePlusLayoutComponent.h"
 #import "TangramItemNode.h"
 #import "TangramNodeRegistry.h"
+#import "TangramHorizontalLayoutComponent.h"
+#import "TangramHorizontalInlineCellModel.h"
 
 @interface TangramNode () <ASCollectionDelegate, ASCollectionDataSource, ASCollectionViewLayoutInspecting>
 
@@ -60,6 +59,9 @@
     _collectionNode.dataSource = self;
     _collectionNode.layoutInspector = self;
     self.backgroundColor = UIColor.whiteColor;
+    
+    [TangramNodeRegistry registerClass:TangramItemNode.class forType:@"placeholder"];
+    [TangramNodeRegistry registerClass:TangramItemNode.class forType:@"horizontal"];
 }
 
 // 类似controller的 viewDidLoad
@@ -118,7 +120,12 @@
 }
 
 - (NSInteger)collectionNode:(ASCollectionNode *)collectionNode numberOfItemsInSection:(NSInteger)section {
-    return self.collectionLayout.layoutComponents[section].itemInfos.count;
+    TangramLayoutComponent *component = self.collectionLayout.layoutComponents[section];
+    if (component.isHorizontalScollableLayout) {
+        return 1;
+    } else {
+        return component.itemInfos.count;
+    }
 }
 
 
@@ -155,7 +162,19 @@
 }
 
 - (ASCellNodeBlock)collectionNode:(ASCollectionNode *)collectionNode nodeBlockForItemAtIndexPath:(NSIndexPath *)indexPath {
-    TangramComponentDescriptor *model = self.collectionLayout.layoutComponents[indexPath.section].itemInfos[indexPath.row];
+    TangramLayoutComponent *component = self.collectionLayout.layoutComponents[indexPath.section];
+    TangramComponentDescriptor *model;
+    if (!component.isHorizontalScollableLayout) {
+        model = component.itemInfos[indexPath.row];
+    } else {
+        // 横向滑动特殊处理
+        model = [(TangramHorizontalLayoutComponent *)component inlineModel];
+        if (!model) {
+            TangramHorizontalInlineCellModel *inlineModel = [TangramHorizontalInlineCellModel new];
+            inlineModel.layoutComponent = (TangramHorizontalLayoutComponent *)component;
+            [(TangramHorizontalLayoutComponent *)component setInlineModel:inlineModel];
+        }
+    }
     return [self nodeBlockWithModel:model];
 }
 

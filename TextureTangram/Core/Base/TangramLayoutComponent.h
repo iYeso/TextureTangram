@@ -33,7 +33,7 @@ typedef NS_ENUM(NSUInteger, TangramLayoutComponentPinnedType) {
 
 @property (nonatomic) CGPoint layoutOrigin; ///< 布局的起点
 @property (nonatomic) CGFloat width; ///< 布局宽度 
-
+@property (nonatomic) BOOL isHorizontalScollableLayout; ///<是否为横向滑动布局
 @property (nonatomic) UIEdgeInsets margin; ///< layout的外边距会控制background、header的范围； margin
 @property (nonatomic) UIEdgeInsets insets; ///< layout的内边距，控制items与header、footer之间的边距；对应padding
 
