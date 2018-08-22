@@ -62,19 +62,21 @@
     self.backgroundColor = UIColor.whiteColor;
 }
 
+// 类似controller的 viewDidLoad
 - (void)didLoad {
     [super didLoad];
 }
 
 
+// 设置了数据源需要重新布局
 - (void)setLayoutComponents:(NSArray<TangramLayoutComponent *> *)layoutComponents {
     _layoutComponents = layoutComponents.copy;
     self.collectionLayout.layoutComponents = layoutComponents;
     [self.collectionNode reloadData];
-
 }
 
 
+// 返回一个绝对布局，tangramNode包了一层collectionNode
 - (ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize {
     return [ASAbsoluteLayoutSpec absoluteLayoutSpecWithChildren:@[self.collectionNode]];
 }
@@ -83,19 +85,22 @@
 
 #pragma mark - ASCollectionDelegate
 
+// 更新stickyNode的状态。
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     BOOL isLegalIndex = self.collectionLayout.stickyIndex.integerValue >= 0 && self.collectionLayout.stickyIndex.integerValue < self.collectionLayout.layoutComponents.count;
     if (isLegalIndex) {
         [self.collectionLayout layouStickyNode];
     }
-    
 }
 
 
+//TODO: 把这个点击事件抛出去
 - (void)collectionNode:(ASCollectionNode *)collectionNode didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"select item at section:%@, row:%@", @(indexPath.section), @(indexPath.row));
 }
 
+// ASDK的node是异步加载的，当加载完毕时，直接使用计算好的高度。
+// 还有一种情况，就是高度是预先指定的，那么，在这里可以直接使用指定的高度，而不是让ASDK去计算
 - (ASSizeRange)collectionNode:(ASCollectionNode *)collectionNode constrainedSizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     TangramComponentDescriptor * layoutDescriptor = self.collectionLayout.layoutComponents[indexPath.section].itemInfos[indexPath.row];
     if (layoutDescriptor.expectedHeight > 0) { //已经计算好高度
@@ -175,6 +180,9 @@
  */
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wall"
+///FIXME: 这里的警告不知道怎么消掉。原因是dataSource 也有一个constrainedSizeForNodeAtIndexPath方法，而我只是想
+///实现ASCollectionViewLayoutInspecting里面的方法
+/// 创建另外一个遵循ASCollectionViewLayoutInspecting协议的类似乎很多余
 - (ASSizeRange)collectionView:(ASCollectionView *)collectionView constrainedSizeForNodeAtIndexPath:(NSIndexPath *)indexPath {
     return [self collectionNode:self.collectionNode constrainedSizeForItemAtIndexPath:indexPath];
 }
@@ -205,7 +213,7 @@
     if (info.expectedHeight > 0) {
         return ASSizeRangeMake(CGSizeMake(info.width, info.expectedHeight));
     } else if (![info.class isSubclassOfClass:TangramItemNode.class]) {
-        return ASSizeRangeMake(CGSizeMake(0.1, 0.1));
+        return ASSizeRangeMake(CGSizeMake(0.1, 0.1)); //高度不设为一个大于0的值会崩溃（摊手）
     }  else {
         return ASSizeRangeMake(CGSizeMake(info.width, 0),
                                CGSizeMake(info.width, CGFLOAT_MAX));
