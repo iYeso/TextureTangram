@@ -24,7 +24,7 @@
 @interface TangramNode () <ASCollectionDelegate, ASCollectionDataSource, ASCollectionViewLayoutInspecting>
 
 @property (nonatomic, strong) TangramCollectionViewLayout *collectionLayout;
-@property (nonatomic, strong) NSLock *simpleLock;
+@property (nonatomic, strong) dispatch_semaphore_t semaphore;
 
 @end
 
@@ -54,7 +54,7 @@
 }
 
 - (void)setupNodes {
-    _simpleLock = [[NSLock alloc] init];
+    _semaphore = dispatch_semaphore_create(1);
     _collectionNode.backgroundColor = UIColor.whiteColor;
     _collectionNode.delegate = self;
     _collectionNode.dataSource = self;
@@ -174,7 +174,7 @@
  * Asks the inspector to provide a constrained size range for the given collection view node.
  */
 #pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wincompatible-pointer-types"
+#pragma clang diagnostic ignored "-Wall"
 - (ASSizeRange)collectionView:(ASCollectionView *)collectionView constrainedSizeForNodeAtIndexPath:(NSIndexPath *)indexPath {
     return [self collectionNode:self.collectionNode constrainedSizeForItemAtIndexPath:indexPath];
 }
@@ -224,11 +224,11 @@
 
 
 - (void)lock {
-     [_simpleLock lock];
+    dispatch_semaphore_wait(_semaphore, DISPATCH_TIME_FOREVER);
 }
 
 - (void)unlock {
-    [_simpleLock unlock];
+    dispatch_semaphore_signal(_semaphore);
 }
 
 #pragma mark - helper method

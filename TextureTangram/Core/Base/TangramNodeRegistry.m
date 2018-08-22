@@ -28,7 +28,7 @@
     return instance;
 }
 
-+ (void)registerFromDictionary:(NSDictionary<NSString *,Class> *)dictionary {
++ (void)registerFromDictionary:(nonnull NSDictionary<NSString *, Class> *)dictionary {
     [[TangramNodeRegistry shared].registry addEntriesFromDictionary:dictionary];
 }
 
@@ -39,7 +39,7 @@
     [TangramNodeRegistry shared].registry[type] =  cls;
 }
 
-+ (Class)classForType:(NSString *)type {
++ (nullable Class)classForType:(nonnull NSString *)type{
     return [TangramNodeRegistry shared].registry[type];
 }
 

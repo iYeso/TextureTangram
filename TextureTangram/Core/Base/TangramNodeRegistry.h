@@ -11,11 +11,11 @@
 
 @interface TangramNodeRegistry : NSObject
 
-+ (void)registerFromDictionary:(NSDictionary<NSString *, Class> *)dictionary;
++ (void)registerFromDictionary:(nonnull NSDictionary<NSString *, Class> *)dictionary;
 
 + (void)registerClass:(nonnull Class)cls forType:(nonnull NSString *)type;
 
-+ (nullable Class)classForType:(NSString *)type;
++ (nullable Class)classForType:(nonnull NSString *)type;
 
 
 @end
