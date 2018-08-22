@@ -184,6 +184,7 @@
     NSMutableArray *array = [NSMutableArray arrayWithArray:self.tangramNode.layoutComponents];
     [array removeObjectAtIndex:0];
     self.tangramNode.layoutComponents = array.copy;
+    [self.tangramNode.collectionNode relayoutItems];
 }
 
 - (void)addItemsToSecondLayout {
