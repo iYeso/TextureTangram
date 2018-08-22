@@ -521,6 +521,7 @@
 			baseConfigurationReference = 88950BE613CEB6E77CBDBAD2 /* Pods-TextureTangram.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 65U732MLC9;
 				INFOPLIST_FILE = TextureTangram/Info.plist;
@@ -531,6 +532,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = chaolong.TextureTangram;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -540,6 +542,7 @@
 			baseConfigurationReference = FB84F3E7791079E708BF191E /* Pods-TextureTangram.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 65U732MLC9;
 				INFOPLIST_FILE = TextureTangram/Info.plist;
@@ -550,6 +553,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = chaolong.TextureTangram;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

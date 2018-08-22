@@ -63,7 +63,7 @@ NSString *const TangramCollectionViewSupplementaryKindFooter = @"TangramCollecti
     }
     
     TangramLayoutComponent *stickyComponent = self.layoutComponents[_stickyIndex.integerValue];
-    CGFloat y = (self.collectionView.contentOffset.y+ adjuestInset> stickyComponent.layoutOrigin.y)?self.collectionView.contentOffset.y+64:stickyComponent.layoutOrigin.y;
+    CGFloat y = (self.collectionView.contentOffset.y+ adjuestInset> stickyComponent.layoutOrigin.y)?self.collectionView.contentOffset.y+adjuestInset:stickyComponent.layoutOrigin.y;
     CGRect componentRect = CGRectMake(stickyComponent.layoutOrigin.x, y, stickyComponent.width, stickyComponent.height);
     _stickyNode.frame = componentRect;
 }

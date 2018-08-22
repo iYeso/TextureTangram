@@ -204,8 +204,8 @@
     
     if (info.expectedHeight > 0) {
         return ASSizeRangeMake(CGSizeMake(info.width, info.expectedHeight));
-    } else if (!info) {
-        return ASSizeRangeZero;
+    } else if (![info.class isSubclassOfClass:TangramItemNode.class]) {
+        return ASSizeRangeMake(CGSizeMake(0.1, 0.1));
     }  else {
         return ASSizeRangeMake(CGSizeMake(info.width, 0),
                                CGSizeMake(info.width, CGFLOAT_MAX));
@@ -224,7 +224,7 @@
 
 
 - (void)lock {
-    [_simpleLock tryLock];
+     [_simpleLock lock];
 }
 
 - (void)unlock {
