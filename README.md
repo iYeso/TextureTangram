@@ -22,7 +22,7 @@ TextureTangram是一个布局工具并不是[Tangram](https://github.com/alibaba
 
 # TODO
 目前炉灶初开，轮子未成，项目中还有很多未完成的东西：
-1. Header 、Footer、Background还没测试过。（重要）
+1. ~~Header 、Footer、Background还没测试过。（重要）~~
 2. 固定布局、浮窗还没实现。（优先级比较低）
 3. 横向布局、Banner的实现。（需要做一层转化和delegate判断）（重要）
 4. `TangramNode`需要暴露的接口、代理。（开发一个完整的demo应用，看看哪些api是必须的，哪些是可选的）

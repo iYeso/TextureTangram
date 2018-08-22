@@ -58,11 +58,11 @@
     onePlusHeaderInfo.text = @"1+N Header";
     onePlusHeaderInfo.color = RANDOM_COLOR;
     onePlus.headerInfo = onePlusHeaderInfo;
-//    ColorWithInnerTextModel *onePlusFooterInfo = [ColorWithInnerTextModel new];;
-//    onePlusFooterInfo.expectedHeight = 60;
-//    onePlusFooterInfo.text = @"1+N Footer";
-//    onePlusFooterInfo.color = RANDOM_COLOR;
-//    onePlus.footerInfo = onePlusFooterInfo;
+    ColorWithInnerTextModel *onePlusFooterInfo = [ColorWithInnerTextModel new];;
+    onePlusFooterInfo.expectedHeight = 60;
+    onePlusFooterInfo.text = @"1+N Footer";
+    onePlusFooterInfo.color = RANDOM_COLOR;
+    onePlus.footerInfo = onePlusFooterInfo;
     
     
     // 3列网格
