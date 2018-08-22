@@ -107,6 +107,7 @@
 }
 #pragma mark -  ASCollectionDataSource
 
+
 - (NSInteger)numberOfSectionsInCollectionNode:(ASCollectionNode *)collectionNode {
     return self.collectionLayout.layoutComponents.count;
 }
@@ -208,7 +209,13 @@
  * Asks the inspector for the number of supplementary views for the given kind in the specified section.
  */
 - (NSUInteger)collectionView:(ASCollectionView *)collectionView supplementaryNodesOfKind:(NSString *)kind inSection:(NSUInteger)section {
-    return 1;
+    if ([kind isEqualToString:TangramCollectionViewSupplementaryKindHeader] && self.collectionLayout.layoutComponents[section].headerInfo) {
+        return 1;
+    } else if ([kind isEqualToString:TangramCollectionViewSupplementaryKindFooter] && self.collectionLayout.layoutComponents[section].footerInfo) {
+        return 1;
+    } else {
+        return 0;
+    }
 }
 
 
@@ -225,7 +232,7 @@
 - (ASCellNodeBlock)nodeBlockWithModel:(TangramComponentDescriptor *)model {
     return ^ASCellNode * _Nonnull(void) {
         Class nodeClass = [TangramNodeRegistry classForType:model.type];
-        if (!nodeClass || ![nodeClass isSubclassOfClass:TangramItemNode.class]) {
+        if (!model || !nodeClass || ![nodeClass isSubclassOfClass:TangramItemNode.class]) {
             return [TangramItemNode new];
         }
         TangramItemNode *node = (TangramItemNode*)[[nodeClass alloc] init];

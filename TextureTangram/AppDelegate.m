@@ -53,10 +53,16 @@
     onePlus.margin = UIEdgeInsetsMake(30, 10, 30, 10);
     onePlus.itemInfos = array.copy;
     ColorWithInnerTextModel *onePlusHeaderInfo = [ColorWithInnerTextModel new];;
-    onePlus.headerInfo = onePlusHeaderInfo;
     onePlusHeaderInfo.expectedHeight = 60;
     onePlusHeaderInfo.text = @"1+N Header";
     onePlusHeaderInfo.color = RANDOM_COLOR;
+    onePlus.headerInfo = onePlusHeaderInfo;
+    ColorWithInnerTextModel *onePlusFooterInfo = [ColorWithInnerTextModel new];;
+    onePlusFooterInfo.expectedHeight = 60;
+    onePlusFooterInfo.text = @"1+N Footer";
+    onePlusFooterInfo.color = RANDOM_COLOR;
+    onePlus.footerInfo = onePlusFooterInfo;
+    
     
     // 3列网格
     TangramGridLayoutComponet *threeColumn = [[TangramGridLayoutComponet alloc] init];
@@ -74,8 +80,18 @@
     threeColumn.horizontalInterItemsSpace = 8;
     threeColumn.verticalInterItemsSpace = 8;
     threeColumn.itemInfos = array.copy;
+    ColorWithInnerTextModel *threeColumnHeaderInfo = [ColorWithInnerTextModel new];;
+    threeColumnHeaderInfo.expectedHeight = 60;
+    threeColumnHeaderInfo.text = @"3 columns Header";
+    threeColumnHeaderInfo.color = RANDOM_COLOR;
+    threeColumn.headerInfo = threeColumnHeaderInfo;
+    ColorWithInnerTextModel *threeColumnFooterInfo = [ColorWithInnerTextModel new];;
+    threeColumnFooterInfo.expectedHeight = 60;
+    threeColumnFooterInfo.text = @"3 columns Footer";
+    threeColumnFooterInfo.color = RANDOM_COLOR;
+    threeColumn.footerInfo = threeColumnFooterInfo;
     
-    
+
     // 双列网格
     TangramGridLayoutComponet *twoColumn = [[TangramGridLayoutComponet alloc] init];
     twoColumn.maximumColumn = 2;
@@ -124,12 +140,27 @@
     water.horizontalInterItemsSpace = 15;
     water.itemInfos = array.copy;
     water.margin = UIEdgeInsetsMake(30, 8, 0, 8);
+    ColorWithInnerTextModel *waterHeaderInfo = [ColorWithInnerTextModel new];;
+    waterHeaderInfo.expectedHeight = 60;
+    waterHeaderInfo.text = @"waterfull Header";
+    waterHeaderInfo.color = RANDOM_COLOR;
+    water.headerInfo = waterHeaderInfo;
+    ColorWithInnerTextModel *waterFooterInfo = [ColorWithInnerTextModel new];;
+    waterFooterInfo.expectedHeight = 60;
+    waterFooterInfo.text = @"waterfull Footer";
+    waterFooterInfo.color = RANDOM_COLOR;
+    water.footerInfo = waterFooterInfo;
+    
+    
+    
     NSArray *components = @[onePlus, threeColumn, twoColumn, sticky, water];
     
     TangramNode *tan = TangramNode.new;
     tan.layoutComponents = components;
     ASViewController *viewController = [[ASViewController alloc] initWithNode:tan];
     _tangramNode = tan;
+    
+    
     // 删除操作
     UIBarButtonItem *deleteItem = [[UIBarButtonItem alloc] initWithTitle:@"删除" style:UIBarButtonItemStylePlain target:self action:@selector(removeFirst)];
     viewController.navigationItem.rightBarButtonItem = deleteItem;

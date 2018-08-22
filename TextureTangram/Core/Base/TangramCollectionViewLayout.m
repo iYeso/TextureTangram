@@ -139,12 +139,19 @@ NSString *const TangramCollectionViewSupplementaryKindFooter = @"TangramCollecti
         }
         // 头部
         if (component.headerInfo && CGRectIntersectsRect(component.headerInfo.frame, rect)) {
-            [visibleLayoutAttributes addObject:[self layoutAttributesForSupplementaryViewOfKind:TangramCollectionViewSupplementaryKindHeader atIndexPath:[NSIndexPath indexPathForRow:0 inSection:i]]];
+            UICollectionViewLayoutAttributes *attributes = [self layoutAttributesForSupplementaryViewOfKind:TangramCollectionViewSupplementaryKindHeader atIndexPath:[NSIndexPath indexPathForRow:0 inSection:i]];
+            if (attributes) {
+                [visibleLayoutAttributes addObject:attributes];
+            }
+            
         }
         
         // 尾部
         if (component.headerInfo && CGRectIntersectsRect(component.headerInfo.frame, rect)) {
-            [visibleLayoutAttributes addObject:[self layoutAttributesForSupplementaryViewOfKind:TangramCollectionViewSupplementaryKindFooter atIndexPath:[NSIndexPath indexPathForRow:0 inSection:i]]];
+            UICollectionViewLayoutAttributes *attributes = [self layoutAttributesForSupplementaryViewOfKind:TangramCollectionViewSupplementaryKindFooter atIndexPath:[NSIndexPath indexPathForRow:0 inSection:i]];
+            if (attributes) {
+                [visibleLayoutAttributes addObject:attributes];
+            }
         }
         
         // cell
@@ -156,8 +163,12 @@ NSString *const TangramCollectionViewSupplementaryKindFooter = @"TangramCollecti
             TangramComponentDescriptor * descriptor = component.itemInfos[j];
             
             if (CGRectIntersectsRect(descriptor.frame, rect)) {
-                [visibleLayoutAttributes addObject:[self layoutAttributesForItemAtIndexPath:[NSIndexPath indexPathForRow:j inSection:i]]];
-                found = YES;
+                UICollectionViewLayoutAttributes *attributes =[self layoutAttributesForItemAtIndexPath:[NSIndexPath indexPathForRow:j inSection:i]];
+                if (attributes) {
+                    [visibleLayoutAttributes addObject:attributes];
+                    found = YES;
+                }
+                
             } else if (found) {
                 break;
             }
@@ -177,6 +188,9 @@ NSString *const TangramCollectionViewSupplementaryKindFooter = @"TangramCollecti
     return attributes;
 }
 - (nullable UICollectionViewLayoutAttributes *)layoutAttributesForSupplementaryViewOfKind:(NSString *)elementKind atIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row > 0) {
+        return nil;
+    }
     TangramLayoutComponent *layoutComponent = self.layoutComponents[indexPath.section];
     UICollectionViewLayoutAttributes *layoutAttributes = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:elementKind withIndexPath:indexPath];
     if ([elementKind isEqualToString:TangramCollectionViewSupplementaryKindHeader]) {

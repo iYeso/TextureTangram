@@ -72,9 +72,10 @@
         x += self.horizontalInterItemsSpace + itemWidth; //下个item的x
     }
     
-    self.height = y - itemsOriginY + rowMaxHeight + footerHeight + self.insets.bottom;
+    self.height = y - itemsOriginY + rowMaxHeight + headerHeight + footerHeight + self.insets.bottom;
     
     self.footerInfo.frame = CGRectMake(self.layoutOrigin.x, self.layoutOrigin.y+self.height-footerHeight, width, footerHeight);
+    
 }
 
 @end

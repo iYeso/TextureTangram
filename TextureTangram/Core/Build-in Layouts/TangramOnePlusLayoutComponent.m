@@ -31,7 +31,7 @@
     CGFloat totalItemWidth = (width - self.insets.left - self.insets.right);
     TangramComponentDescriptor * mainItem = self.itemInfos[0];
     mainItem.width = totalItemWidth/2;
-    mainItem.frame = CGRectMake(origin.x + self.insets.left, origin.y + self.insets.top, mainItem.width, mainItem.expectedHeight);
+    mainItem.frame = CGRectMake(origin.x + self.insets.left, origin.y + self.insets.top + headerHeight, mainItem.width, mainItem.expectedHeight);
     
     TangramComponentDescriptor * secondItem = self.itemInfos[1];
     CGFloat secondItemHeight = rowRatio * mainItem.expectedHeight;
@@ -51,9 +51,11 @@
     }
     
     
-    self.height = self.insets.top + mainItem.expectedHeight + self.insets.bottom;
+    self.height = self.insets.top + mainItem.expectedHeight + self.insets.bottom + headerHeight + footerHeight;
     
     self.footerInfo.frame = CGRectMake(self.layoutOrigin.x, self.layoutOrigin.y+self.height-footerHeight, width, footerHeight);
+    
+    
 }
 
 @end
