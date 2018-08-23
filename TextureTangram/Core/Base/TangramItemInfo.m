@@ -13,9 +13,9 @@
 // limitations under the License.
 //
 
-#import "TangramComponentDescriptor.h"
+#import "TangramItemInfo.h"
 
-@implementation TangramComponentDescriptor
+@implementation TangramItemInfo
 
 - (instancetype)init  {
     self = [super init];

@@ -38,7 +38,7 @@
     UIWindow *keyWindow = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
 
     // **************   测试数据  *****************8
-    NSMutableArray<TangramComponentDescriptor*> *array;
+    NSMutableArray<TangramItemInfo*> *array;
     // 1 + N
     TangramOnePlusLayoutComponent *onePlus = [[TangramOnePlusLayoutComponent alloc] init];
     onePlus.sectionName = @"1+N";

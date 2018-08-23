@@ -14,7 +14,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TangramComponentDescriptor.h"
+#import "TangramItemInfo.h"
 #import <AsyncDisplayKit/ASSectionContext.h>
 NS_ASSUME_NONNULL_BEGIN
 
@@ -33,7 +33,7 @@ typedef NS_ENUM(NSUInteger, TangramLayoutComponentPinnedType) {
 
 @property (nonatomic) CGPoint layoutOrigin; ///< 布局的起点
 @property (nonatomic) CGFloat width; ///< 布局宽度 
-@property (nonatomic) BOOL isInlineLayout; ///<是否为横向滑动布局
+@property (nonatomic) BOOL isInlineLayout; ///<是否为内联布局
 @property (nonatomic) UIEdgeInsets margin; ///< layout的外边距会控制background、header的范围； margin
 @property (nonatomic) UIEdgeInsets insets; ///< layout的内边距，控制items与header、footer之间的边距；对应padding
 
@@ -41,18 +41,18 @@ typedef NS_ENUM(NSUInteger, TangramLayoutComponentPinnedType) {
 @property (nonatomic) TangramLayoutComponentPinnedType pinnedType; ///< 是否有吸顶/吸底效果
 @property (nonatomic) CGFloat height;  ///< 整个布局的高度；调用computeLayoutsWithOrigin会改变此属性
 /// 整个layout的头部描述信息，布局在items上方，不能为空
-@property (nonatomic, strong, nonnull) TangramComponentDescriptor *headerInfo;
+@property (nonatomic, strong, nonnull) TangramItemInfo *headerInfo;
 /// 整个layout尾部信息，布局在items下方，不能为空
-@property (nonatomic, strong, nonnull) TangramComponentDescriptor *footerInfo;
+@property (nonatomic, strong, nonnull) TangramItemInfo *footerInfo;
 
-@property (nonatomic, strong, nullable) TangramComponentDescriptor *backgroundInfo;
+@property (nonatomic, strong, nullable) TangramItemInfo *backgroundInfo;
 /// 背景图片地址
 @property (nonatomic, strong, nullable) NSString *backgroundImageURL;
 /// 背景颜色
 @property (nonatomic, strong, nullable) UIColor *backgroundColor;
 
 ///  布局项，对应cell
-@property (nonatomic, strong, nonnull)  NSArray<TangramComponentDescriptor*> *itemInfos;
+@property (nonatomic, strong, nonnull)  NSArray<TangramItemInfo*> *itemInfos;
 @property (nonatomic) UIEdgeInsets edgeInsets;  ///< 整个layout的边距；需要注意附近的layout也可能会设置
 
 /**

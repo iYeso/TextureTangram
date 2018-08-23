@@ -17,7 +17,7 @@
 /**
  对应每个组件的model，新增的model继承它
  */
-@interface TangramComponentDescriptor: NSObject
+@interface TangramItemInfo: NSObject
 
 @property (nonatomic, strong) NSString *type; ///< UI组件的类型
 @property (nonatomic) CGRect frame; ///< 布局的frame，未完成布局之前，使用此属性会不准确

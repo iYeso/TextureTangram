@@ -56,7 +56,7 @@
     NSUInteger rowMaxHeight = 0;
     NSUInteger rowMaxHeightRowNumber = 0; //记住当前行的最大高度；
     for (NSInteger i = 0; i < self.itemInfos.count; i++) {
-        TangramComponentDescriptor *descriptor = self.itemInfos[i];
+        TangramItemInfo *descriptor = self.itemInfos[i];
         column = (i%_maximumColumn);
         row = (i/_maximumColumn);
         CGFloat itemWidth = [itemWidths[column] doubleValue];

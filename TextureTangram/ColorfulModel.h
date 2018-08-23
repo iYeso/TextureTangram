@@ -14,9 +14,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "TangramComponentDescriptor.h"
+#import "TangramItemInfo.h"
 
-@interface ColorfulModel : TangramComponentDescriptor
+@interface ColorfulModel : TangramItemInfo
 
 @property (nonatomic, strong) UIColor *color;
 @property CGFloat canvasHeight;

@@ -47,7 +47,7 @@
     }
     
     for (NSInteger i = 0; i < self.itemInfos.count; i++) {
-        TangramComponentDescriptor *descriptor = self.itemInfos[i];
+        TangramItemInfo *descriptor = self.itemInfos[i];
         
         // 查找最短列
         column = 0;

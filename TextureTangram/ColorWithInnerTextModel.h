@@ -12,9 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-#import "TangramComponentDescriptor.h"
+#import "TangramItemInfo.h"
 
-@interface ColorWithInnerTextModel: TangramComponentDescriptor
+@interface ColorWithInnerTextModel: TangramItemInfo
 
 @property (nonatomic, copy) NSString *text;
 @property (nonatomic, strong) UIColor *color;

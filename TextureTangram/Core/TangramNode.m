@@ -113,7 +113,7 @@
             return ASSizeRangeMake(inlineLayoutComponent.inlineCellFrame.size);
         }
     }
-    TangramComponentDescriptor * layoutDescriptor = component.itemInfos[indexPath.row];
+    TangramItemInfo * layoutDescriptor = component.itemInfos[indexPath.row];
     if (layoutDescriptor.expectedHeight > 0) { //已经计算好高度
         return ASSizeRangeMake(CGSizeMake(layoutDescriptor.width, layoutDescriptor.expectedHeight));
     } else { //尚未计算高度
@@ -172,7 +172,7 @@
 
 - (ASCellNodeBlock)collectionNode:(ASCollectionNode *)collectionNode nodeBlockForItemAtIndexPath:(NSIndexPath *)indexPath {
     TangramLayoutComponent *component = self.collectionLayout.layoutComponents[indexPath.section];
-    TangramComponentDescriptor *model;
+    TangramItemInfo *model;
     if (!component.isInlineLayout) {
         model = component.itemInfos[indexPath.row];
     } else {
@@ -224,7 +224,7 @@
  * Asks the inspector to provide a constrained size range for the given supplementary node.
  */
 - (ASSizeRange)collectionView:(ASCollectionView *)collectionView constrainedSizeForSupplementaryNodeOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
-    TangramComponentDescriptor *info = nil;
+    TangramItemInfo *info = nil;
     if ([kind isEqualToString:TangramCollectionViewSupplementaryKindHeader]) {
         info = self.collectionLayout.layoutComponents[indexPath.section].headerInfo;
     } else if ([kind isEqualToString:TangramCollectionViewSupplementaryKindFooter]) {
@@ -264,7 +264,7 @@
 
 #pragma mark - helper method
 
-- (ASCellNodeBlock)nodeBlockWithModel:(TangramComponentDescriptor *)model {
+- (ASCellNodeBlock)nodeBlockWithModel:(TangramItemInfo *)model {
     return ^ASCellNode * _Nonnull(void) {
         Class nodeClass = [TangramNodeRegistry classForType:model.type];
         if (!model || !nodeClass || ![nodeClass isSubclassOfClass:TangramItemNode.class]) {

@@ -17,17 +17,17 @@
 
 @implementation TangramLayoutComponent
 
-- (TangramComponentDescriptor *)headerInfo {
+- (TangramItemInfo *)headerInfo {
     if (!_headerInfo) {
-        _headerInfo = TangramComponentDescriptor.new;
+        _headerInfo = TangramItemInfo.new;
         _headerInfo.expectedHeight = 0;
     }
     return _headerInfo;
 }
 
-- (TangramComponentDescriptor *)footerInfo {
+- (TangramItemInfo *)footerInfo {
     if (!_footerInfo) {
-        _footerInfo = TangramComponentDescriptor.new;
+        _footerInfo = TangramItemInfo.new;
         _footerInfo.expectedHeight = 0;
     }
     return _footerInfo;
