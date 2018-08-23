@@ -157,7 +157,9 @@ NSString *const TangramCollectionViewSupplementaryKindFooter = @"TangramCollecti
             }
         }
         
-        if (component.isInlineLayout) {
+        if (component.pinnedType == TangramLayoutComponentPinnedTypeTop) {
+            //pass
+        } else if (component.isInlineLayout) {
             // 内联的cell
             TangramInlineLayoutComponent *inlineLayout = (TangramInlineLayoutComponent *)component;
             if (CGRectIntersectsRect(inlineLayout.inlineCellFrame, rect)) {
