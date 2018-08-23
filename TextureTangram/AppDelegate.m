@@ -109,7 +109,7 @@
     horizontal.margin = UIEdgeInsetsMake(10, 0, 10, 0);
     horizontal.height = 300;
     horizontal.scrollMarginRight = 100;
-    horizontal.scrollMarginLeft = 50;
+    horizontal.scrollMarginLeft = 10;
     
 
     // 双列网格
