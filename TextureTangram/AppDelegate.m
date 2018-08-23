@@ -18,6 +18,7 @@
 #import "TangramGridLayoutComponet.h"
 #import "TangramWaterFlowLayoutComponent.h"
 #import "TangramOnePlusLayoutComponent.h"
+#import "TangramHorizontalInlineLayoutComponent.h"
 #import "ColorfulModel.h"
 #import "ColorfulCellNode.h"
 #import "ColorWithInnerTextModel.h"
@@ -77,7 +78,7 @@
         [array addObject:m];
     }
     threeColumn.insets = UIEdgeInsetsMake(15, 10, 15, 10);
-    threeColumn.margin = UIEdgeInsetsMake(10, 0, 100, 0);
+    threeColumn.margin = UIEdgeInsetsMake(10, 0, 50, 0);
     threeColumn.columnPartitions = @[@1,@1,@1];
     threeColumn.horizontalInterItemsSpace = 8;
     threeColumn.verticalInterItemsSpace = 8;
@@ -92,6 +93,21 @@
     threeColumnFooterInfo.text = @"3 columns Footer";
     threeColumnFooterInfo.color = RANDOM_COLOR;
     threeColumn.footerInfo = threeColumnFooterInfo;
+    
+    // 横向滑动
+    TangramHorizontalInlineLayoutComponent *horizontal = [[TangramHorizontalInlineLayoutComponent alloc] init];
+    horizontal.sectionName = @"Horizontal";
+    array = [NSMutableArray arrayWithCapacity:100];
+    for (NSInteger i = 0; i < 8; i++) {
+        ColorfulModel *m = [ColorfulModel new];
+        m.color = RANDOM_COLOR;
+        m.canvasHeight = 100;
+        [array addObject:m];
+    }
+    horizontal.itemInfos = array.copy;
+    horizontal.horizontalInterItemsSpace = 20;
+    horizontal.margin = UIEdgeInsetsMake(10, 0, 10, 0);
+    horizontal.height = 300;
     
 
     // 双列网格
@@ -109,7 +125,7 @@
     twoColumn.itemInfos = array.copy;
     twoColumn.columnPartitions = @[@5,@4];
     twoColumn.horizontalInterItemsSpace = 20;
-    twoColumn.margin = UIEdgeInsetsMake(100, 8, 30, 8);
+    twoColumn.margin = UIEdgeInsetsMake(40, 8, 30, 8);
     
     // sticky
     TangramGridLayoutComponet *sticky = [[TangramGridLayoutComponet alloc] init];
@@ -159,7 +175,7 @@
     
     
     
-    NSArray *components = @[onePlus, sticky, threeColumn, twoColumn, water];
+    NSArray *components = @[onePlus,horizontal, sticky, threeColumn, twoColumn, water];
     
     TangramNode *tan = TangramNode.new;
     tan.layoutComponents = components;

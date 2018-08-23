@@ -15,13 +15,13 @@
 
 
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
-#import "TangramLayoutComponent.h"
-#import "TangramHorizontalInlineCellModel.h"
+#import "TangramInlineLayoutComponent.h"
+#import "TangramInlineCellModel.h"
 
-/// 横向可滑动布局
-@interface TangramHorizontalLayoutComponent : TangramLayoutComponent <ASCollectionDelegate, ASCollectionDataSource>
 
-@property (nonatomic, strong) TangramHorizontalInlineCellModel *inlineModel;
+/// 内联布局，如banner、横向滑动等布局继承使用本布局
+@interface TangramHorizontalInlineLayoutComponent : TangramInlineLayoutComponent < ASCollectionDataSource, ASCollectionDelegateFlowLayout>
+
 @property (nonatomic, weak) ASCollectionNode *collectionNode;
 @property (nonatomic) CGFloat horizontalInterItemsSpace; ///< 垂直方向每个组件的距离; hGap
 @property (nonatomic) CGFloat scrollMarginLeft; ///< 最左边一帧距离布局左边的间距

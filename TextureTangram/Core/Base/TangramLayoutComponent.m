@@ -37,6 +37,11 @@
 - (void)computeLayoutsWithOrigin:(CGPoint)origin width:(CGFloat)width {
     self.width = width;
     self.layoutOrigin = origin;
+    CGFloat headerHeight = self.headerInfo.expectedHeight;
+    if ([self.headerInfo respondsToSelector:@selector(computeHeightWithWidth:)]) {
+        headerHeight =[self.headerInfo computeHeightWithWidth:width];
+    }
+    self.headerInfo.frame = CGRectMake(self.layoutOrigin.x, self.layoutOrigin.y, width, headerHeight);
 }
 
 @end

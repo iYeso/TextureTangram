@@ -17,8 +17,8 @@
 #import "TangramCollectionViewLayout.h"
 #import "TangramItemNode.h"
 #import "TangramNodeRegistry.h"
-#import "TangramHorizontalLayoutComponent.h"
-#import "TangramHorizontalInlineCellModel.h"
+#import "TangramInlineLayoutComponent.h"
+#import "TangramInlineCellModel.h"
 
 @interface TangramNode () <ASCollectionDelegate, ASCollectionDataSource, ASCollectionViewLayoutInspecting>
 
@@ -104,7 +104,16 @@
 // ASDK的node是异步加载的，当加载完毕时，直接使用计算好的高度。
 // 还有一种情况，就是高度是预先指定的，那么，在这里可以直接使用指定的高度，而不是让ASDK去计算
 - (ASSizeRange)collectionNode:(ASCollectionNode *)collectionNode constrainedSizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    TangramComponentDescriptor * layoutDescriptor = self.collectionLayout.layoutComponents[indexPath.section].itemInfos[indexPath.row];
+    TangramLayoutComponent *component = self.collectionLayout.layoutComponents[indexPath.section];
+    if (component.isInlineLayout) {
+        TangramInlineLayoutComponent *inlineLayoutComponent = (TangramInlineLayoutComponent*)component;
+        if (CGRectEqualToRect(CGRectZero, inlineLayoutComponent.inlineCellFrame)) {
+            return ASSizeRangeUnconstrained;
+        } else {
+            return ASSizeRangeMake(inlineLayoutComponent.inlineCellFrame.size);
+        }
+    }
+    TangramComponentDescriptor * layoutDescriptor = component.itemInfos[indexPath.row];
     if (layoutDescriptor.expectedHeight > 0) { //已经计算好高度
         return ASSizeRangeMake(CGSizeMake(layoutDescriptor.width, layoutDescriptor.expectedHeight));
     } else { //尚未计算高度
@@ -121,7 +130,7 @@
 
 - (NSInteger)collectionNode:(ASCollectionNode *)collectionNode numberOfItemsInSection:(NSInteger)section {
     TangramLayoutComponent *component = self.collectionLayout.layoutComponents[section];
-    if (component.isHorizontalScollableLayout) {
+    if (component.isInlineLayout) {
         return 1;
     } else {
         return component.itemInfos.count;
@@ -164,16 +173,11 @@
 - (ASCellNodeBlock)collectionNode:(ASCollectionNode *)collectionNode nodeBlockForItemAtIndexPath:(NSIndexPath *)indexPath {
     TangramLayoutComponent *component = self.collectionLayout.layoutComponents[indexPath.section];
     TangramComponentDescriptor *model;
-    if (!component.isHorizontalScollableLayout) {
+    if (!component.isInlineLayout) {
         model = component.itemInfos[indexPath.row];
     } else {
-        // 横向滑动特殊处理
-        model = [(TangramHorizontalLayoutComponent *)component inlineModel];
-        if (!model) {
-            TangramHorizontalInlineCellModel *inlineModel = [TangramHorizontalInlineCellModel new];
-            inlineModel.layoutComponent = (TangramHorizontalLayoutComponent *)component;
-            [(TangramHorizontalLayoutComponent *)component setInlineModel:inlineModel];
-        }
+        // 内联布局特殊处理
+        model = [(TangramInlineLayoutComponent *)component inlineModel];
     }
     return [self nodeBlockWithModel:model];
 }

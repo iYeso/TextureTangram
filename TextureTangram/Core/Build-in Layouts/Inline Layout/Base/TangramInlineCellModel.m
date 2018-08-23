@@ -13,13 +13,8 @@
 // limitations under the License.
 //
 
-#import "TangramHorizontalLayoutComponent.h"
+#import "TangramInlineCellModel.h"
 
-@implementation TangramHorizontalLayoutComponent
-
-- (void)computeLayoutsWithOrigin:(CGPoint)origin width:(CGFloat)width {
-    
-}
-
+@implementation TangramInlineCellModel
 
 @end

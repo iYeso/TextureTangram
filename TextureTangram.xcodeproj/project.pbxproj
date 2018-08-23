@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2F852D7DA9FC97BCFD9E7B48 /* libPods-TextureTangram.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F7BE0EF20EC4EA75CCB5038 /* libPods-TextureTangram.a */; };
+		BC0B31DE212E9A9A00871CE1 /* TangramInlineLayoutComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = BC0B31DD212E9A9A00871CE1 /* TangramInlineLayoutComponent.m */; };
 		BC43AF54212159E700A2B9DE /* TangramLayoutComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = BC43AF53212159E700A2B9DE /* TangramLayoutComponent.m */; };
 		BC43AF5821216E5500A2B9DE /* TangramGridLayoutComponet.m in Sources */ = {isa = PBXBuildFile; fileRef = BC43AF5721216E5500A2B9DE /* TangramGridLayoutComponet.m */; };
 		BCBA272A2118457D00E8C0AD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBA27292118457D00E8C0AD /* AppDelegate.m */; };
@@ -26,9 +27,9 @@
 		CBD6492D212C56AB004E8098 /* TangramComponentDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD6492C212C56AB004E8098 /* TangramComponentDescriptor.m */; };
 		CBD64930212C5964004E8098 /* TangramNodeRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD6492F212C5964004E8098 /* TangramNodeRegistry.m */; };
 		CBD64933212C5F34004E8098 /* TangramItemNode.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD64932212C5F34004E8098 /* TangramItemNode.m */; };
-		CBD64936212D9F1B004E8098 /* TangramHorizontalLayoutComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD64935212D9F1B004E8098 /* TangramHorizontalLayoutComponent.m */; };
-		CBD64939212DA92D004E8098 /* TangramHorizontalInlineCellNode.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD64938212DA92D004E8098 /* TangramHorizontalInlineCellNode.m */; };
-		CBD6493C212DAA77004E8098 /* TangramHorizontalInlineCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD6493B212DAA77004E8098 /* TangramHorizontalInlineCellModel.m */; };
+		CBD64936212D9F1B004E8098 /* TangramHorizontalInlineLayoutComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD64935212D9F1B004E8098 /* TangramHorizontalInlineLayoutComponent.m */; };
+		CBD64939212DA92D004E8098 /* TangramInlineHorizontalScrollableNode.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD64938212DA92D004E8098 /* TangramInlineHorizontalScrollableNode.m */; };
+		CBD6493C212DAA77004E8098 /* TangramInlineCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD6493B212DAA77004E8098 /* TangramInlineCellModel.m */; };
 		E77958A0D5E05468FC7F7104 /* libPods-TextureTangramTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ED60A47DBD7B5D406656A6FF /* libPods-TextureTangramTests.a */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +47,8 @@
 		3F7BE0EF20EC4EA75CCB5038 /* libPods-TextureTangram.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TextureTangram.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		88950BE613CEB6E77CBDBAD2 /* Pods-TextureTangram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TextureTangram.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TextureTangram/Pods-TextureTangram.debug.xcconfig"; sourceTree = "<group>"; };
 		B5624ABFABBA8BF96F11636A /* Pods-TextureTangramTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TextureTangramTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TextureTangramTests/Pods-TextureTangramTests.release.xcconfig"; sourceTree = "<group>"; };
+		BC0B31DC212E9A9A00871CE1 /* TangramInlineLayoutComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TangramInlineLayoutComponent.h; sourceTree = "<group>"; };
+		BC0B31DD212E9A9A00871CE1 /* TangramInlineLayoutComponent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TangramInlineLayoutComponent.m; sourceTree = "<group>"; };
 		BC43AF52212159E700A2B9DE /* TangramLayoutComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TangramLayoutComponent.h; sourceTree = "<group>"; };
 		BC43AF53212159E700A2B9DE /* TangramLayoutComponent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TangramLayoutComponent.m; sourceTree = "<group>"; };
 		BC43AF55212162E900A2B9DE /* TangramComponentDescriptor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TangramComponentDescriptor.h; sourceTree = "<group>"; };
@@ -83,12 +86,12 @@
 		CBD6492F212C5964004E8098 /* TangramNodeRegistry.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TangramNodeRegistry.m; sourceTree = "<group>"; };
 		CBD64931212C5F34004E8098 /* TangramItemNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TangramItemNode.h; sourceTree = "<group>"; };
 		CBD64932212C5F34004E8098 /* TangramItemNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TangramItemNode.m; sourceTree = "<group>"; };
-		CBD64934212D9F1B004E8098 /* TangramHorizontalLayoutComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TangramHorizontalLayoutComponent.h; sourceTree = "<group>"; };
-		CBD64935212D9F1B004E8098 /* TangramHorizontalLayoutComponent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TangramHorizontalLayoutComponent.m; sourceTree = "<group>"; };
-		CBD64937212DA92D004E8098 /* TangramHorizontalInlineCellNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TangramHorizontalInlineCellNode.h; sourceTree = "<group>"; };
-		CBD64938212DA92D004E8098 /* TangramHorizontalInlineCellNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TangramHorizontalInlineCellNode.m; sourceTree = "<group>"; };
-		CBD6493A212DAA77004E8098 /* TangramHorizontalInlineCellModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TangramHorizontalInlineCellModel.h; sourceTree = "<group>"; };
-		CBD6493B212DAA77004E8098 /* TangramHorizontalInlineCellModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TangramHorizontalInlineCellModel.m; sourceTree = "<group>"; };
+		CBD64934212D9F1B004E8098 /* TangramHorizontalInlineLayoutComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TangramHorizontalInlineLayoutComponent.h; sourceTree = "<group>"; };
+		CBD64935212D9F1B004E8098 /* TangramHorizontalInlineLayoutComponent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TangramHorizontalInlineLayoutComponent.m; sourceTree = "<group>"; };
+		CBD64937212DA92D004E8098 /* TangramInlineHorizontalScrollableNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TangramInlineHorizontalScrollableNode.h; sourceTree = "<group>"; };
+		CBD64938212DA92D004E8098 /* TangramInlineHorizontalScrollableNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TangramInlineHorizontalScrollableNode.m; sourceTree = "<group>"; };
+		CBD6493A212DAA77004E8098 /* TangramInlineCellModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TangramInlineCellModel.h; sourceTree = "<group>"; };
+		CBD6493B212DAA77004E8098 /* TangramInlineCellModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TangramInlineCellModel.m; sourceTree = "<group>"; };
 		ED60A47DBD7B5D406656A6FF /* libPods-TextureTangramTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TextureTangramTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7DAAD2A7B0A10FCEFC3B62B /* Pods-TextureTangramTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TextureTangramTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TextureTangramTests/Pods-TextureTangramTests.debug.xcconfig"; sourceTree = "<group>"; };
 		FB84F3E7791079E708BF191E /* Pods-TextureTangram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TextureTangram.release.xcconfig"; path = "Pods/Target Support Files/Pods-TextureTangram/Pods-TextureTangram.release.xcconfig"; sourceTree = "<group>"; };
@@ -132,6 +135,64 @@
 				B5624ABFABBA8BF96F11636A /* Pods-TextureTangramTests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		BC0B31D8212E987F00871CE1 /* Grid Layout */ = {
+			isa = PBXGroup;
+			children = (
+				BC43AF5621216E5400A2B9DE /* TangramGridLayoutComponet.h */,
+				BC43AF5721216E5500A2B9DE /* TangramGridLayoutComponet.m */,
+			);
+			path = "Grid Layout";
+			sourceTree = "<group>";
+		};
+		BC0B31D9212E988700871CE1 /* Waterflow Layout */ = {
+			isa = PBXGroup;
+			children = (
+				BCDD2A312123FDA000BFFA37 /* TangramWaterFlowLayoutComponent.h */,
+				BCDD2A322123FDA000BFFA37 /* TangramWaterFlowLayoutComponent.m */,
+			);
+			path = "Waterflow Layout";
+			sourceTree = "<group>";
+		};
+		BC0B31DA212E989100871CE1 /* 1+N */ = {
+			isa = PBXGroup;
+			children = (
+				CB3F0F3421244D2D005B0AE5 /* TangramOnePlusLayoutComponent.h */,
+				CB3F0F3521244D2D005B0AE5 /* TangramOnePlusLayoutComponent.m */,
+			);
+			path = "1+N";
+			sourceTree = "<group>";
+		};
+		BC0B31DB212E989B00871CE1 /* Inline Layout */ = {
+			isa = PBXGroup;
+			children = (
+				BC0B31DF212E9B3900871CE1 /* Base */,
+				BC0B31E0212E9B4100871CE1 /* Horizontal Scrollable */,
+			);
+			path = "Inline Layout";
+			sourceTree = "<group>";
+		};
+		BC0B31DF212E9B3900871CE1 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				CBD6493A212DAA77004E8098 /* TangramInlineCellModel.h */,
+				CBD6493B212DAA77004E8098 /* TangramInlineCellModel.m */,
+				BC0B31DC212E9A9A00871CE1 /* TangramInlineLayoutComponent.h */,
+				BC0B31DD212E9A9A00871CE1 /* TangramInlineLayoutComponent.m */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		BC0B31E0212E9B4100871CE1 /* Horizontal Scrollable */ = {
+			isa = PBXGroup;
+			children = (
+				CBD64934212D9F1B004E8098 /* TangramHorizontalInlineLayoutComponent.h */,
+				CBD64935212D9F1B004E8098 /* TangramHorizontalInlineLayoutComponent.m */,
+				CBD64937212DA92D004E8098 /* TangramInlineHorizontalScrollableNode.h */,
+				CBD64938212DA92D004E8098 /* TangramInlineHorizontalScrollableNode.m */,
+			);
+			path = "Horizontal Scrollable";
 			sourceTree = "<group>";
 		};
 		BCBA271C2118457D00E8C0AD = {
@@ -200,18 +261,10 @@
 		CB3F0F3721244D35005B0AE5 /* Build-in Layouts */ = {
 			isa = PBXGroup;
 			children = (
-				BC43AF5621216E5400A2B9DE /* TangramGridLayoutComponet.h */,
-				BC43AF5721216E5500A2B9DE /* TangramGridLayoutComponet.m */,
-				BCDD2A312123FDA000BFFA37 /* TangramWaterFlowLayoutComponent.h */,
-				BCDD2A322123FDA000BFFA37 /* TangramWaterFlowLayoutComponent.m */,
-				CB3F0F3421244D2D005B0AE5 /* TangramOnePlusLayoutComponent.h */,
-				CB3F0F3521244D2D005B0AE5 /* TangramOnePlusLayoutComponent.m */,
-				CBD64934212D9F1B004E8098 /* TangramHorizontalLayoutComponent.h */,
-				CBD64935212D9F1B004E8098 /* TangramHorizontalLayoutComponent.m */,
-				CBD6493A212DAA77004E8098 /* TangramHorizontalInlineCellModel.h */,
-				CBD6493B212DAA77004E8098 /* TangramHorizontalInlineCellModel.m */,
-				CBD64937212DA92D004E8098 /* TangramHorizontalInlineCellNode.h */,
-				CBD64938212DA92D004E8098 /* TangramHorizontalInlineCellNode.m */,
+				BC0B31D8212E987F00871CE1 /* Grid Layout */,
+				BC0B31D9212E988700871CE1 /* Waterflow Layout */,
+				BC0B31DA212E989100871CE1 /* 1+N */,
+				BC0B31DB212E989B00871CE1 /* Inline Layout */,
 			);
 			path = "Build-in Layouts";
 			sourceTree = "<group>";
@@ -380,14 +433,15 @@
 				BCBA27382118458000E8C0AD /* main.m in Sources */,
 				BCBA272A2118457D00E8C0AD /* AppDelegate.m in Sources */,
 				CBD64927212C5390004E8098 /* ColorWithInnerTextNode.m in Sources */,
-				CBD6493C212DAA77004E8098 /* TangramHorizontalInlineCellModel.m in Sources */,
+				CBD6493C212DAA77004E8098 /* TangramInlineCellModel.m in Sources */,
 				CBD6492D212C56AB004E8098 /* TangramComponentDescriptor.m in Sources */,
 				CB3F0F30212325B7005B0AE5 /* ColorfulCellNode.m in Sources */,
 				CBD64930212C5964004E8098 /* TangramNodeRegistry.m in Sources */,
-				CBD64936212D9F1B004E8098 /* TangramHorizontalLayoutComponent.m in Sources */,
-				CBD64939212DA92D004E8098 /* TangramHorizontalInlineCellNode.m in Sources */,
+				CBD64936212D9F1B004E8098 /* TangramHorizontalInlineLayoutComponent.m in Sources */,
+				CBD64939212DA92D004E8098 /* TangramInlineHorizontalScrollableNode.m in Sources */,
 				CB01B8ED212069FD00DD9BE7 /* TangramCollectionViewLayout.m in Sources */,
 				BCDD2A332123FDA000BFFA37 /* TangramWaterFlowLayoutComponent.m in Sources */,
+				BC0B31DE212E9A9A00871CE1 /* TangramInlineLayoutComponent.m in Sources */,
 				BC43AF54212159E700A2B9DE /* TangramLayoutComponent.m in Sources */,
 				CBD64933212C5F34004E8098 /* TangramItemNode.m in Sources */,
 				CB3F0F3621244D2D005B0AE5 /* TangramOnePlusLayoutComponent.m in Sources */,

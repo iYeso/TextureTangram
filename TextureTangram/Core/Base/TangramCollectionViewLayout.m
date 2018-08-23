@@ -15,6 +15,7 @@
 
 
 #import "TangramCollectionViewLayout.h"
+#import "TangramInlineLayoutComponent.h"
 
 NSString *const TangramCollectionViewBackgroundDecoratedKind = @"TangramCollectionViewBackgroundDecoratedKind";
 NSString *const TangramCollectionViewSupplementaryKindHeader = @"TangramCollectionViewSupplementaryKindHeader";
@@ -83,10 +84,12 @@ NSString *const TangramCollectionViewSupplementaryKindFooter = @"TangramCollecti
         CGFloat maxMargin = MAX(last.margin.bottom, component.margin.top);
         CGFloat width = CGRectGetWidth(UIScreen.mainScreen.bounds) - component.margin.left - component.margin.right;
         // 更新每一个item的高度
-        for (NSInteger j = 0; j < component.itemInfos.count; j++) {
-            TangramComponentDescriptor * item = component.itemInfos[j];
-            CGFloat itemHeight = [(id<UICollectionViewDelegateFlowLayout>)self.collectionView.delegate collectionView:self.collectionView layout:self sizeForItemAtIndexPath:[NSIndexPath indexPathForRow:j inSection:i]].height;
-            item.expectedHeight = itemHeight;
+        if (!component.isInlineLayout) {
+            for (NSInteger j = 0; j < component.itemInfos.count; j++) {
+                TangramComponentDescriptor * item = component.itemInfos[j];
+                CGFloat itemHeight = [(id<UICollectionViewDelegateFlowLayout>)self.collectionView.delegate collectionView:self.collectionView layout:self sizeForItemAtIndexPath:[NSIndexPath indexPathForRow:j inSection:i]].height;
+                item.expectedHeight = itemHeight;
+            }
         }
         CGPoint origin = CGPointMake(component.margin.left, last.layoutOrigin.y + last.height + maxMargin);
         [component computeLayoutsWithOrigin:origin width:width];
@@ -154,26 +157,39 @@ NSString *const TangramCollectionViewSupplementaryKindFooter = @"TangramCollecti
             }
         }
         
-        // cell
-        // 优化：找到一个不在rect内的，就退出循环。
-        // TODO： 采用类似二分法的方法查找；这个不是很必要，10000个item都不会很占用CPU
-        NSInteger numberOfItems = [self.collectionView.dataSource collectionView:self.collectionView numberOfItemsInSection:i];
-        BOOL found = NO;
-        for (NSInteger j = 0; j < numberOfItems; j++) {
-            TangramComponentDescriptor * descriptor = component.itemInfos[j];
-            
-            if (CGRectIntersectsRect(descriptor.frame, rect)) {
-                UICollectionViewLayoutAttributes *attributes =[self layoutAttributesForItemAtIndexPath:[NSIndexPath indexPathForRow:j inSection:i]];
+        if (component.isInlineLayout) {
+            // 内联的cell
+            TangramInlineLayoutComponent *inlineLayout = (TangramInlineLayoutComponent *)component;
+            if (CGRectIntersectsRect(inlineLayout.inlineCellFrame, rect)) {
+                UICollectionViewLayoutAttributes *attributes = [self layoutAttributesForItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:i]];
                 if (attributes) {
                     [visibleLayoutAttributes addObject:attributes];
-                    found = YES;
+                }
+            }
+        }
+        else {
+            // cell
+            // 优化：找到一个不在rect内的，就退出循环。
+            // TODO： 采用类似二分法的方法查找；这个不是很必要，10000个item都不会很占用CPU
+            NSInteger numberOfItems = [self.collectionView.dataSource collectionView:self.collectionView numberOfItemsInSection:i];
+            BOOL found = NO;
+            for (NSInteger j = 0; j < numberOfItems; j++) {
+                TangramComponentDescriptor * descriptor = component.itemInfos[j];
+                
+                if (CGRectIntersectsRect(descriptor.frame, rect)) {
+                    UICollectionViewLayoutAttributes *attributes =[self layoutAttributesForItemAtIndexPath:[NSIndexPath indexPathForRow:j inSection:i]];
+                    if (attributes) {
+                        [visibleLayoutAttributes addObject:attributes];
+                        found = YES;
+                    }
+                    
+                } else if (found) {
+                    break;
                 }
                 
-            } else if (found) {
-                break;
             }
-            
         }
+        
     }
     if (visibleLayoutAttributes.count) {
         return visibleLayoutAttributes;
@@ -183,9 +199,19 @@ NSString *const TangramCollectionViewSupplementaryKindFooter = @"TangramCollecti
 }
 - (nullable UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath {
     TangramLayoutComponent *layoutComponent = self.layoutComponents[indexPath.section];
-    UICollectionViewLayoutAttributes *attributes = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
-    attributes.frame = layoutComponent.itemInfos[indexPath.row].frame;
-    return attributes;
+    
+    if (layoutComponent.isInlineLayout) {
+        // 内联的cell
+        TangramInlineLayoutComponent *inlineLayout = (TangramInlineLayoutComponent *)layoutComponent;
+        UICollectionViewLayoutAttributes *attributes = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
+        attributes.frame = inlineLayout.inlineCellFrame;
+        return attributes;
+        
+    } else {
+        UICollectionViewLayoutAttributes *attributes = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
+        attributes.frame = layoutComponent.itemInfos[indexPath.row].frame;
+        return attributes;
+    }
 }
 - (nullable UICollectionViewLayoutAttributes *)layoutAttributesForSupplementaryViewOfKind:(NSString *)elementKind atIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row > 0) {

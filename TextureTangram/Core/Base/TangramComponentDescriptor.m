@@ -17,11 +17,12 @@
 
 @implementation TangramComponentDescriptor
 
-- (NSString *)type {
-    if (!_type) {
-        return @"placeholder";
+- (instancetype)init  {
+    self = [super init];
+    if (self) {
+        _type = @"placeholder";
     }
-    return _type;
+    return self;
 }
 
 - (CGFloat)computeHeightWithWidth:(CGFloat)width {

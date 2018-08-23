@@ -19,12 +19,7 @@
 
 - (void)computeLayoutsWithOrigin:(CGPoint)origin width:(CGFloat)width {
     [super computeLayoutsWithOrigin:origin width:width];
-    CGFloat headerHeight = self.headerInfo.expectedHeight;
-    if ([self.headerInfo respondsToSelector:@selector(computeHeightWithWidth:)]) {
-        headerHeight =[self.headerInfo computeHeightWithWidth:width];
-    }
-    self.headerInfo.frame = CGRectMake(self.layoutOrigin.x, self.layoutOrigin.y, width, headerHeight);
-    
+    CGFloat headerHeight = CGRectGetHeight(self.headerInfo.frame);
     CGFloat footerHeight = self.footerInfo.expectedHeight;
     if ([self.footerInfo respondsToSelector:@selector(computeHeightWithWidth:)]) {
         footerHeight =[self.footerInfo computeHeightWithWidth:width];
