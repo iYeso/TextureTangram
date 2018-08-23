@@ -46,6 +46,10 @@ NSString *TangramHorizontalInlineCellNodeType = @"horizontalscollable";
 
 #pragma mark - ASCollectionDataSource
 
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+    return UIEdgeInsetsMake(0, self.scrollMarginLeft, 0, self.scrollMarginRight);
+}
+
 - (NSInteger)numberOfSectionsInCollectionNode:(ASCollectionNode *)collectionNode {
     return 1;
 }

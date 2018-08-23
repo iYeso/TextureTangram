@@ -108,6 +108,8 @@
     horizontal.horizontalInterItemsSpace = 20;
     horizontal.margin = UIEdgeInsetsMake(10, 0, 10, 0);
     horizontal.height = 300;
+    horizontal.scrollMarginRight = 100;
+    horizontal.scrollMarginLeft = 50;
     
 
     // 双列网格
