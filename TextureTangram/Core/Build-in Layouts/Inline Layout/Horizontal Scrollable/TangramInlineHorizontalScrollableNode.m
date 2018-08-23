@@ -16,18 +16,18 @@
 
 #import "TangramInlineHorizontalScrollableNode.h"
 #import "TangramHorizontalInlineLayoutComponent.h"
-#import "TangramInlineCellModel.h"
+#import "TangramInlineCellInfo.h"
 
 @interface TangramInlineHorizontalScrollableNode()
 
-@property (nonatomic, strong) TangramInlineCellModel *model;
+@property (nonatomic, strong) TangramInlineCellInfo *model;
 
 @end
 
 @implementation TangramInlineHorizontalScrollableNode
 
 
-- (void)setModel:(TangramInlineCellModel *)model {
+- (void)setModel:(TangramInlineCellInfo *)model {
     [super setModel:model];
     TangramHorizontalInlineLayoutComponent *component = (TangramHorizontalInlineLayoutComponent *)model.layoutComponent;
     component.collectionNode = self.collectionNode;
@@ -38,8 +38,8 @@
 //    [self.collectionNode reloadData];
 }
 
-- (TangramInlineCellModel *)model {
-    return (TangramInlineCellModel*)[super model];
+- (TangramInlineCellInfo *)model {
+    return (TangramInlineCellInfo*)[super model];
 }
 
 

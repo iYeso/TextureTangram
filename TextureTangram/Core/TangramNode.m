@@ -18,7 +18,7 @@
 #import "TangramItemNode.h"
 #import "TangramNodeRegistry.h"
 #import "TangramInlineLayoutComponent.h"
-#import "TangramInlineCellModel.h"
+#import "TangramInlineCellInfo.h"
 
 @interface TangramNode () <ASCollectionDelegate, ASCollectionDataSource, ASCollectionViewLayoutInspecting>
 

@@ -16,7 +16,7 @@
 
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
 #import "TangramInlineLayoutComponent.h"
-#import "TangramInlineCellModel.h"
+#import "TangramInlineCellInfo.h"
 
 
 /// 内联布局，如banner、横向滑动等布局继承使用本布局

@@ -7,13 +7,13 @@
 //
 
 #import "TangramLayoutComponent.h"
-#import "TangramInlineCellModel.h"
+#import "TangramInlineCellInfo.h"
 
 @interface TangramInlineLayoutComponent : TangramLayoutComponent
 
 - (nonnull NSString *)type;
 
 @property (nonatomic) CGRect inlineCellFrame;
-@property (nonatomic, strong, nonnull) TangramInlineCellModel *inlineModel; ///自动初始化一个inlineModel
+@property (nonatomic, strong, nonnull) TangramInlineCellInfo *inlineModel; ///自动初始化一个inlineModel
 
 @end

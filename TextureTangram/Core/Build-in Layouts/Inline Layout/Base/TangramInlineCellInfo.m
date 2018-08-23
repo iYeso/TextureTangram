@@ -13,8 +13,8 @@
 // limitations under the License.
 //
 
-#import "TangramInlineCellModel.h"
+#import "TangramInlineCellInfo.h"
 
-@implementation TangramInlineCellModel
+@implementation TangramInlineCellInfo
 
 @end

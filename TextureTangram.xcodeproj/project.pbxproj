@@ -29,7 +29,7 @@
 		CBD64933212C5F34004E8098 /* TangramItemNode.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD64932212C5F34004E8098 /* TangramItemNode.m */; };
 		CBD64936212D9F1B004E8098 /* TangramHorizontalInlineLayoutComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD64935212D9F1B004E8098 /* TangramHorizontalInlineLayoutComponent.m */; };
 		CBD64939212DA92D004E8098 /* TangramInlineHorizontalScrollableNode.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD64938212DA92D004E8098 /* TangramInlineHorizontalScrollableNode.m */; };
-		CBD6493C212DAA77004E8098 /* TangramInlineCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD6493B212DAA77004E8098 /* TangramInlineCellModel.m */; };
+		CBD6493C212DAA77004E8098 /* TangramInlineCellInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD6493B212DAA77004E8098 /* TangramInlineCellInfo.m */; };
 		E77958A0D5E05468FC7F7104 /* libPods-TextureTangramTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ED60A47DBD7B5D406656A6FF /* libPods-TextureTangramTests.a */; };
 /* End PBXBuildFile section */
 
@@ -90,8 +90,8 @@
 		CBD64935212D9F1B004E8098 /* TangramHorizontalInlineLayoutComponent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TangramHorizontalInlineLayoutComponent.m; sourceTree = "<group>"; };
 		CBD64937212DA92D004E8098 /* TangramInlineHorizontalScrollableNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TangramInlineHorizontalScrollableNode.h; sourceTree = "<group>"; };
 		CBD64938212DA92D004E8098 /* TangramInlineHorizontalScrollableNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TangramInlineHorizontalScrollableNode.m; sourceTree = "<group>"; };
-		CBD6493A212DAA77004E8098 /* TangramInlineCellModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TangramInlineCellModel.h; sourceTree = "<group>"; };
-		CBD6493B212DAA77004E8098 /* TangramInlineCellModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TangramInlineCellModel.m; sourceTree = "<group>"; };
+		CBD6493A212DAA77004E8098 /* TangramInlineCellInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TangramInlineCellInfo.h; sourceTree = "<group>"; };
+		CBD6493B212DAA77004E8098 /* TangramInlineCellInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TangramInlineCellInfo.m; sourceTree = "<group>"; };
 		ED60A47DBD7B5D406656A6FF /* libPods-TextureTangramTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TextureTangramTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7DAAD2A7B0A10FCEFC3B62B /* Pods-TextureTangramTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TextureTangramTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TextureTangramTests/Pods-TextureTangramTests.debug.xcconfig"; sourceTree = "<group>"; };
 		FB84F3E7791079E708BF191E /* Pods-TextureTangram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TextureTangram.release.xcconfig"; path = "Pods/Target Support Files/Pods-TextureTangram/Pods-TextureTangram.release.xcconfig"; sourceTree = "<group>"; };
@@ -176,8 +176,8 @@
 		BC0B31DF212E9B3900871CE1 /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				CBD6493A212DAA77004E8098 /* TangramInlineCellModel.h */,
-				CBD6493B212DAA77004E8098 /* TangramInlineCellModel.m */,
+				CBD6493A212DAA77004E8098 /* TangramInlineCellInfo.h */,
+				CBD6493B212DAA77004E8098 /* TangramInlineCellInfo.m */,
 				BC0B31DC212E9A9A00871CE1 /* TangramInlineLayoutComponent.h */,
 				BC0B31DD212E9A9A00871CE1 /* TangramInlineLayoutComponent.m */,
 			);
@@ -433,7 +433,7 @@
 				BCBA27382118458000E8C0AD /* main.m in Sources */,
 				BCBA272A2118457D00E8C0AD /* AppDelegate.m in Sources */,
 				CBD64927212C5390004E8098 /* ColorWithInnerTextNode.m in Sources */,
-				CBD6493C212DAA77004E8098 /* TangramInlineCellModel.m in Sources */,
+				CBD6493C212DAA77004E8098 /* TangramInlineCellInfo.m in Sources */,
 				CBD6492D212C56AB004E8098 /* TangramComponentDescriptor.m in Sources */,
 				CB3F0F30212325B7005B0AE5 /* ColorfulCellNode.m in Sources */,
 				CBD64930212C5964004E8098 /* TangramNodeRegistry.m in Sources */,
