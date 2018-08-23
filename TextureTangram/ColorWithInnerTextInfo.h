@@ -12,15 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
+#import "TangramComponentDescriptor.h"
 
-#import "ColorfulModel.h"
+@interface ColorWithInnerTextInfo: TangramComponentDescriptor
 
-@implementation ColorfulModel
-
-- (NSString *)type {
-    return @"colorful";
-}
-
-
+@property (nonatomic, copy) NSString *text;
+@property (nonatomic, strong) UIColor *color;
 
 @end

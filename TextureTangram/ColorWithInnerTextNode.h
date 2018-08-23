@@ -15,7 +15,7 @@
 //
 
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
-#import "ColorWithInnerTextModel.h"
+#import "ColorWithInnerTextInfo.h"
 #import "TangramItemNode.h"
 
 // Header Footer必须实现ASCollectionViewLayoutInspecting协议

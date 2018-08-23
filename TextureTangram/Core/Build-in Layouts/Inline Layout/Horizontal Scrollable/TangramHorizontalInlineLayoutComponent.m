@@ -59,11 +59,11 @@ NSString *TangramHorizontalInlineCellNodeType = @"horizontalscollable";
 }
 
 - (ASCellNodeBlock)collectionNode:(ASCollectionNode *)collectionNode nodeBlockForItemAtIndexPath:(NSIndexPath *)indexPath {
-    TangramItemInfo *model = self.itemInfos[indexPath.row];
+    TangramComponentDescriptor *model = self.itemInfos[indexPath.row];
     return [self nodeBlockWithModel:model];
 }
 
-- (ASCellNodeBlock)nodeBlockWithModel:(TangramItemInfo *)model {
+- (ASCellNodeBlock)nodeBlockWithModel:(TangramComponentDescriptor *)model {
     return ^ASCellNode * _Nonnull(void) {
         Class nodeClass = [TangramNodeRegistry classForType:model.type];
         if (!model || !nodeClass || ![nodeClass isSubclassOfClass:TangramItemNode.class]) {

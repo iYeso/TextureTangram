@@ -15,9 +15,10 @@
 #import <UIKit/UIKit.h>
 
 /**
- 对应每个组件的model，新增的model继承它
+ 一个实体控件（如卡片、header、footer）的描述信息；不能看作一个Model，实际上它与控件是一一对应的
+ 类似于UICollectionViewLayoutAttributes
  */
-@interface TangramItemInfo: NSObject
+@interface TangramComponentDescriptor: NSObject
 
 @property (nonatomic, strong) NSString *type; ///< UI组件的类型
 @property (nonatomic) CGRect frame; ///< 布局的frame，未完成布局之前，使用此属性会不准确

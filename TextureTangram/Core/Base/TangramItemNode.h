@@ -14,10 +14,10 @@
 //
 
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
-#import "TangramItemInfo.h"
+#import "TangramComponentDescriptor.h"
 
 @interface TangramItemNode : ASCellNode
 
-@property (nonatomic, strong) TangramItemInfo *model;
+@property (nonatomic, strong) TangramComponentDescriptor *model;
 
 @end

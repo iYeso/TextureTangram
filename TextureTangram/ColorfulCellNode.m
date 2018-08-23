@@ -14,13 +14,13 @@
 //
 
 #import "ColorfulCellNode.h"
-#import "ColorfulModel.h"
+#import "ColorfulNodeInfo.h"
 #import "TangramNodeRegistry.h"
 
 
 @interface ColorfulCellNode()
 
-@property (nonatomic, strong) ColorfulModel *model;
+@property (nonatomic, strong) ColorfulNodeInfo *model;
 @property (nonatomic, strong) UIColor *color;
 @property (nonatomic, strong) ASDisplayNode *canvas;
 @property (nonatomic, strong) ASTextNode *redLabel;
@@ -37,11 +37,11 @@
 
 #pragma mark - setters and getters
 
-- (ColorfulModel *)model {
-    return (ColorfulModel *)[super model];
+- (ColorfulNodeInfo *)model {
+    return (ColorfulNodeInfo *)[super model];
 }
 
-- (void)setModel:(ColorfulModel *)model {
+- (void)setModel:(ColorfulNodeInfo *)model {
     [super setModel:model];
     self.color = model.color;
 }

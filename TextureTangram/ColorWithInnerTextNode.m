@@ -39,7 +39,7 @@
     return self;
 }
 
-- (void)setModel:(ColorWithInnerTextModel *)model {
+- (void)setModel:(ColorWithInnerTextInfo *)model {
     [super setModel:model];
     if (!model.text) {
         model.text = @"";

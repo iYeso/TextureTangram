@@ -12,11 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-#import "TangramItemInfo.h"
 
-@interface ColorWithInnerTextModel: TangramItemInfo
+#import <Foundation/Foundation.h>
+#import "TangramComponentDescriptor.h"
 
-@property (nonatomic, copy) NSString *text;
+@interface ColorfulNodeInfo : TangramComponentDescriptor
+
 @property (nonatomic, strong) UIColor *color;
+@property CGFloat canvasHeight;
 
 @end

@@ -13,17 +13,14 @@
 // limitations under the License.
 //
 
-#import "ColorWithInnerTextModel.h"
+#import "ColorfulNodeInfo.h"
 
-@implementation ColorWithInnerTextModel
+@implementation ColorfulNodeInfo
 
-// 本应该由json设置
 - (NSString *)type {
-    return @"innerText";
+    return @"colorful";
 }
 
-- (CGFloat)computeHeightWithWidth:(CGFloat)width {
-    return self.expectedHeight > 0?self.expectedHeight:60;
-}
+
 
 @end

@@ -19,9 +19,9 @@
 #import "TangramWaterFlowLayoutComponent.h"
 #import "TangramOnePlusLayoutComponent.h"
 #import "TangramHorizontalInlineLayoutComponent.h"
-#import "ColorfulModel.h"
+#import "ColorfulNodeInfo.h"
 #import "ColorfulCellNode.h"
-#import "ColorWithInnerTextModel.h"
+#import "ColorWithInnerTextInfo.h"
 
 @interface AppDelegate ()
 
@@ -38,14 +38,14 @@
     UIWindow *keyWindow = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
 
     // **************   测试数据  *****************8
-    NSMutableArray<TangramItemInfo*> *array;
+    NSMutableArray<TangramComponentDescriptor*> *array;
     // 1 + N
     TangramOnePlusLayoutComponent *onePlus = [[TangramOnePlusLayoutComponent alloc] init];
     onePlus.sectionName = @"1+N";
     onePlus.rowPartitions = @[@4,@5];
     array = [NSMutableArray arrayWithCapacity:5];
     for (NSInteger i = 0; i < 4; i++) {
-        ColorWithInnerTextModel *m = [ColorWithInnerTextModel new];
+        ColorWithInnerTextInfo *m = [ColorWithInnerTextInfo new];
         m.color = RANDOM_COLOR;
         m.text = [NSString stringWithFormat:@"1+N Part %d", (int)i];
         [array addObject:m];
@@ -54,12 +54,12 @@
     array[0].expectedHeight = 280;
     onePlus.margin = UIEdgeInsetsMake(30, 10, 30, 10);
     onePlus.itemInfos = array.copy;
-    ColorWithInnerTextModel *onePlusHeaderInfo = [ColorWithInnerTextModel new];;
+    ColorWithInnerTextInfo *onePlusHeaderInfo = [ColorWithInnerTextInfo new];;
     onePlusHeaderInfo.expectedHeight = 60;
     onePlusHeaderInfo.text = @"1+N Header";
     onePlusHeaderInfo.color = RANDOM_COLOR;
     onePlus.headerInfo = onePlusHeaderInfo;
-    ColorWithInnerTextModel *onePlusFooterInfo = [ColorWithInnerTextModel new];;
+    ColorWithInnerTextInfo *onePlusFooterInfo = [ColorWithInnerTextInfo new];;
     onePlusFooterInfo.expectedHeight = 60;
     onePlusFooterInfo.text = @"1+N Footer";
     onePlusFooterInfo.color = RANDOM_COLOR;
@@ -72,7 +72,7 @@
     threeColumn.maximumColumn = 3;
     array = [NSMutableArray arrayWithCapacity:50];
     for (NSInteger i = 0; i < 9; i++) {
-        ColorfulModel *m = [ColorfulModel new];
+        ColorfulNodeInfo *m = [ColorfulNodeInfo new];
         m.color = RANDOM_COLOR;
         m.canvasHeight = 150;
         [array addObject:m];
@@ -83,12 +83,12 @@
     threeColumn.horizontalInterItemsSpace = 8;
     threeColumn.verticalInterItemsSpace = 8;
     threeColumn.itemInfos = array.copy;
-    ColorWithInnerTextModel *threeColumnHeaderInfo = [ColorWithInnerTextModel new];;
+    ColorWithInnerTextInfo *threeColumnHeaderInfo = [ColorWithInnerTextInfo new];;
     threeColumnHeaderInfo.expectedHeight = 60;
     threeColumnHeaderInfo.text = @"3 columns Header";
     threeColumnHeaderInfo.color = RANDOM_COLOR;
     threeColumn.headerInfo = threeColumnHeaderInfo;
-    ColorWithInnerTextModel *threeColumnFooterInfo = [ColorWithInnerTextModel new];;
+    ColorWithInnerTextInfo *threeColumnFooterInfo = [ColorWithInnerTextInfo new];;
     threeColumnFooterInfo.expectedHeight = 60;
     threeColumnFooterInfo.text = @"3 columns Footer";
     threeColumnFooterInfo.color = RANDOM_COLOR;
@@ -99,7 +99,7 @@
     horizontal.sectionName = @"Horizontal";
     array = [NSMutableArray arrayWithCapacity:100];
     for (NSInteger i = 0; i < 8; i++) {
-        ColorfulModel *m = [ColorfulModel new];
+        ColorfulNodeInfo *m = [ColorfulNodeInfo new];
         m.color = RANDOM_COLOR;
         m.canvasHeight = 100;
         [array addObject:m];
@@ -118,7 +118,7 @@
     twoColumn.maximumColumn = 2;
     array = [NSMutableArray arrayWithCapacity:100];
     for (NSInteger i = 0; i < 8; i++) {
-        ColorfulModel *m = [ColorfulModel new];
+        ColorfulNodeInfo *m = [ColorfulNodeInfo new];
         m.color = RANDOM_COLOR;
         m.canvasHeight = 120;
         [array addObject:m];
@@ -136,7 +136,7 @@
     array = [NSMutableArray arrayWithCapacity:50];
     for (NSInteger i = 0; i < 1; i++) {
         
-        ColorWithInnerTextModel *m = [ColorWithInnerTextModel new];
+        ColorWithInnerTextInfo *m = [ColorWithInnerTextInfo new];
         m.color = RANDOM_COLOR;
         m.expectedHeight = 60;
         m.text = @"Sticky Node";
@@ -154,7 +154,7 @@
     NSInteger itemCount = 15; //打开实时刷新， iPhone 5S 的瓶颈是3000个item（CPU100%)。不打开的话，10000个item的内存创建需要耗时10秒左右，不会卡顿; 现在采用直接stickyView添加到scrollView的做法，避免重新layout的开销
     array = [NSMutableArray arrayWithCapacity:itemCount];
     for (NSInteger i = 0; i < itemCount; i++) {
-        ColorfulModel *m = [ColorfulModel new];
+        ColorfulNodeInfo *m = [ColorfulNodeInfo new];
         m.color = RANDOM_COLOR;
         m.canvasHeight = 170+arc4random()%80;
         [array addObject:m];
@@ -164,12 +164,12 @@
     water.itemInfos = array.copy;
     water.margin = UIEdgeInsetsMake(30, 8, 50, 8);
     water.insets = UIEdgeInsetsMake(10, 0, 10, 0);
-    ColorWithInnerTextModel *waterHeaderInfo = [ColorWithInnerTextModel new];;
+    ColorWithInnerTextInfo *waterHeaderInfo = [ColorWithInnerTextInfo new];;
     waterHeaderInfo.expectedHeight = 60;
     waterHeaderInfo.text = @"waterfull Header";
     waterHeaderInfo.color = RANDOM_COLOR;
     water.headerInfo = waterHeaderInfo;
-    ColorWithInnerTextModel *waterFooterInfo = [ColorWithInnerTextModel new];;
+    ColorWithInnerTextInfo *waterFooterInfo = [ColorWithInnerTextInfo new];;
     waterFooterInfo.expectedHeight = 60;
     waterFooterInfo.text = @"waterfull Footer";
     waterFooterInfo.color = RANDOM_COLOR;
@@ -217,7 +217,7 @@
         // 插入100个操作耗时： 当前如果需要展示刚插入的node，会耗时6ms左右，如果还不需要展示，耗时1ms内。
         // 所以最好事先 batch update 操作（预加载）
         for (NSInteger i = originalCount; i < originalCount+6; i++) {
-            ColorfulModel *m = [ColorfulModel new];
+            ColorfulNodeInfo *m = [ColorfulNodeInfo new];
             m.color = RANDOM_COLOR;
             m.canvasHeight = 150;
             [array addObject:m];

@@ -14,11 +14,11 @@
 //
 
 
-#import "TangramItemInfo.h"
+#import "TangramComponentDescriptor.h"
 
 @class TangramInlineLayoutComponent;
-/// 内联滑动一个横向的collectionNode的模型，由于TangramItemInfo不是协议类型，所以需要一层包装
-@interface TangramInlineCellModel : TangramItemInfo
+/// 内联滑动一个横向的collectionNode的模型，由于TangramComponentDescriptor不是协议类型，所以需要一层包装
+@interface TangramInlineCellModel : TangramComponentDescriptor
 
 @property (nonatomic, weak) TangramInlineLayoutComponent *layoutComponent;
 

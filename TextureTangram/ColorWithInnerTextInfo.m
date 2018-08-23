@@ -13,12 +13,17 @@
 // limitations under the License.
 //
 
-#import <Foundation/Foundation.h>
-#import "TangramItemInfo.h"
+#import "ColorWithInnerTextInfo.h"
 
-@interface ColorfulModel : TangramItemInfo
+@implementation ColorWithInnerTextInfo
 
-@property (nonatomic, strong) UIColor *color;
-@property CGFloat canvasHeight;
+// 本应该由json设置
+- (NSString *)type {
+    return @"innerText";
+}
+
+- (CGFloat)computeHeightWithWidth:(CGFloat)width {
+    return self.expectedHeight > 0?self.expectedHeight:60;
+}
 
 @end

@@ -14,7 +14,7 @@
 //
 
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
-#import "ColorfulModel.h"
+#import "ColorfulNodeInfo.h"
 #import "TangramItemNode.h"
 
 @interface ColorfulCellNode : TangramItemNode
