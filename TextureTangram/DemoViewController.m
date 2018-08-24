@@ -111,7 +111,7 @@
     horizontal.itemInfos = array.copy;
     horizontal.horizontalInterItemsSpace = 20;
     horizontal.margin = UIEdgeInsetsMake(10, 0, 10, 0);
-    horizontal.height = 300;
+    horizontal.fixHeight = 200; //内联的布局需要指定高度
     horizontal.scrollMarginRight = 100;
     horizontal.scrollMarginLeft = 10;
     
@@ -134,9 +134,12 @@
     twoColumn.margin = UIEdgeInsetsMake(40, 8, 30, 8);
     
     // sticky
+    // FIXIME: 吸顶布局只支持一个cell；不能设置header、footer
+    // 可以选择用内联布局
     TangramGridLayoutComponet *sticky = [[TangramGridLayoutComponet alloc] init];
     sticky.sectionName = @"Sticky";
     sticky.maximumColumn = 1;
+    sticky.fixHeight = 100; //stikcy目前只能固定高度
     array = [NSMutableArray arrayWithCapacity:50];
     for (NSInteger i = 0; i < 1; i++) {
         

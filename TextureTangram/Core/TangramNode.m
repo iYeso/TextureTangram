@@ -130,7 +130,9 @@
 
 - (NSInteger)collectionNode:(ASCollectionNode *)collectionNode numberOfItemsInSection:(NSInteger)section {
     TangramLayoutComponent *component = self.collectionLayout.layoutComponents[section];
-    if (component.isInlineLayout) {
+    if (component.pinnedType == TangramLayoutComponentPinnedTypeTop) {
+        return 0;  //吸顶布局的node需要特殊创建
+    } else if (component.isInlineLayout) {
         return 1;
     } else {
         return component.itemInfos.count;

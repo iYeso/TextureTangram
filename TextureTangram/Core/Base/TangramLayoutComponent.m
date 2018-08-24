@@ -17,6 +17,13 @@
 
 @implementation TangramLayoutComponent
 
+- (CGFloat)height {
+    if (_fixHeight > 0) {
+        return _fixHeight;
+    }
+    return _height;
+}
+
 - (TangramComponentDescriptor *)headerInfo {
     if (!_headerInfo) {
         _headerInfo = TangramComponentDescriptor.new;

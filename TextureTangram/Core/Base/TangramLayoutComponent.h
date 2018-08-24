@@ -40,6 +40,7 @@ typedef NS_ENUM(NSUInteger, TangramLayoutComponentPinnedType) {
 @property (nonatomic) BOOL isFloatingLayout; ///< 是否为固定布局/浮动布局; 不应该放到TangramCollectionViewLayout里面参与布局计算
 @property (nonatomic) TangramLayoutComponentPinnedType pinnedType; ///< 是否有吸顶/吸底效果
 @property (nonatomic) CGFloat height;  ///< 整个布局的高度；调用computeLayoutsWithOrigin会改变此属性
+@property (nonatomic) CGFloat fixHeight; ///< 设置大于0的值，调用height只能获取到fixHeight
 /// 整个layout的头部描述信息，布局在items上方，不能为空
 @property (nonatomic, strong, nonnull) TangramComponentDescriptor *headerInfo;
 /// 整个layout尾部信息，布局在items下方，不能为空
