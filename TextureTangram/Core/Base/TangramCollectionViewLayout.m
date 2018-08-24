@@ -105,12 +105,14 @@ NSString *const TangramCollectionViewSupplementaryKindFooter = @"TangramCollecti
     if (!foundSticky) {
         [_stickyNode removeFromSupernode];
         _stickyNode = nil;
-    } else  {
+    } else if (foundSticky){
         _stickyIndex = @(stickyIndex);
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:stickyIndex];
-        ASDisplayNode *node = [self.collectionNode.dataSource collectionNode:self.collectionNode nodeBlockForItemAtIndexPath:indexPath]();
-        _stickyNode = node;
-        [self.collectionNode addSubnode:_stickyNode];
+        if (!_stickyNode) {
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:stickyIndex];
+            ASDisplayNode *node = [self.collectionNode.dataSource collectionNode:self.collectionNode nodeBlockForItemAtIndexPath:indexPath]();
+            _stickyNode = node;
+            [self.collectionNode addSubnode:_stickyNode];
+        }
     }
     
     self.cacheHeight = height;
@@ -157,9 +159,7 @@ NSString *const TangramCollectionViewSupplementaryKindFooter = @"TangramCollecti
             }
         }
         
-        if (component.pinnedType == TangramLayoutComponentPinnedTypeTop) {
-            //pass
-        } else if (component.isInlineLayout) {
+         if (component.isInlineLayout) {
             // 内联的cell
             TangramInlineLayoutComponent *inlineLayout = (TangramInlineLayoutComponent *)component;
             if (CGRectIntersectsRect(inlineLayout.inlineCellFrame, rect)) {
