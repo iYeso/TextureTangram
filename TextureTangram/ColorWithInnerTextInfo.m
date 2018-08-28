@@ -17,6 +17,14 @@
 
 @implementation ColorWithInnerTextInfo
 
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        self.insets = UIEdgeInsetsMake(8, 8, 8, 8);
+    }
+    return self;
+}
+
 // 本应该由json设置
 - (NSString *)type {
     return @"innerText";

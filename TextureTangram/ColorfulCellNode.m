@@ -85,7 +85,7 @@
     self.canvas.style.minWidth = ASDimensionMake(80);
     self.canvas.style.preferredSize = CGSizeMake(self.model.width, self.model.canvasHeight);
     ASStackLayoutSpec *stackMain = [ASStackLayoutSpec stackLayoutSpecWithDirection:ASStackLayoutDirectionVertical spacing:10.0 justifyContent:ASStackLayoutJustifyContentStart alignItems:ASStackLayoutAlignItemsStart children:@[self.canvas, self.redLabel, self.greenLabel, self.blueLabel]];
-    return stackMain;
+    return [ASInsetLayoutSpec insetLayoutSpecWithInsets:self.model.insets child:stackMain];
 }
 
 @end
