@@ -16,7 +16,7 @@
 
 #import "TangramItemNode.h"
 
-/// 内联一个横向滑动的collectionNode，可以继承它用于扩展成banner
+/// 内联一个横向滑动的collectionNode
 @interface TangramInlineHorizontalScrollableNode : TangramItemNode
 
 @property (nonatomic, strong) ASCollectionNode *collectionNode;

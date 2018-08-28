@@ -16,6 +16,7 @@
 #import "ColorfulNodeInfo.h"
 #import "ColorfulCellNode.h"
 #import "ColorWithInnerTextInfo.h"
+#import "TangramCarouselInlineLayoutComponent.h"
 
 #define RANDOM_FLOAT_VALUE ((arc4random()%1001)/1000.0)
 #define RANDOM_COLOR [UIColor colorWithRed:RANDOM_FLOAT_VALUE green:RANDOM_FLOAT_VALUE blue:RANDOM_FLOAT_VALUE alpha:1.0]
@@ -111,9 +112,23 @@
     horizontal.itemInfos = array.copy;
     horizontal.horizontalInterItemsSpace = 20;
     horizontal.margin = UIEdgeInsetsMake(10, 0, 10, 0);
-    horizontal.fixHeight = 200; //内联的布局需要指定高度
+    horizontal.fixHeight = 250; //内联的布局需要指定高度
     horizontal.scrollMarginRight = 100;
     horizontal.scrollMarginLeft = 10;
+    
+    // banner
+    TangramCarouselInlineLayoutComponent *banner = [[TangramCarouselInlineLayoutComponent alloc] init];
+    banner.sectionName = @"banner";
+    array = [NSMutableArray arrayWithCapacity:100];
+    for (NSInteger i = 0; i < 5; i++) {
+        ColorWithInnerTextInfo *m = [ColorWithInnerTextInfo new];
+        m.color = RANDOM_COLOR;
+        m.text = [NSString stringWithFormat:@"我很帅%ld", i];
+        [array addObject:m];
+    }
+    banner.itemInfos = array.copy;
+    banner.margin = UIEdgeInsetsMake(10, 0, 10, 0);
+    banner.fixHeight = 250; //内联的布局需要指定高度
     
     
     // 双列网格
@@ -134,15 +149,13 @@
     twoColumn.margin = UIEdgeInsetsMake(40, 8, 30, 8);
     
     // sticky
-    // FIXIME: 吸顶布局只支持一个cell；不能设置header、footer
+    //FIXME:吸顶布局只支持一个cell；不能设置header、footer
     // 可以选择用内联布局
-    TangramGridLayoutComponet *sticky = [[TangramGridLayoutComponet alloc] init];
+    TangramHorizontalInlineLayoutComponent *sticky = [[TangramHorizontalInlineLayoutComponent alloc] init];
     sticky.sectionName = @"Sticky";
-    sticky.maximumColumn = 1;
     sticky.fixHeight = 100; //stikcy目前只能固定高度
     array = [NSMutableArray arrayWithCapacity:50];
-    for (NSInteger i = 0; i < 1; i++) {
-        
+    for (NSInteger i = 0; i < 5; i++) {
         ColorWithInnerTextInfo *m = [ColorWithInnerTextInfo new];
         m.color = RANDOM_COLOR;
         m.expectedHeight = 60;
@@ -150,7 +163,6 @@
         [array addObject:m];
     }
     sticky.margin = UIEdgeInsetsMake(50, 0, 0, 0);
-    sticky.columnPartitions = @[@1];
     sticky.itemInfos = array.copy;
     sticky.pinnedType = TangramLayoutComponentPinnedTypeTop;
     
@@ -182,7 +194,7 @@
     waterFooterInfo.color = RANDOM_COLOR;
     water.footerInfo = waterFooterInfo;
     
-    NSArray *components = @[onePlus,horizontal, sticky, threeColumn, twoColumn, water];
+    NSArray *components = @[banner,onePlus,horizontal, sticky, threeColumn, twoColumn, water];
     _tangramNode.layoutComponents = components;
 }
 

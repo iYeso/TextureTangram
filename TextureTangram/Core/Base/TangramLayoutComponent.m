@@ -17,6 +17,11 @@
 
 @implementation TangramLayoutComponent
 
+- (void)setFixHeight:(CGFloat)fixHeight {
+    _height = fixHeight;
+    _fixHeight = fixHeight;
+}
+
 - (CGFloat)height {
     if (_fixHeight > 0) {
         return _fixHeight;

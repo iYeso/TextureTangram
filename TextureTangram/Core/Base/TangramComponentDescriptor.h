@@ -24,7 +24,6 @@
 @property (nonatomic) CGRect frame; ///< 布局的frame，未完成布局之前，使用此属性会不准确
 @property (nonatomic) CGFloat width; ///< 控件的宽度，第一次布局的时候会设置这个属性。
 @property (nonatomic) CGFloat expectedHeight;
-//@property (nonatomic) BOOL fixHeight; ///<是否为灵活高度
 
 - (CGFloat)computeHeightWithWidth:(CGFloat)width; ///< 自计算高度；会影响expectedHeight属性
 

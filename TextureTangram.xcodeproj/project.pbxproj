@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		2F852D7DA9FC97BCFD9E7B48 /* libPods-TextureTangram.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F7BE0EF20EC4EA75CCB5038 /* libPods-TextureTangram.a */; };
 		BC0B31DE212E9A9A00871CE1 /* TangramInlineLayoutComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = BC0B31DD212E9A9A00871CE1 /* TangramInlineLayoutComponent.m */; };
+		BC0B3226213539A300871CE1 /* TangramCarouselInlineLayoutComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = BC0B3225213539A300871CE1 /* TangramCarouselInlineLayoutComponent.m */; };
+		BC0B32292135429B00871CE1 /* TangramCarouselNode.m in Sources */ = {isa = PBXBuildFile; fileRef = BC0B32282135429B00871CE1 /* TangramCarouselNode.m */; };
 		BC43AF54212159E700A2B9DE /* TangramLayoutComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = BC43AF53212159E700A2B9DE /* TangramLayoutComponent.m */; };
 		BC43AF5821216E5500A2B9DE /* TangramGridLayoutComponet.m in Sources */ = {isa = PBXBuildFile; fileRef = BC43AF5721216E5500A2B9DE /* TangramGridLayoutComponet.m */; };
 		BCBA272A2118457D00E8C0AD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBA27292118457D00E8C0AD /* AppDelegate.m */; };
@@ -50,6 +52,10 @@
 		B5624ABFABBA8BF96F11636A /* Pods-TextureTangramTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TextureTangramTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TextureTangramTests/Pods-TextureTangramTests.release.xcconfig"; sourceTree = "<group>"; };
 		BC0B31DC212E9A9A00871CE1 /* TangramInlineLayoutComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TangramInlineLayoutComponent.h; sourceTree = "<group>"; };
 		BC0B31DD212E9A9A00871CE1 /* TangramInlineLayoutComponent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TangramInlineLayoutComponent.m; sourceTree = "<group>"; };
+		BC0B3224213539A300871CE1 /* TangramCarouselInlineLayoutComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TangramCarouselInlineLayoutComponent.h; sourceTree = "<group>"; };
+		BC0B3225213539A300871CE1 /* TangramCarouselInlineLayoutComponent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TangramCarouselInlineLayoutComponent.m; sourceTree = "<group>"; };
+		BC0B32272135429B00871CE1 /* TangramCarouselNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TangramCarouselNode.h; sourceTree = "<group>"; };
+		BC0B32282135429B00871CE1 /* TangramCarouselNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TangramCarouselNode.m; sourceTree = "<group>"; };
 		BC43AF52212159E700A2B9DE /* TangramLayoutComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TangramLayoutComponent.h; sourceTree = "<group>"; };
 		BC43AF53212159E700A2B9DE /* TangramLayoutComponent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TangramLayoutComponent.m; sourceTree = "<group>"; };
 		BC43AF55212162E900A2B9DE /* TangramComponentDescriptor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TangramComponentDescriptor.h; sourceTree = "<group>"; };
@@ -171,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				BC0B31DF212E9B3900871CE1 /* Base */,
+				BC0B321A2135243100871CE1 /* Carousel(Banner) */,
 				BC0B31E0212E9B4100871CE1 /* Horizontal Scrollable */,
 			);
 			path = "Inline Layout";
@@ -196,6 +203,17 @@
 				CBD64938212DA92D004E8098 /* TangramInlineHorizontalScrollableNode.m */,
 			);
 			path = "Horizontal Scrollable";
+			sourceTree = "<group>";
+		};
+		BC0B321A2135243100871CE1 /* Carousel(Banner) */ = {
+			isa = PBXGroup;
+			children = (
+				BC0B3224213539A300871CE1 /* TangramCarouselInlineLayoutComponent.h */,
+				BC0B3225213539A300871CE1 /* TangramCarouselInlineLayoutComponent.m */,
+				BC0B32272135429B00871CE1 /* TangramCarouselNode.h */,
+				BC0B32282135429B00871CE1 /* TangramCarouselNode.m */,
+			);
+			path = "Carousel(Banner)";
 			sourceTree = "<group>";
 		};
 		BCBA271C2118457D00E8C0AD = {
@@ -432,10 +450,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				BCBA272D2118457D00E8C0AD /* TangramNode.m in Sources */,
+				BC0B3226213539A300871CE1 /* TangramCarouselInlineLayoutComponent.m in Sources */,
 				CBD6492A212C53E7004E8098 /* ColorWithInnerTextInfo.m in Sources */,
 				CB3F0F3321232621005B0AE5 /* ColorfulNodeInfo.m in Sources */,
 				CBD6493F212F094A004E8098 /* DemoViewController.m in Sources */,
 				BC43AF5821216E5500A2B9DE /* TangramGridLayoutComponet.m in Sources */,
+				BC0B32292135429B00871CE1 /* TangramCarouselNode.m in Sources */,
 				BCBA27382118458000E8C0AD /* main.m in Sources */,
 				BCBA272A2118457D00E8C0AD /* AppDelegate.m in Sources */,
 				CBD64927212C5390004E8098 /* ColorWithInnerTextNode.m in Sources */,

@@ -142,6 +142,12 @@ NSString *const TangramCollectionViewSupplementaryKindFooter = @"TangramCollecti
         if (!CGRectIntersectsRect(componentRect, rect)) {
             continue;
         }
+        
+        // 吸顶布局特殊处理；不需要collectionLayout内置处理
+        if (component.pinnedType == TangramLayoutComponentPinnedTypeTop) {
+            continue;
+        }
+        
         // 头部
         if (component.headerInfo && CGRectIntersectsRect(component.headerInfo.frame, rect)) {
             UICollectionViewLayoutAttributes *attributes = [self layoutAttributesForSupplementaryViewOfKind:TangramCollectionViewSupplementaryKindHeader atIndexPath:[NSIndexPath indexPathForRow:0 inSection:i]];

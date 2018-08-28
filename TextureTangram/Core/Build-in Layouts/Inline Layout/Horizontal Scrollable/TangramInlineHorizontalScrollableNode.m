@@ -20,7 +20,7 @@
 
 @interface TangramInlineHorizontalScrollableNode()
 
-@property (nonatomic, strong) TangramInlineCellInfo *model;
+@property (strong, nonatomic) TangramInlineCellInfo *model;
 
 @end
 
@@ -39,7 +39,7 @@
 }
 
 - (TangramInlineCellInfo *)model {
-    return (TangramInlineCellInfo*)[super model];
+    return (TangramInlineCellInfo *)[super model];
 }
 
 
@@ -53,6 +53,12 @@
     }
     
     return self;
+}
+
+- (void)didLoad {
+    [super didLoad];
+    TangramHorizontalInlineLayoutComponent *component = (TangramHorizontalInlineLayoutComponent *)self.model.layoutComponent;
+    self.collectionNode.showsHorizontalScrollIndicator = component.hasIndicator;
 }
 
 - (ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize {
