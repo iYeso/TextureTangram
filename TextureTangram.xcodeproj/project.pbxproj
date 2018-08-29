@@ -216,6 +216,25 @@
 			path = "Carousel(Banner)";
 			sourceTree = "<group>";
 		};
+		BC0B323F21369F7700871CE1 /* Demo */ = {
+			isa = PBXGroup;
+			children = (
+				BCBA27282118457D00E8C0AD /* AppDelegate.h */,
+				BCBA27292118457D00E8C0AD /* AppDelegate.m */,
+				CBD6493D212F094A004E8098 /* DemoViewController.h */,
+				CBD6493E212F094A004E8098 /* DemoViewController.m */,
+				CBD64928212C53E6004E8098 /* ColorWithInnerTextInfo.h */,
+				CBD64929212C53E7004E8098 /* ColorWithInnerTextInfo.m */,
+				CBD64925212C5390004E8098 /* ColorWithInnerTextNode.h */,
+				CBD64926212C5390004E8098 /* ColorWithInnerTextNode.m */,
+				CB3F0F3121232621005B0AE5 /* ColorfulNodeInfo.h */,
+				CB3F0F3221232621005B0AE5 /* ColorfulNodeInfo.m */,
+				CB3F0F2E212325B6005B0AE5 /* ColorfulCellNode.h */,
+				CB3F0F2F212325B7005B0AE5 /* ColorfulCellNode.m */,
+			);
+			path = Demo;
+			sourceTree = "<group>";
+		};
 		BCBA271C2118457D00E8C0AD = {
 			isa = PBXGroup;
 			children = (
@@ -241,18 +260,7 @@
 			isa = PBXGroup;
 			children = (
 				CB01B8EA212069AA00DD9BE7 /* Core */,
-				BCBA27282118457D00E8C0AD /* AppDelegate.h */,
-				BCBA27292118457D00E8C0AD /* AppDelegate.m */,
-				CBD6493D212F094A004E8098 /* DemoViewController.h */,
-				CBD6493E212F094A004E8098 /* DemoViewController.m */,
-				CBD64928212C53E6004E8098 /* ColorWithInnerTextInfo.h */,
-				CBD64929212C53E7004E8098 /* ColorWithInnerTextInfo.m */,
-				CBD64925212C5390004E8098 /* ColorWithInnerTextNode.h */,
-				CBD64926212C5390004E8098 /* ColorWithInnerTextNode.m */,
-				CB3F0F3121232621005B0AE5 /* ColorfulNodeInfo.h */,
-				CB3F0F3221232621005B0AE5 /* ColorfulNodeInfo.m */,
-				CB3F0F2E212325B6005B0AE5 /* ColorfulCellNode.h */,
-				CB3F0F2F212325B7005B0AE5 /* ColorfulCellNode.m */,
+				BC0B323F21369F7700871CE1 /* Demo */,
 				BCBA27312118458000E8C0AD /* Assets.xcassets */,
 				BCBA27332118458000E8C0AD /* LaunchScreen.storyboard */,
 				BCBA27362118458000E8C0AD /* Info.plist */,
