@@ -31,15 +31,15 @@ typedef NS_ENUM(NSUInteger, TangramLayoutComponentPinnedType) {
  */
 @interface TangramLayoutComponent : NSObject <ASSectionContext>
 
-@property (nonatomic) CGPoint layoutOrigin; ///< 布局的起点
-@property (nonatomic) CGFloat width; ///< 布局宽度 
-@property (nonatomic) BOOL isInlineLayout; ///<是否为内联布局
-@property (nonatomic) UIEdgeInsets margin; ///< layout的外边距会控制background、header的范围； margin
-@property (nonatomic) UIEdgeInsets insets; ///< layout的内边距，控制items与header、footer之间的边距；对应padding
+@property CGPoint layoutOrigin; ///< 布局的起点
+@property CGFloat width; ///< 布局宽度
+@property BOOL isInlineLayout; ///<是否为内联布局
+@property UIEdgeInsets margin; ///< layout的外边距会控制background、header的范围； margin
+@property UIEdgeInsets insets; ///< layout的内边距，控制items与header、footer之间的边距；对应padding
 
-@property (nonatomic) BOOL isFloatingLayout; ///< 是否为固定布局/浮动布局; 不应该放到TangramCollectionViewLayout里面参与布局计算
-@property (nonatomic) TangramLayoutComponentPinnedType pinnedType; ///< 是否有吸顶/吸底效果
-@property (nonatomic) CGFloat height;  ///< 整个布局的高度；调用computeLayoutsWithOrigin会改变此属性
+@property BOOL isFloatingLayout; ///< 是否为固定布局/浮动布局; 不应该放到TangramCollectionViewLayout里面参与布局计算
+@property TangramLayoutComponentPinnedType pinnedType; ///< 是否有吸顶/吸底效果
+@property CGFloat height;  ///< 整个布局的高度；调用computeLayoutsWithOrigin会改变此属性
 @property (nonatomic) CGFloat fixHeight; ///< 设置大于0的值，调用height只能获取到fixHeight
 /// 整个layout的头部描述信息，布局在items上方，不能为空
 @property (nonatomic, strong, nonnull) TangramComponentDescriptor *headerInfo;

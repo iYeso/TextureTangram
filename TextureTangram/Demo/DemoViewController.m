@@ -131,7 +131,11 @@
     banner.autoScroll = 3000;
     banner.margin = UIEdgeInsetsMake(10, 0, 10, 0);
     banner.fixHeight = 250; //内联的布局需要指定高度
-    
+    banner.indicatorGap = 5;
+    banner.indicatorGravity = @"right";
+    banner.indicatorMargin = 20;
+    banner.indicatorImg2 = @"https://img.alicdn.com/tps/TB1XRNFNXXXXXXKXXXXXXXXXXXX-32-4.png";
+    banner.indicatorImg1 = @"https://img.alicdn.com/tps/TB16i4qNXXXXXbBXFXXXXXXXXXX-32-4.png";
     
     // 双列网格
     TangramGridLayoutComponet *twoColumn = [[TangramGridLayoutComponet alloc] init];

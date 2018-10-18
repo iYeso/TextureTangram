@@ -131,6 +131,12 @@ NSString *TangramCarouselNodeType = @"carousel";
     }
 }
 
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    [self adjustPositionIfNeeded];
+    [self recalculateIndex:self.pageNode.currentPageIndex];
+}
+
+
 - (NSInteger)numberOfPagesInPagerNode:(ASPagerNode *)pagerNode {
     if (self.itemInfos.count == 1 || !self.infinite) {
         return self.itemInfos.count;
@@ -149,9 +155,6 @@ NSString *TangramCarouselNodeType = @"carousel";
     return ASSizeRangeMake(collectionNode.frame.size);
 }
 
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    [self adjustPositionIfNeeded];
-}
 
 - (ASCellNodeBlock)nodeBlockWithModel:(TangramComponentDescriptor *)model {
     return ^ASCellNode * _Nonnull(void) {

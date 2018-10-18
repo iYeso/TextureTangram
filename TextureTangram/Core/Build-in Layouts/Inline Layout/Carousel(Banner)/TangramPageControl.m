@@ -38,7 +38,9 @@
         for (NSInteger i = 0; i < _itemCount; i++) {
             ASNetworkImageNode *iNode = [[ASNetworkImageNode alloc] init];
             iNode.backgroundColor = UIColor.lightGrayColor;
-            iNode.URL = [NSURL URLWithString:imageURL];
+            if (imageURL) {
+                iNode.URL = [NSURL URLWithString:imageURL];
+            }
             [_items addObject:iNode];
             [self addSubnode:iNode];
         }
@@ -51,7 +53,9 @@
     _currentIndex = currentIndex;
     NSInteger i = 0;
     for (ASNetworkImageNode *iNode in self.items) {
-        iNode.URL = [NSURL URLWithString:currentIndex==i?_highlightedImageURL:_imageURL];
+        if (_imageURL && _highlightedImageURL) {
+            iNode.URL = [NSURL URLWithString:currentIndex==i?_highlightedImageURL:_imageURL];
+        }
         i++;
         [self addSubnode:iNode];
     }

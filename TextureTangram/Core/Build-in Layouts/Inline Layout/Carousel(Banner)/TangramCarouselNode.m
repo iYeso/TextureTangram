@@ -33,7 +33,7 @@
     component.pageNode = self.pageNode;
     self.pageNode.delegate = component;
     self.pageNode.dataSource = component;
-    self.pageControl = [[TangramPageControl alloc] initWithItemImageURL:@"https://img.alicdn.com/tps/TB16i4qNXXXXXbBXFXXXXXXXXXX-32-4.png" highlightedImageURL:@"https://img.alicdn.com/tps/TB1XRNFNXXXXXXKXXXXXXXXXXXX-32-4.png" interItemSpace:5 itemCount:component.itemInfos.count];
+    self.pageControl = [[TangramPageControl alloc] initWithItemImageURL:component.indicatorImg2 highlightedImageURL:component.indicatorImg1 interItemSpace:component.indicatorGap itemCount:component.itemInfos.count];
     component.pageControl = self.pageControl;
     [self addSubnode:self.pageControl];
 }
@@ -58,11 +58,20 @@
 }
 
 - (ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize {
-    
-    ASInsetLayoutSpec *insets = [ASInsetLayoutSpec insetLayoutSpecWithInsets:UIEdgeInsetsMake(5, 5, 5, 5) child:self.pageControl];
+    TangramCarouselInlineLayoutComponent *component = (TangramCarouselInlineLayoutComponent *)self.model.layoutComponent;
+    NSString *gravity = component.indicatorGravity;
+    CGFloat margin = component.indicatorMargin;
+    ASInsetLayoutSpec *insets = [ASInsetLayoutSpec insetLayoutSpecWithInsets:UIEdgeInsetsMake(margin, margin, margin, margin) child:self.pageControl];
+    ASRelativeLayoutSpecPosition horizontal = ASRelativeLayoutSpecPositionCenter;
+    if ([gravity isEqualToString:@"left"]) {
+        horizontal = ASRelativeLayoutSpecPositionStart;
+    }
+    else if ([gravity isEqualToString:@"right"]) {
+        horizontal = ASRelativeLayoutSpecPositionEnd;
+    }
     
     // 相对父视图位置布局（比如中下方，中左方等等）
-    ASRelativeLayoutSpec *rel = [ASRelativeLayoutSpec relativePositionLayoutSpecWithHorizontalPosition:ASRelativeLayoutSpecPositionCenter verticalPosition:ASRelativeLayoutSpecPositionEnd sizingOption:ASRelativeLayoutSpecSizingOptionMinimumSize child:insets];
+    ASRelativeLayoutSpec *rel = [ASRelativeLayoutSpec relativePositionLayoutSpecWithHorizontalPosition:horizontal verticalPosition:ASRelativeLayoutSpecPositionEnd sizingOption:ASRelativeLayoutSpecSizingOptionMinimumSize child:insets];
     
     
     return [ASOverlayLayoutSpec overlayLayoutSpecWithChild:rel overlay:self.pageNode];
