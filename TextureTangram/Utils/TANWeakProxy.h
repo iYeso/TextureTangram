@@ -13,26 +13,29 @@
 // limitations under the License.
 //
 
-#import "ColorWithInnerTextInfo.h"
+#import <Foundation/Foundation.h>
 
-@implementation ColorWithInnerTextInfo
+@interface TANWeakProxy : NSProxy
+/**
+ The proxy target.
+ */
+@property (nonatomic, weak, readonly) id target;
 
-- (instancetype)init {
-    self = [super init];
-    if (self) {
-    
-        self.insets = UIEdgeInsetsMake(8, 8, 8, 8);
-    }
-    return self;
-}
+/**
+ Creates a new weak proxy for target.
+ 
+ @param target Target object.
+ 
+ @return A new proxy object.
+ */
+- (instancetype)initWithTarget:(id)target;
 
-// 本应该由json设置
-- (NSString *)type {
-    return @"innerText";
-}
-
-- (CGFloat)computeHeightWithWidth:(CGFloat)width {
-    return self.expectedHeight > 0?self.expectedHeight:60;
-}
-
+/**
+ Creates a new weak proxy for target.
+ 
+ @param target Target object.
+ 
+ @return A new proxy object.
+ */
++ (instancetype)proxyWithTarget:(id)target;
 @end

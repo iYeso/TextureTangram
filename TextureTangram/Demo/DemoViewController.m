@@ -127,6 +127,8 @@
         [array addObject:m];
     }
     banner.itemInfos = array.copy;
+    banner.infinite = YES;
+    banner.autoScroll = 3000;
     banner.margin = UIEdgeInsetsMake(10, 0, 10, 0);
     banner.fixHeight = 250; //内联的布局需要指定高度
     
@@ -194,7 +196,7 @@
     waterFooterInfo.color = RANDOM_COLOR;
     water.footerInfo = waterFooterInfo;
     
-    NSArray *components = @[banner,onePlus,horizontal, sticky, threeColumn, twoColumn, water];
+    NSMutableArray *components = [NSMutableArray arrayWithObjects:banner,onePlus,horizontal, sticky, threeColumn, twoColumn, water, nil];
     _tangramNode.layoutComponents = components;
 }
 
@@ -209,10 +211,9 @@
 
 #pragma mark - events
 - (void)removeFirst {
-    NSMutableArray *array = [NSMutableArray arrayWithArray:self.tangramNode.layoutComponents];
-    [array removeObjectAtIndex:0];
-    self.tangramNode.layoutComponents = array.copy;
-    [self.tangramNode.collectionNode relayoutItems];
+    
+    [self.tangramNode.layoutComponents removeObjectAtIndex:0];
+    [self.tangramNode.collectionNode deleteSections:[NSIndexSet indexSetWithIndex:0]];
 }
 
 - (void)addItemsToGridLayout {
@@ -250,7 +251,7 @@
         CFTimeInterval start = CFAbsoluteTimeGetCurrent();
         [self.tangramNode.collectionNode reloadItemsAtIndexPaths:indexPaths];
         //不需要整个collectionNode刷新，不然耗时很多
-        //        [self.tangramNode.collectionNode relayoutItems];
+//                [self.tangramNode.collectionNode relayoutItems];
         NSLog(@"插入的layout耗时 %.2fms", (CFAbsoluteTimeGetCurrent()-start)*1000);
     }];
     

@@ -32,9 +32,9 @@
 @property (nonatomic) CGFloat pageRatio;
 
 /**
-    自动滚动的间隔，单位秒（这里与文档不同，但json里面仍然填毫秒），填写数字大于0就开始自动滚动，默认值0
+    自动滚动的间隔，单位毫秒，填写数字大于0就开始自动滚动，默认值0
  */
-@property (nonatomic) NSTimeInterval autoScroll;
+@property (nonatomic) NSInteger autoScroll;
 
 
 /**

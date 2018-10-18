@@ -71,8 +71,8 @@
 
 
 // 设置了数据源需要重新布局
-- (void)setLayoutComponents:(NSArray<TangramLayoutComponent *> *)layoutComponents {
-    _layoutComponents = layoutComponents.copy;
+- (void)setLayoutComponents:(NSMutableArray<TangramLayoutComponent *> *)layoutComponents {
+    _layoutComponents = layoutComponents;
     self.collectionLayout.layoutComponents = layoutComponents;
     [self.collectionNode reloadData];
 }

@@ -9,10 +9,13 @@
 #import "TangramCarouselInlineLayoutComponent.h"
 #import "TangramNodeRegistry.h"
 #import "TangramCarouselNode.h"
+#import "NSTimer+Compatible.h"
 NSInteger numberOfLoopsInTangramCarousel = 100;
 
 @interface TangramCarouselInlineLayoutComponent()
 
+@property (nonatomic) NSTimeInterval autoScrollInterval;
+@property (nonatomic, strong) NSTimer *timer;
 
 @end
 
@@ -26,13 +29,6 @@ NSString *TangramCarouselNodeType = @"carousel";
 
 - (NSString *)type {
     return TangramCarouselNodeType;
-}
-
-- (void)setPageNode:(ASPagerNode *)pageNode {
-    _pageNode = pageNode;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self adjustPositionIfNeeded];
-    });
 }
 
 - (void)computeLayoutsWithOrigin:(CGPoint)origin width:(CGFloat)width {
@@ -49,18 +45,76 @@ NSString *TangramCarouselNodeType = @"carousel";
                                       self.height-self.insets.top-self.insets.right);
 }
 
+#pragma mark - timer
+
+- (void)setupTimer  {
+    __weak typeof(self) weakSelf = self;
+    _timer = [NSTimer scheduledTimerWithTimeInterval:_autoScrollInterval repeats:YES block:^(NSTimer * _Nonnull timer) {
+        typeof(weakSelf) sself = weakSelf;
+        if (sself == nil) { return;}
+        NSInteger nextPageIndex = sself.pageNode.currentPageIndex+1;
+        if (sself.infinite) {
+            nextPageIndex = nextPageIndex%(sself.itemInfos.count*numberOfLoopsInTangramCarousel);
+        } else {
+            nextPageIndex = nextPageIndex % sself.itemInfos.count;
+        }
+        [sself.pageNode scrollToPageAtIndex:nextPageIndex animated:YES];
+    }];
+    [[NSRunLoop mainRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
+}
+
+- (void)invalidateTimer {
+    [self.timer invalidate];
+    self.timer = nil;
+}
+
+
+#pragma mark - setter
+
+- (void)setPageNode:(ASPagerNode *)pageNode {
+    _pageNode = pageNode;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self adjustPositionIfNeeded];
+    });
+}
+
+
+- (void)setAutoScroll:(NSInteger)autoScroll {
+    _autoScroll = autoScroll;
+    if (autoScroll > 0) {
+        _autoScrollInterval = autoScroll/1000.0;
+        [self setupTimer];
+    } else {
+        _autoScrollInterval = 0;
+        [self invalidateTimer];
+    }
+}
 
 #pragma mark - override
 
 - (instancetype)init {
     self = [super init];
-    self.infinite = YES;
+    if (self) {
+        _infinite = YES;
+    }
     return self;
+}
+
+#pragma mark - collectionNode delegate
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    [self invalidateTimer];
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    if (_autoScroll > 0) {
+        [self setupTimer];
+    }
 }
 
 - (NSInteger)numberOfPagesInPagerNode:(ASPagerNode *)pagerNode {
     if (self.itemInfos.count == 1 || !self.infinite) {
-        return 1;
+        return self.itemInfos.count;
     } else if (self.itemInfos.count == 0) {
         return 0;
     } else {

@@ -27,8 +27,17 @@
 
 @interface TangramNode : ASDisplayNode
 
-@property (nonatomic, copy) NSArray<TangramLayoutComponent *> *layoutComponents;
+
+/**
+ 数据源；如果用不可变的数组会有问题
+ */
+@property (nonatomic, strong) NSMutableArray<TangramLayoutComponent *> *layoutComponents;
+
+/**
+ 流式布局的collectionView
+ */
 @property (nonatomic, strong) ASCollectionNode *collectionNode;
+
 @property (nonatomic, weak) id<TangramNodeDelegate> delegate;
 
 @end
