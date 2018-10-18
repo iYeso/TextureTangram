@@ -15,6 +15,8 @@
 		BC43AF5821216E5500A2B9DE /* TangramGridLayoutComponet.m in Sources */ = {isa = PBXBuildFile; fileRef = BC43AF5721216E5500A2B9DE /* TangramGridLayoutComponet.m */; };
 		BCA1476921783294000D25AD /* NSTimer+Compatible..m in Sources */ = {isa = PBXBuildFile; fileRef = BCA1476721783294000D25AD /* NSTimer+Compatible..m */; };
 		BCA1476C217832B9000D25AD /* TANWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = BCA1476A217832B9000D25AD /* TANWeakProxy.m */; };
+		BCA1476F21785821000D25AD /* TangramPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = BCA1476E21785821000D25AD /* TangramPageControl.m */; };
+		BCA147722178736E000D25AD /* NSObject+SafeKVO.m in Sources */ = {isa = PBXBuildFile; fileRef = BCA147712178736E000D25AD /* NSObject+SafeKVO.m */; };
 		BCBA272A2118457D00E8C0AD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBA27292118457D00E8C0AD /* AppDelegate.m */; };
 		BCBA272D2118457D00E8C0AD /* TangramNode.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBA272C2118457D00E8C0AD /* TangramNode.m */; };
 		BCBA27322118458000E8C0AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BCBA27312118458000E8C0AD /* Assets.xcassets */; };
@@ -67,6 +69,10 @@
 		BCA1476821783294000D25AD /* NSTimer+Compatible.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+Compatible.h"; sourceTree = "<group>"; };
 		BCA1476A217832B9000D25AD /* TANWeakProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TANWeakProxy.m; sourceTree = "<group>"; };
 		BCA1476B217832B9000D25AD /* TANWeakProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TANWeakProxy.h; sourceTree = "<group>"; };
+		BCA1476D21785821000D25AD /* TangramPageControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TangramPageControl.h; sourceTree = "<group>"; };
+		BCA1476E21785821000D25AD /* TangramPageControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TangramPageControl.m; sourceTree = "<group>"; };
+		BCA147702178736E000D25AD /* NSObject+SafeKVO.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+SafeKVO.h"; sourceTree = "<group>"; };
+		BCA147712178736E000D25AD /* NSObject+SafeKVO.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SafeKVO.m"; sourceTree = "<group>"; };
 		BCBA27252118457D00E8C0AD /* TextureTangram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TextureTangram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCBA27282118457D00E8C0AD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		BCBA27292118457D00E8C0AD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -218,6 +224,8 @@
 				BC0B3225213539A300871CE1 /* TangramCarouselInlineLayoutComponent.m */,
 				BC0B32272135429B00871CE1 /* TangramCarouselNode.h */,
 				BC0B32282135429B00871CE1 /* TangramCarouselNode.m */,
+				BCA1476D21785821000D25AD /* TangramPageControl.h */,
+				BCA1476E21785821000D25AD /* TangramPageControl.m */,
 			);
 			path = "Carousel(Banner)";
 			sourceTree = "<group>";
@@ -248,6 +256,8 @@
 				BCA1476A217832B9000D25AD /* TANWeakProxy.m */,
 				BCA1476821783294000D25AD /* NSTimer+Compatible.h */,
 				BCA1476721783294000D25AD /* NSTimer+Compatible..m */,
+				BCA147702178736E000D25AD /* NSObject+SafeKVO.h */,
+				BCA147712178736E000D25AD /* NSObject+SafeKVO.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -496,9 +506,11 @@
 				BCDD2A332123FDA000BFFA37 /* TangramWaterFlowLayoutComponent.m in Sources */,
 				BC0B31DE212E9A9A00871CE1 /* TangramInlineLayoutComponent.m in Sources */,
 				BCA1476C217832B9000D25AD /* TANWeakProxy.m in Sources */,
+				BCA1476F21785821000D25AD /* TangramPageControl.m in Sources */,
 				BC43AF54212159E700A2B9DE /* TangramLayoutComponent.m in Sources */,
 				CBD64933212C5F34004E8098 /* TangramItemNode.m in Sources */,
 				CB3F0F3621244D2D005B0AE5 /* TangramOnePlusLayoutComponent.m in Sources */,
+				BCA147722178736E000D25AD /* NSObject+SafeKVO.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

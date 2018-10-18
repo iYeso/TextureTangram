@@ -1,17 +1,27 @@
+/// Copyright ZZinKin
 //
-//  TangramCarouselNode.m
-//  TextureTangram
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
 //
-//  Created by 廖超龙 on 2018/8/28.
-//  Copyright © 2018年 ZZinKin. All rights reserved.
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 //
 
 #import "TangramCarouselNode.h"
+#import "TangramPageControl.h"
 #import "TangramCarouselInlineLayoutComponent.h"
+#import "NSObject+SafeKVO.h"
 
 @interface TangramCarouselNode()
 
 @property (nonatomic, strong) TangramInlineCellInfo *model;
+@property (nonatomic, strong) TangramPageControl *pageControl;
 @end
 
 @implementation TangramCarouselNode
@@ -23,6 +33,9 @@
     component.pageNode = self.pageNode;
     self.pageNode.delegate = component;
     self.pageNode.dataSource = component;
+    self.pageControl = [[TangramPageControl alloc] initWithItemImageURL:@"https://img.alicdn.com/tps/TB16i4qNXXXXXbBXFXXXXXXXXXX-32-4.png" highlightedImageURL:@"https://img.alicdn.com/tps/TB1XRNFNXXXXXXKXXXXXXXXXXXX-32-4.png" interItemSpace:5 itemCount:component.itemInfos.count];
+    component.pageControl = self.pageControl;
+    [self addSubnode:self.pageControl];
 }
 
 - (TangramInlineCellInfo *)model {
@@ -45,7 +58,14 @@
 }
 
 - (ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize {
-    return [ASAbsoluteLayoutSpec absoluteLayoutSpecWithChildren:@[self.pageNode]];
+    
+    ASInsetLayoutSpec *insets = [ASInsetLayoutSpec insetLayoutSpecWithInsets:UIEdgeInsetsMake(5, 5, 5, 5) child:self.pageControl];
+    
+    // 相对父视图位置布局（比如中下方，中左方等等）
+    ASRelativeLayoutSpec *rel = [ASRelativeLayoutSpec relativePositionLayoutSpecWithHorizontalPosition:ASRelativeLayoutSpecPositionCenter verticalPosition:ASRelativeLayoutSpecPositionEnd sizingOption:ASRelativeLayoutSpecSizingOptionMinimumSize child:insets];
+    
+    
+    return [ASOverlayLayoutSpec overlayLayoutSpecWithChild:rel overlay:self.pageNode];
 }
 
 @end

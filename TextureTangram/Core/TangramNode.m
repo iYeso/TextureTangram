@@ -62,6 +62,7 @@
     
     [TangramNodeRegistry registerClass:TangramItemNode.class forType:@"placeholder"];
     [TangramNodeRegistry registerClass:TangramItemNode.class forType:@"horizontal"];
+    self.collectionNode.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1.0];
 }
 
 // 类似controller的 viewDidLoad

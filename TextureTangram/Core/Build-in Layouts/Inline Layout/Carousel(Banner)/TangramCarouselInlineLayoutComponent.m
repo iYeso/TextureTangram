@@ -1,9 +1,16 @@
+/// Copyright ZZinKin
 //
-//  TangramCarouselInlineLayoutComponent.m
-//  TextureTangram
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
 //
-//  Created by 廖超龙 on 2018/8/28.
-//  Copyright © 2018年 ZZinKin. All rights reserved.
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 //
 
 #import "TangramCarouselInlineLayoutComponent.h"
@@ -16,6 +23,7 @@ NSInteger numberOfLoopsInTangramCarousel = 100;
 
 @property (nonatomic) NSTimeInterval autoScrollInterval;
 @property (nonatomic, strong) NSTimer *timer;
+@property (nonatomic) NSInteger dataIndex;
 
 @end
 
@@ -45,9 +53,19 @@ NSString *TangramCarouselNodeType = @"carousel";
                                       self.height-self.insets.top-self.insets.right);
 }
 
+- (void)recalculateIndex:(NSInteger)index {
+    if (self.infinite)  {
+        self.dataIndex = (index%numberOfLoopsInTangramCarousel)%self.itemInfos.count;
+    } else {
+        self.dataIndex = index;
+    }
+    self.pageControl.currentIndex = self.dataIndex;
+}
+
 #pragma mark - timer
 
 - (void)setupTimer  {
+    [self recalculateIndex: self.pageNode.currentPageIndex];
     __weak typeof(self) weakSelf = self;
     _timer = [NSTimer scheduledTimerWithTimeInterval:_autoScrollInterval repeats:YES block:^(NSTimer * _Nonnull timer) {
         typeof(weakSelf) sself = weakSelf;
@@ -59,6 +77,7 @@ NSString *TangramCarouselNodeType = @"carousel";
             nextPageIndex = nextPageIndex % sself.itemInfos.count;
         }
         [sself.pageNode scrollToPageAtIndex:nextPageIndex animated:YES];
+        [sself recalculateIndex:nextPageIndex];
     }];
     [[NSRunLoop mainRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
 }
