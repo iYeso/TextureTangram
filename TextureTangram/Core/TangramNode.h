@@ -40,5 +40,8 @@
 
 @property (nonatomic, weak) id<TangramNodeDelegate> delegate;
 
+
+// 插入、删除操作见demo
+
 @end
 

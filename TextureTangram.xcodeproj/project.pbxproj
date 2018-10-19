@@ -24,6 +24,8 @@
 		BCBA27382118458000E8C0AD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBA27372118458000E8C0AD /* main.m */; };
 		BCBA27422118458000E8C0AD /* TextureTangramTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBA27412118458000E8C0AD /* TextureTangramTests.m */; };
 		BCDD2A332123FDA000BFFA37 /* TangramWaterFlowLayoutComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = BCDD2A322123FDA000BFFA37 /* TangramWaterFlowLayoutComponent.m */; };
+		BCEF0CF82179768D002ED730 /* demo.json in Resources */ = {isa = PBXBuildFile; fileRef = BCEF0CF72179768D002ED730 /* demo.json */; };
+		BCEF0D0221797DD4002ED730 /* TangramDefaultDataSourceHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = BCEF0D0121797DD4002ED730 /* TangramDefaultDataSourceHelper.m */; };
 		CB01B8ED212069FD00DD9BE7 /* TangramCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = CB01B8EC212069FD00DD9BE7 /* TangramCollectionViewLayout.m */; };
 		CB3F0F30212325B7005B0AE5 /* ColorfulCellNode.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3F0F2F212325B7005B0AE5 /* ColorfulCellNode.m */; };
 		CB3F0F3321232621005B0AE5 /* ColorfulNodeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3F0F3221232621005B0AE5 /* ColorfulNodeInfo.m */; };
@@ -88,6 +90,10 @@
 		BCDD2A312123FDA000BFFA37 /* TangramWaterFlowLayoutComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TangramWaterFlowLayoutComponent.h; sourceTree = "<group>"; };
 		BCDD2A322123FDA000BFFA37 /* TangramWaterFlowLayoutComponent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TangramWaterFlowLayoutComponent.m; sourceTree = "<group>"; };
 		BCDD2A4221256F3100BFFA37 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		BCEF0CF72179768D002ED730 /* demo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = demo.json; sourceTree = "<group>"; };
+		BCEF0D0021797DD4002ED730 /* TangramDefaultDataSourceHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TangramDefaultDataSourceHelper.h; sourceTree = "<group>"; };
+		BCEF0D0121797DD4002ED730 /* TangramDefaultDataSourceHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TangramDefaultDataSourceHelper.m; sourceTree = "<group>"; };
+		BCEF0D0421797F13002ED730 /* TangramBuildInLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TangramBuildInLayout.h; sourceTree = "<group>"; };
 		CB01B8EB212069FD00DD9BE7 /* TangramCollectionViewLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TangramCollectionViewLayout.h; sourceTree = "<group>"; };
 		CB01B8EC212069FD00DD9BE7 /* TangramCollectionViewLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TangramCollectionViewLayout.m; sourceTree = "<group>"; };
 		CB3F0F2E212325B6005B0AE5 /* ColorfulCellNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorfulCellNode.h; sourceTree = "<group>"; };
@@ -292,6 +298,7 @@
 				BCBA27312118458000E8C0AD /* Assets.xcassets */,
 				BCBA27332118458000E8C0AD /* LaunchScreen.storyboard */,
 				BCBA27362118458000E8C0AD /* Info.plist */,
+				BCEF0CF72179768D002ED730 /* demo.json */,
 				BCBA27372118458000E8C0AD /* main.m */,
 			);
 			path = TextureTangram;
@@ -306,11 +313,21 @@
 			path = TextureTangramTests;
 			sourceTree = "<group>";
 		};
+		BCEF0CFF21797D9A002ED730 /* Data Source Helper */ = {
+			isa = PBXGroup;
+			children = (
+				BCEF0D0021797DD4002ED730 /* TangramDefaultDataSourceHelper.h */,
+				BCEF0D0121797DD4002ED730 /* TangramDefaultDataSourceHelper.m */,
+			);
+			path = "Data Source Helper";
+			sourceTree = "<group>";
+		};
 		CB01B8EA212069AA00DD9BE7 /* Core */ = {
 			isa = PBXGroup;
 			children = (
 				BCBA272B2118457D00E8C0AD /* TangramNode.h */,
 				BCBA272C2118457D00E8C0AD /* TangramNode.m */,
+				BCEF0CFF21797D9A002ED730 /* Data Source Helper */,
 				CB3F0F382124618C005B0AE5 /* Base */,
 				CB3F0F3721244D35005B0AE5 /* Build-in Layouts */,
 			);
@@ -320,6 +337,7 @@
 		CB3F0F3721244D35005B0AE5 /* Build-in Layouts */ = {
 			isa = PBXGroup;
 			children = (
+				BCEF0D0421797F13002ED730 /* TangramBuildInLayout.h */,
 				BC0B31D8212E987F00871CE1 /* Grid Layout */,
 				BC0B31D9212E988700871CE1 /* Waterflow Layout */,
 				BC0B31DA212E989100871CE1 /* 1+N */,
@@ -428,6 +446,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BCBA27352118458000E8C0AD /* LaunchScreen.storyboard in Resources */,
+				BCEF0CF82179768D002ED730 /* demo.json in Resources */,
 				BCBA27322118458000E8C0AD /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -503,6 +522,7 @@
 				CBD64936212D9F1B004E8098 /* TangramHorizontalInlineLayoutComponent.m in Sources */,
 				CBD64939212DA92D004E8098 /* TangramInlineHorizontalScrollableNode.m in Sources */,
 				CB01B8ED212069FD00DD9BE7 /* TangramCollectionViewLayout.m in Sources */,
+				BCEF0D0221797DD4002ED730 /* TangramDefaultDataSourceHelper.m in Sources */,
 				BCDD2A332123FDA000BFFA37 /* TangramWaterFlowLayoutComponent.m in Sources */,
 				BC0B31DE212E9A9A00871CE1 /* TangramInlineLayoutComponent.m in Sources */,
 				BCA1476C217832B9000D25AD /* TANWeakProxy.m in Sources */,

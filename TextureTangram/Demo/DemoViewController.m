@@ -221,6 +221,8 @@
 }
 
 - (void)addItemsToGridLayout {
+    
+    // 找到网格布局
     NSInteger index = 0;
     BOOL found = NO;
     for (TangramGridLayoutComponet *obj in self.tangramNode.layoutComponents) {
@@ -233,12 +235,11 @@
     if (!found) {
         return;
     }
+    // 插入数据
     NSMutableArray *indexPaths = [NSMutableArray array];
     [self.tangramNode.collectionNode performBatchUpdates:^{
         NSMutableArray *array = [NSMutableArray arrayWithArray:self.tangramNode.layoutComponents[index].itemInfos];
         self.tangramNode.layoutComponents[index].itemInfos = array;
-        
-        
         NSInteger originalCount = array.count;
         // 插入100个操作耗时： 当前如果需要展示刚插入的node，会耗时6ms左右，如果还不需要展示，耗时1ms内。
         // 所以最好事先 batch update 操作（预加载）
