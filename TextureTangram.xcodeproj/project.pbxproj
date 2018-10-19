@@ -13,6 +13,8 @@
 		BC0B32292135429B00871CE1 /* TangramCarouselNode.m in Sources */ = {isa = PBXBuildFile; fileRef = BC0B32282135429B00871CE1 /* TangramCarouselNode.m */; };
 		BC43AF54212159E700A2B9DE /* TangramLayoutComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = BC43AF53212159E700A2B9DE /* TangramLayoutComponent.m */; };
 		BC43AF5821216E5500A2B9DE /* TangramGridLayoutComponet.m in Sources */ = {isa = PBXBuildFile; fileRef = BC43AF5721216E5500A2B9DE /* TangramGridLayoutComponet.m */; };
+		BC9B4AA42179C09E00DCEFFC /* NSDictionary+TangramParse.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9B4AA32179C09E00DCEFFC /* NSDictionary+TangramParse.m */; };
+		BC9B4AA72179C27F00DCEFFC /* NSArray+TangramParse.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9B4AA62179C27F00DCEFFC /* NSArray+TangramParse.m */; };
 		BCA1476921783294000D25AD /* NSTimer+Compatible..m in Sources */ = {isa = PBXBuildFile; fileRef = BCA1476721783294000D25AD /* NSTimer+Compatible..m */; };
 		BCA1476C217832B9000D25AD /* TANWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = BCA1476A217832B9000D25AD /* TANWeakProxy.m */; };
 		BCA1476F21785821000D25AD /* TangramPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = BCA1476E21785821000D25AD /* TangramPageControl.m */; };
@@ -67,6 +69,10 @@
 		BC43AF55212162E900A2B9DE /* TangramComponentDescriptor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TangramComponentDescriptor.h; sourceTree = "<group>"; };
 		BC43AF5621216E5400A2B9DE /* TangramGridLayoutComponet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TangramGridLayoutComponet.h; sourceTree = "<group>"; };
 		BC43AF5721216E5500A2B9DE /* TangramGridLayoutComponet.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TangramGridLayoutComponet.m; sourceTree = "<group>"; };
+		BC9B4AA22179C09E00DCEFFC /* NSDictionary+TangramParse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+TangramParse.h"; sourceTree = "<group>"; };
+		BC9B4AA32179C09E00DCEFFC /* NSDictionary+TangramParse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+TangramParse.m"; sourceTree = "<group>"; };
+		BC9B4AA52179C27F00DCEFFC /* NSArray+TangramParse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+TangramParse.h"; sourceTree = "<group>"; };
+		BC9B4AA62179C27F00DCEFFC /* NSArray+TangramParse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+TangramParse.m"; sourceTree = "<group>"; };
 		BCA1476721783294000D25AD /* NSTimer+Compatible..m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+Compatible..m"; sourceTree = "<group>"; };
 		BCA1476821783294000D25AD /* NSTimer+Compatible.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+Compatible.h"; sourceTree = "<group>"; };
 		BCA1476A217832B9000D25AD /* TANWeakProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TANWeakProxy.m; sourceTree = "<group>"; };
@@ -264,6 +270,10 @@
 				BCA1476721783294000D25AD /* NSTimer+Compatible..m */,
 				BCA147702178736E000D25AD /* NSObject+SafeKVO.h */,
 				BCA147712178736E000D25AD /* NSObject+SafeKVO.m */,
+				BC9B4AA52179C27F00DCEFFC /* NSArray+TangramParse.h */,
+				BC9B4AA62179C27F00DCEFFC /* NSArray+TangramParse.m */,
+				BC9B4AA22179C09E00DCEFFC /* NSDictionary+TangramParse.h */,
+				BC9B4AA32179C09E00DCEFFC /* NSDictionary+TangramParse.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -504,6 +514,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC9B4AA72179C27F00DCEFFC /* NSArray+TangramParse.m in Sources */,
 				BCBA272D2118457D00E8C0AD /* TangramNode.m in Sources */,
 				BC0B3226213539A300871CE1 /* TangramCarouselInlineLayoutComponent.m in Sources */,
 				CBD6492A212C53E7004E8098 /* ColorWithInnerTextInfo.m in Sources */,
@@ -525,6 +536,7 @@
 				BCEF0D0221797DD4002ED730 /* TangramDefaultDataSourceHelper.m in Sources */,
 				BCDD2A332123FDA000BFFA37 /* TangramWaterFlowLayoutComponent.m in Sources */,
 				BC0B31DE212E9A9A00871CE1 /* TangramInlineLayoutComponent.m in Sources */,
+				BC9B4AA42179C09E00DCEFFC /* NSDictionary+TangramParse.m in Sources */,
 				BCA1476C217832B9000D25AD /* TANWeakProxy.m in Sources */,
 				BCA1476F21785821000D25AD /* TangramPageControl.m in Sources */,
 				BC43AF54212159E700A2B9DE /* TangramLayoutComponent.m in Sources */,
