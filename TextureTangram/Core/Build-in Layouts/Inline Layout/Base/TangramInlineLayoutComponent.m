@@ -8,19 +8,19 @@
 
 #import "TangramInlineLayoutComponent.h"
 
+
 @implementation TangramInlineLayoutComponent
+
+- (Class)inlineNodeClass {
+    return nil;
+}
 
 - (instancetype)init {
     if (self = [super init]) {
         _inlineModel  = [TangramInlineCellInfo new];
         _inlineModel.layoutComponent = self;
-        _inlineModel.type = self.type.copy;
     }
     return self;
-}
-
-- (NSString *)type {
-    return @"placeholder";
 }
 
 - (BOOL)isInlineLayout {

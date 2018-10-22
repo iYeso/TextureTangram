@@ -15,6 +15,7 @@
 
 #import "ColorWithInnerTextInfo.h"
 
+@class ColorWithInnerTextNode;
 @implementation ColorWithInnerTextInfo
 
 - (instancetype)init {
@@ -26,9 +27,8 @@
     return self;
 }
 
-// 本应该由json设置
-- (NSString *)type {
-    return @"innerText";
+- (Class)nodeClass {
+    return NSClassFromString(@"ColorWithInnerTextNode");
 }
 
 - (CGFloat)computeHeightWithWidth:(CGFloat)width {

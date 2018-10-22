@@ -11,9 +11,9 @@
 
 @interface TangramInlineLayoutComponent : TangramLayoutComponent
 
-- (nonnull NSString *)type;
-
 @property (nonatomic) CGRect inlineCellFrame;
 @property (nonatomic, strong, nonnull) TangramInlineCellInfo *inlineModel; ///自动初始化一个inlineModel
+
+- (nonnull Class)inlineNodeClass;
 
 @end

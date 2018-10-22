@@ -15,7 +15,6 @@
 
 #import "ColorfulCellNode.h"
 #import "ColorfulNodeInfo.h"
-#import "TangramNodeRegistry.h"
 
 
 @interface ColorfulCellNode()
@@ -30,10 +29,6 @@
 @end
 
 @implementation ColorfulCellNode
-
-+ (void)load {
-    [TangramNodeRegistry registerClass:self forType:@"colorful"];
-}
 
 #pragma mark - setters and getters
 

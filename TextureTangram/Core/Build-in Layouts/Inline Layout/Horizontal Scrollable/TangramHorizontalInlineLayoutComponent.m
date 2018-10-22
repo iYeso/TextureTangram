@@ -14,20 +14,13 @@
 //
 
 #import "TangramHorizontalInlineLayoutComponent.h"
-#import "TangramNodeRegistry.h"
 #import "TangramItemNode.h"
 #import "TangramInlineHorizontalScrollableNode.h"
 
-NSString *TangramHorizontalInlineCellNodeType = @"horizontalscollable";
-
 @implementation TangramHorizontalInlineLayoutComponent
 
-+ (void)load {
-    [TangramNodeRegistry registerClass:TangramInlineHorizontalScrollableNode.class forType:TangramHorizontalInlineCellNodeType];
-}
-
-- (NSString *)type {
-    return TangramHorizontalInlineCellNodeType;
+- (Class)inlineNodeClass {
+    return TangramInlineHorizontalScrollableNode.class;
 }
 
 - (void)computeLayoutsWithOrigin:(CGPoint)origin width:(CGFloat)width {
@@ -65,7 +58,7 @@ NSString *TangramHorizontalInlineCellNodeType = @"horizontalscollable";
 
 - (ASCellNodeBlock)nodeBlockWithModel:(TangramComponentDescriptor *)model {
     return ^ASCellNode * _Nonnull(void) {
-        Class nodeClass = [TangramNodeRegistry classForType:model.type];
+        Class nodeClass = model.nodeClass;
         if (!model || !nodeClass || ![nodeClass isSubclassOfClass:TangramItemNode.class]) {
             return [TangramItemNode new];
         }

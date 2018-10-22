@@ -13,19 +13,19 @@
 // limitations under the License.
 //
 
-#import "TangramNodeRegistry.h"
+#import "TangramRegistry.h"
 
-@interface TangramNodeRegistry()
+@interface TangramRegistry()
 
 @property (nonatomic, strong) NSMutableDictionary *registry; //FIXME: 这里线程不安全
 
 @end
 
 /// 注册表
-@implementation TangramNodeRegistry
+@implementation TangramRegistry
 
 +  (instancetype)shared {
-    static TangramNodeRegistry *instance = nil;
+    static TangramRegistry *instance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         instance = [self new];
@@ -35,18 +35,18 @@
 }
 
 + (void)registerFromDictionary:(nonnull NSDictionary<NSString *, Class> *)dictionary {
-    [[TangramNodeRegistry shared].registry addEntriesFromDictionary:dictionary];
+    [[TangramRegistry shared].registry addEntriesFromDictionary:dictionary];
 }
 
 + (void)registerClass:(Class)cls forType:(NSString *)type {
     if (!type) {
         return;
     }
-    [TangramNodeRegistry shared].registry[type] =  cls;
+    [TangramRegistry shared].registry[type] =  cls;
 }
 
 + (nullable Class)classForType:(nonnull NSString *)type{
-    return [TangramNodeRegistry shared].registry[type];
+    return [TangramRegistry shared].registry[type];
 }
 
 @end

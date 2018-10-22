@@ -22,6 +22,7 @@
 
 @property (nonatomic, weak) ASPagerNode *pageNode;
 
+
 @property (nonatomic, weak) TangramPageControl *pageControl;
 /**
  页之间的间距

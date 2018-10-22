@@ -15,6 +15,7 @@
 
 #import "TangramComponentDescriptor.h"
 
+@class TangramItemNode;
 @implementation TangramComponentDescriptor
 
 - (instancetype)init  {
@@ -27,6 +28,10 @@
 
 - (CGFloat)computeHeightWithWidth:(CGFloat)width {
     return 0;
+}
+
+- (Class)nodeClass {
+    return NSClassFromString(@"TangramItemNode");
 }
 
 @end

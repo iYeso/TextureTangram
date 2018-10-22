@@ -35,7 +35,7 @@
 		CBD64927212C5390004E8098 /* ColorWithInnerTextNode.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD64926212C5390004E8098 /* ColorWithInnerTextNode.m */; };
 		CBD6492A212C53E7004E8098 /* ColorWithInnerTextInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD64929212C53E7004E8098 /* ColorWithInnerTextInfo.m */; };
 		CBD6492D212C56AB004E8098 /* TangramComponentDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD6492C212C56AB004E8098 /* TangramComponentDescriptor.m */; };
-		CBD64930212C5964004E8098 /* TangramNodeRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD6492F212C5964004E8098 /* TangramNodeRegistry.m */; };
+		CBD64930212C5964004E8098 /* TangramRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD6492F212C5964004E8098 /* TangramRegistry.m */; };
 		CBD64933212C5F34004E8098 /* TangramItemNode.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD64932212C5F34004E8098 /* TangramItemNode.m */; };
 		CBD64936212D9F1B004E8098 /* TangramHorizontalInlineLayoutComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD64935212D9F1B004E8098 /* TangramHorizontalInlineLayoutComponent.m */; };
 		CBD64939212DA92D004E8098 /* TangramInlineHorizontalScrollableNode.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD64938212DA92D004E8098 /* TangramInlineHorizontalScrollableNode.m */; };
@@ -113,8 +113,8 @@
 		CBD64928212C53E6004E8098 /* ColorWithInnerTextInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorWithInnerTextInfo.h; sourceTree = "<group>"; };
 		CBD64929212C53E7004E8098 /* ColorWithInnerTextInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ColorWithInnerTextInfo.m; sourceTree = "<group>"; };
 		CBD6492C212C56AB004E8098 /* TangramComponentDescriptor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TangramComponentDescriptor.m; sourceTree = "<group>"; };
-		CBD6492E212C5964004E8098 /* TangramNodeRegistry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TangramNodeRegistry.h; sourceTree = "<group>"; };
-		CBD6492F212C5964004E8098 /* TangramNodeRegistry.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TangramNodeRegistry.m; sourceTree = "<group>"; };
+		CBD6492E212C5964004E8098 /* TangramRegistry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TangramRegistry.h; sourceTree = "<group>"; };
+		CBD6492F212C5964004E8098 /* TangramRegistry.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TangramRegistry.m; sourceTree = "<group>"; };
 		CBD64931212C5F34004E8098 /* TangramItemNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TangramItemNode.h; sourceTree = "<group>"; };
 		CBD64932212C5F34004E8098 /* TangramItemNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TangramItemNode.m; sourceTree = "<group>"; };
 		CBD64934212D9F1B004E8098 /* TangramHorizontalInlineLayoutComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TangramHorizontalInlineLayoutComponent.h; sourceTree = "<group>"; };
@@ -247,6 +247,15 @@
 			children = (
 				BCBA27282118457D00E8C0AD /* AppDelegate.h */,
 				BCBA27292118457D00E8C0AD /* AppDelegate.m */,
+				BC9B4ABE217DCE2500DCEFFC /* Mock JSON Demo */,
+				BC9B4ABD217DCD7B00DCEFFC /* Hardcoded Demo */,
+			);
+			path = Demo;
+			sourceTree = "<group>";
+		};
+		BC9B4ABD217DCD7B00DCEFFC /* Hardcoded Demo */ = {
+			isa = PBXGroup;
+			children = (
 				CBD6493D212F094A004E8098 /* DemoViewController.h */,
 				CBD6493E212F094A004E8098 /* DemoViewController.m */,
 				CBD64928212C53E6004E8098 /* ColorWithInnerTextInfo.h */,
@@ -258,7 +267,14 @@
 				CB3F0F2E212325B6005B0AE5 /* ColorfulCellNode.h */,
 				CB3F0F2F212325B7005B0AE5 /* ColorfulCellNode.m */,
 			);
-			path = Demo;
+			path = "Hardcoded Demo";
+			sourceTree = "<group>";
+		};
+		BC9B4ABE217DCE2500DCEFFC /* Mock JSON Demo */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Mock JSON Demo";
 			sourceTree = "<group>";
 		};
 		BCA1476621783235000D25AD /* Utils */ = {
@@ -367,8 +383,8 @@
 				CBD6492C212C56AB004E8098 /* TangramComponentDescriptor.m */,
 				BC43AF52212159E700A2B9DE /* TangramLayoutComponent.h */,
 				BC43AF53212159E700A2B9DE /* TangramLayoutComponent.m */,
-				CBD6492E212C5964004E8098 /* TangramNodeRegistry.h */,
-				CBD6492F212C5964004E8098 /* TangramNodeRegistry.m */,
+				CBD6492E212C5964004E8098 /* TangramRegistry.h */,
+				CBD6492F212C5964004E8098 /* TangramRegistry.m */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -529,7 +545,7 @@
 				CBD6492D212C56AB004E8098 /* TangramComponentDescriptor.m in Sources */,
 				BCA1476921783294000D25AD /* NSTimer+Compatible..m in Sources */,
 				CB3F0F30212325B7005B0AE5 /* ColorfulCellNode.m in Sources */,
-				CBD64930212C5964004E8098 /* TangramNodeRegistry.m in Sources */,
+				CBD64930212C5964004E8098 /* TangramRegistry.m in Sources */,
 				CBD64936212D9F1B004E8098 /* TangramHorizontalInlineLayoutComponent.m in Sources */,
 				CBD64939212DA92D004E8098 /* TangramInlineHorizontalScrollableNode.m in Sources */,
 				CB01B8ED212069FD00DD9BE7 /* TangramCollectionViewLayout.m in Sources */,

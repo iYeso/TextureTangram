@@ -15,10 +15,11 @@
 
 #import "ColorfulNodeInfo.h"
 
+@class ColorfulCellNode;
 @implementation ColorfulNodeInfo
 
-- (NSString *)type {
-    return @"colorful";
+- (Class)nodeClass {
+    return NSClassFromString(@"ColorfulCellNode");
 }
 
 

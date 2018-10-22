@@ -9,9 +9,12 @@
 #import "TangramDefaultDataSourceHelper.h"
 #import "TangramBuildInLayout.h"
 #import "NSArray+TangramParse.h"
-
+#import "TangramRegistry.h"
 
 @implementation TangramDefaultDataSourceHelper
+
+NSString *TangramCarouselNodeType = @"carousel";
+
 
 - (NSMutableArray<TangramLayoutComponent *> *)layoutComponentsForContents:(NSArray *)contents {
     NSMutableArray *array = [NSMutableArray arrayWithCapacity:contents.count];

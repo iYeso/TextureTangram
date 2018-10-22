@@ -16,7 +16,6 @@
 #import "TangramNode.h"
 #import "TangramCollectionViewLayout.h"
 #import "TangramItemNode.h"
-#import "TangramNodeRegistry.h"
 #import "TangramInlineLayoutComponent.h"
 #import "TangramInlineCellInfo.h"
 
@@ -60,8 +59,6 @@
     _collectionNode.layoutInspector = self;
     self.backgroundColor = UIColor.whiteColor;
     
-    [TangramNodeRegistry registerClass:TangramItemNode.class forType:@"placeholder"];
-    [TangramNodeRegistry registerClass:TangramItemNode.class forType:@"horizontal"];
     self.collectionNode.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1.0];
 }
 
@@ -269,7 +266,7 @@
 
 - (ASCellNodeBlock)nodeBlockWithModel:(TangramComponentDescriptor *)model {
     return ^ASCellNode * _Nonnull(void) {
-        Class nodeClass = [TangramNodeRegistry classForType:model.type];
+        Class nodeClass = model.nodeClass;
         if (!model || !nodeClass || ![nodeClass isSubclassOfClass:TangramItemNode.class]) {
             return [TangramItemNode new];
         }

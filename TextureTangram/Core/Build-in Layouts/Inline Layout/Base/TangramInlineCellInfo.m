@@ -14,7 +14,12 @@
 //
 
 #import "TangramInlineCellInfo.h"
+#import "TangramInlineLayoutComponent.h"
 
 @implementation TangramInlineCellInfo
+
+- (Class)nodeClass {
+    return self.layoutComponent.inlineNodeClass;
+}
 
 @end

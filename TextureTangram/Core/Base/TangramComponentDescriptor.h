@@ -26,6 +26,8 @@
 @property  CGFloat width; ///< 控件的宽度，第一次布局的时候会设置这个属性。
 @property  CGFloat expectedHeight;
 
+- (Class)nodeClass; ///< 对应的控件类名；默认TangramItemNode
+
 - (CGFloat)computeHeightWithWidth:(CGFloat)width; ///< 自计算高度；会影响expectedHeight属性
 
 

@@ -14,7 +14,6 @@
 //
 
 #import "TangramCarouselInlineLayoutComponent.h"
-#import "TangramNodeRegistry.h"
 #import "TangramCarouselNode.h"
 #import "NSTimer+Compatible.h"
 NSInteger numberOfLoopsInTangramCarousel = 100;
@@ -29,14 +28,8 @@ NSInteger numberOfLoopsInTangramCarousel = 100;
 
 @implementation TangramCarouselInlineLayoutComponent
 
-NSString *TangramCarouselNodeType = @"carousel";
-
-+ (void)load {
-    [TangramNodeRegistry registerClass:TangramCarouselNode.class forType:TangramCarouselNodeType];
-}
-
-- (NSString *)type {
-    return TangramCarouselNodeType;
+- (Class)inlineNodeClass {
+    return TangramCarouselNode.class;
 }
 
 - (void)computeLayoutsWithOrigin:(CGPoint)origin width:(CGFloat)width {
@@ -158,7 +151,7 @@ NSString *TangramCarouselNodeType = @"carousel";
 
 - (ASCellNodeBlock)nodeBlockWithModel:(TangramComponentDescriptor *)model {
     return ^ASCellNode * _Nonnull(void) {
-        Class nodeClass = [TangramNodeRegistry classForType:model.type];
+        Class nodeClass = model.nodeClass;
         if (!model || !nodeClass || ![nodeClass isSubclassOfClass:TangramItemNode.class]) {
             return [TangramItemNode new];
         }

@@ -16,7 +16,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface TangramNodeRegistry : NSObject
+@interface TangramRegistry : NSObject
 
 + (void)registerFromDictionary:(nonnull NSDictionary<NSString *, Class> *)dictionary;
 
