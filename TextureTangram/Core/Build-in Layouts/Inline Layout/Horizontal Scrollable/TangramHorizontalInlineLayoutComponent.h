@@ -23,11 +23,19 @@
 @interface TangramHorizontalInlineLayoutComponent : TangramInlineLayoutComponent < ASCollectionDataSource, ASCollectionDelegateFlowLayout>
 
 - (ASCellNodeBlock)nodeBlockWithModel:(TangramComponentDescriptor *)model;
-
 @property (nonatomic, weak) ASCollectionNode *collectionNode;
+
+
+/**
+ 页面宽度，在iOS上配置了此参数，轮播布局的滚动会变为线性,不配置的话，就是一页一页的滚动，Android需要依赖此选型设置页面宽度
+ 注意： 暂时不支持
+ */
+@property (nonatomic) CGFloat pageWidth;
+@property (nonatomic) CGFloat pageHeight; ///< 页面高度
 @property (nonatomic) BOOL hasIndicator; ///< 是否显示滚动指示
 @property (nonatomic) CGFloat horizontalInterItemsSpace; ///< 垂直方向每个组件的距离; hGap
 @property (nonatomic) CGFloat scrollMarginLeft; ///< 最左边一帧距离布局左边的间距
 @property (nonatomic) CGFloat scrollMarginRight; ///<最右边一帧距离布局右边的间距
-
+@property (nonatomic, strong) UIColor *indicatorColor; ///<指示器选中颜色(iOS不支持)
+@property (nonatomic, strong) UIColor *defaultIndicatorColor; ///<指示器默认颜色(iOS不支持)
 @end
